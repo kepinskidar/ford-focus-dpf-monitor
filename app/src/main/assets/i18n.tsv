@@ -1,0 +1,424 @@
+# pl	en	de	it
+Szukaj urządzenia OBD2	Search for OBD2 device	OBD2-Gerät suchen	Cerca dispositivo OBD2
+Połącz	Connect	Verbinden	Connetti
+Rozłącz	Disconnect	Trennen	Disconnetti
+Stan połączenia	Connection status	Verbindungsstatus	Stato connessione
+● Rozłączono	● Disconnected	● Getrennt	● Disconnesso
+◌ Szukanie…	◌ Searching…	◌ Suche läuft…	◌ Ricerca…
+◌ Łączenie…	◌ Connecting…	◌ Verbinde…	◌ Connessione…
+● Połączono	● Connected	● Verbunden	● Connesso
+Obciążenie DPF	DPF load	DPF-Beladung	Carico DPF
+Sadza DPF	DPF soot	DPF-Ruß	Fuliggine DPF
+Stan regeneracji	Regeneration status	Regenerationsstatus	Stato rigenerazione
+Temperatura spalin (EGT)	Exhaust gas temperature (EGT)	Abgastemperatur (EGT)	Temperatura gas di scarico (EGT)
+Temperatura płynu chłodzącego	Coolant temperature	Kühlmitteltemperatur	Temperatura liquido refrigerante
+Ostatnia regeneracja	Last regeneration	Letzte Regeneration	Ultima rigenerazione
+Ostatni serwis	Last service	Letzte Wartung	Ultimo tagliando
+Licznik	Odometer	Kilometerstand	Contachilometri
+Ustaw ostatni serwis (km)	Set last service (km)	Letzte Wartung festlegen (km)	Imposta ultimo tagliando (km)
+np. 98230	e.g. 98230	z. B. 98230	es. 98230
+Zapisz	Save	Speichern	Salva
+Nieaktywna — można zgasić silnik	Inactive — safe to switch off the engine	Inaktiv — Motor darf abgestellt werden	Inattiva — puoi spegnere il motore
+⚠ Wysoka temperatura — nie gaś silnika	⚠ High temperature — do not switch off the engine	⚠ Hohe Temperatur — Motor nicht abstellen	⚠ Temperatura alta — non spegnere il motore
+🔴 AKTYWNA — nie gaś silnika!	🔴 ACTIVE — do not switch off the engine!	🔴 AKTIV — Motor nicht abstellen!	🔴 ATTIVA — non spegnere il motore!
+✅ Zakończona — można zgasić silnik	✅ Completed — safe to switch off the engine	✅ Abgeschlossen — Motor darf abgestellt werden	✅ Completata — puoi spegnere il motore
+Alerty DPF	DPF alerts	DPF-Warnungen	Avvisi DPF
+Powiadomienia o regeneracji DPF i stanie połączenia Bluetooth	Notifications about DPF regeneration and Bluetooth connection status	Benachrichtigungen zur DPF-Regeneration und zum Bluetooth-Verbindungsstatus	Notifiche sulla rigenerazione del DPF e sullo stato della connessione Bluetooth
+MK5 DPF — monitor DPF	MK5 DPF — DPF monitor	MK5 DPF — DPF-Monitor	MK5 DPF — monitor DPF
+Wysoka temperatura EGT	High EGT	Hohe EGT	EGT elevata
+EGT powyżej 450°C. Nie gaś silnika.	EGT above 450°C. Do not switch off the engine.	EGT über 450 °C. Motor nicht abstellen.	EGT oltre 450°C. Non spegnere il motore.
+Regeneracja DPF aktywna!	DPF regeneration active!	DPF-Regeneration aktiv!	Rigenerazione DPF attiva!
+NIE gaś silnika!	Do NOT switch off the engine!	Motor NICHT abstellen!	NON spegnere il motore!
+Regeneracja zakończona	Regeneration completed	Regeneration abgeschlossen	Rigenerazione completata
+DPF oczyszczony. Możesz zgasić silnik.	DPF cleaned. You can switch off the engine.	DPF gereinigt. Sie können den Motor abstellen.	DPF pulito. Puoi spegnere il motore.
+Rozłączono OBD	OBD disconnected	OBD getrennt	OBD disconnesso
+Monitorowanie DPF wstrzymane. Dotknij, aby połączyć ponownie.	DPF monitoring paused. Tap to reconnect.	DPF-Überwachung pausiert. Zum erneuten Verbinden tippen.	Monitoraggio DPF in pausa. Tocca per riconnetterti.
+Wysoki EGT — unikaj gaszenia silnika	High EGT — avoid switching off the engine	Hohe EGT — Motor nicht abstellen	EGT alta — evita di spegnere il motore
+Regeneracja aktywna! NIE gaś silnika!	Regeneration active! Do NOT switch off the engine!	Regeneration aktiv! Motor NICHT abstellen!	Rigenerazione attiva! NON spegnere il motore!
+Regeneracja zakończona. Możesz zgasić silnik.	Regeneration completed. You can switch off the engine.	Regeneration abgeschlossen. Sie können den Motor abstellen.	Rigenerazione completata. Puoi spegnere il motore.
+Rozłączono adapter OBD	OBD adapter disconnected	OBD-Adapter getrennt	Adattatore OBD disconnesso
+Połącz ponownie	Reconnect	Erneut verbinden	Riconnetti
+Filtr DPF	DPF filter	DPF-Filter	Filtro DPF
+Regeneracja	Regeneration	Regeneration	Rigenerazione
+Temperatury	Temperatures	Temperaturen	Temperature
+Dystanse	Distances	Strecken	Distanze
+Sadza	Soot	Ruß	Fuliggine
+Obciążenie	Load	Beladung	Carico
+Chłodz.	Coolant	Kühlm.	Refrig.
+Od regen.	Since regen.	Seit Regen.	Da rigen.
+Od serwisu	Since service	Seit Wartung	Da tagliando
+Źródło: flaga ECU	Source: ECU flag	Quelle: ECU-Flag	Fonte: flag ECU
+Źródło: temp. EGT	Source: EGT temp.	Quelle: EGT-Temp.	Fonte: temp. EGT
+⚠ Wysoka temp. — nie gaś	⚠ High temp. — don't switch off	⚠ Hohe Temp. — nicht abstellen	⚠ Temp. alta — non spegnere
+🔴 AKTYWNA — nie gaś!	🔴 ACTIVE — don't switch off!	🔴 AKTIV — nicht abstellen!	🔴 ATTIVA — non spegnere!
+⚠ Wysoki EGT — unikaj gaszenia silnika	⚠ High EGT — avoid switching off the engine	⚠ Hohe EGT — Motor nicht abstellen	⚠ EGT alta — evita di spegnere il motore
+🔴 Regeneracja aktywna! NIE gaś silnika!	🔴 Regeneration active! Do NOT switch off the engine!	🔴 Regeneration aktiv! Motor NICHT abstellen!	🔴 Rigenerazione attiva! NON spegnere il motore!
+✅ Regeneracja zakończona. Możesz zgasić silnik.	✅ Regeneration completed. You can switch off the engine.	✅ Regeneration abgeschlossen. Sie können den Motor abstellen.	✅ Rigenerazione completata. Puoi spegnere il motore.
+Trwa schładzanie turbosprężarki	Turbocharger cooldown in progress	Turbolader kühlt ab	Raffreddamento del turbo in corso
+Jeszcze nie gaś silnika — odczekaj 45 sekund.	Don't switch off the engine yet — wait 45 seconds.	Motor noch nicht abstellen — 45 Sekunden warten.	Non spegnere ancora il motore — attendi 45 secondi.
+Schładzanie zakończone	Cooldown completed	Abkühlung abgeschlossen	Raffreddamento completato
+Możesz bezpiecznie zgasić silnik.	You can safely switch off the engine.	Sie können den Motor jetzt sicher abstellen.	Puoi spegnere il motore in sicurezza.
+💬  Asystent AI	💬  AI assistant	💬  KI-Assistent	💬  Assistente AI
+Diagnostyka w języku naturalnym na podstawie danych Twojego auta	Natural-language diagnostics based on your car's data	Diagnose in natürlicher Sprache anhand der Daten Ihres Fahrzeugs	Diagnostica in linguaggio naturale basata sui dati della tua auto
+Zapytaj o coś…	Ask something…	Etwas fragen…	Chiedi qualcosa…
+Wyślij	Send	Senden	Invia
+⚡ Adapter OBD2 niepołączony — połącz się w zakładce Monitor, aby zobaczyć dane na żywo	⚡ OBD2 adapter not connected — connect on the Monitor tab to see live data	⚡ OBD2-Adapter nicht verbunden — auf dem Reiter Monitor verbinden, um Live-Daten zu sehen	⚡ Adattatore OBD2 non connesso — connettiti dalla scheda Monitor per vedere i dati live
+🔥  DPF ZAAWANSOWANE	🔥  DPF ADVANCED	🔥  DPF ERWEITERT	🔥  DPF AVANZATO
+Filtr cząstek stałych — wartości na żywo ze sterownika	Particulate filter — live values from the ECU	Partikelfilter — Live-Werte vom Steuergerät	Filtro antiparticolato — valori live dalla centralina
+⚙️  SILNIK NA ŻYWO	⚙️  ENGINE LIVE	⚙️  MOTOR LIVE	⚙️  MOTORE LIVE
+Czujniki silnika — odczyt OBD2 w czasie rzeczywistym	Engine sensors — real-time OBD2 readout	Motorsensoren — OBD2-Auslesung in Echtzeit	Sensori motore — lettura OBD2 in tempo reale
+🔌  ZASILANIE	🔌  POWER SUPPLY	🔌  STROMVERSORGUNG	🔌  ALIMENTAZIONE
+Akumulator, ciśnienie paliwa, powietrze dolotowe	Battery, fuel pressure, intake air	Batterie, Kraftstoffdruck, Ansaugluft	Batteria, pressione carburante, aria aspirata
+📍  DYSTANSE	📍  DISTANCES	📍  STRECKEN	📍  DISTANZE
+Liczniki kilometrów odczytane ze sterownika	Kilometre counters read from the ECU	Kilometerzähler aus dem Steuergerät	Contatori chilometrici letti dalla centralina
+🔧  Kody błędów	🔧  Fault codes	🔧  Fehlercodes	🔧  Codici errore
+Odczytuje kody ze sterownika silnika (kontrolka silnika)	Reads codes from the engine ECU (check engine light)	Liest Codes aus dem Motorsteuergerät (Motorkontrollleuchte)	Legge i codici dalla centralina motore (spia motore)
+Odczytaj kody	Read codes	Codes auslesen	Leggi codici
+🤖  Wyjaśnij z AI	🤖  Explain with AI	🤖  Mit KI erklären	🤖  Spiega con AI
+Dotknij «Odczytaj kody», aby odpytać sterownik.	Tap «Read codes» to query the ECU.	Tippen Sie auf «Codes auslesen», um das Steuergerät abzufragen.	Tocca «Leggi codici» per interrogare la centralina.
+🗑  Kasuj kody	🗑  Clear codes	🗑  Codes löschen	🗑  Cancella codici
+Gotowy do skanowania	Ready to scan	Bereit zum Scannen	Pronto per la scansione
+✓ Odpowiedzi	✓ Replies	✓ Antworten	✓ Risposte
+✗ Negatywne	✗ Negative	✗ Negative	✗ Negative
+– Brak odp.	– No reply	– Keine Antw.	– Nessuna risp.
+Dotknij "Start", aby rozpocząć wykrywanie PID-ów ECU.\n\nNajpierw upewnij się, że adapter OBD jest połączony.	Tap "Start" to begin ECU PID discovery.\n\nFirst make sure the OBD adapter is connected.	Tippen Sie auf "Start", um die ECU-PID-Erkennung zu beginnen.\n\nStellen Sie zuerst sicher, dass der OBD-Adapter verbunden ist.	Tocca "Start" per avviare il rilevamento dei PID della centralina.\n\nAssicurati prima che l'adattatore OBD sia connesso.
+🤖  Analizuj skanowanie z AI	🤖  Analyze scan with AI	🤖  Scan mit KI analysieren	🤖  Analizza scansione con AI
+📸  Udostępnij zapis regen.	📸  Share regen. capture	📸  Regen.-Aufzeichnung teilen	📸  Condividi cattura regen.
+Udostępnij log	Share log	Protokoll teilen	Condividi log
+👁  PRZYKŁADOWE DANE — nie zarejestrowano jeszcze prawdziwej regeneracji	👁  SAMPLE DATA — no real regeneration recorded yet	👁  BEISPIELDATEN — noch keine echte Regeneration aufgezeichnet	👁  DATI DI ESEMPIO — nessuna rigenerazione reale ancora registrata
+RAZEM	TOTAL	GESAMT	TOTALI
+ZAKOŃCZ.	COMPL.	ABGESCHL.	COMPL.
+CZAS	TIME	DAUER	DURATA
+ŚR. SADZA	AVG. SOOT	Ø RUSS	MEDIA FULIGGINE
+📄  Eksportuj raport dla mechanika	📄  Export report for the mechanic	📄  Bericht für die Werkstatt exportieren	📄  Esporta report per il meccanico
+SADZA PRZED / PO REGEN.	SOOT BEFORE / AFTER REGEN.	RUSS VOR / NACH REGEN.	FULIGGINE PRIMA / DOPO RIGEN.
+Przed	Before	Vorher	Prima
+Po	After	Nachher	Dopo
+Brak zarejestrowanych regeneracji	No regenerations recorded	Keine Regenerationen aufgezeichnet	Nessuna rigenerazione registrata
+Historia wypełnia się automatycznie, gdy aplikacja wykryje aktywną regenerację DPF.	History fills in automatically when the app detects an active DPF regeneration.	Der Verlauf füllt sich automatisch, sobald die App eine aktive DPF-Regeneration erkennt.	Lo storico si popola automaticamente quando l'app rileva una rigenerazione attiva del DPF.
+Połączenie OBD2	OBD2 connection	OBD2-Verbindung	Connessione OBD2
+Skanuj PID-y ECU	Scan ECU PIDs	ECU-PIDs scannen	Scansiona PID ECU
+🔧  Kody błędów (kontrolka silnika)	🔧  Fault codes (check engine light)	🔧  Fehlercodes (Motorkontrollleuchte)	🔧  Codici errore (spia motore)
+🤖  Ustawienia AI	🤖  AI settings	🤖  KI-Einstellungen	🤖  Impostazioni AI
+STAN DPF	DPF STATUS	DPF-STATUS	STATO DPF
+bieg jałowy ~0 | jazda 5-15 kPa	idle ~0 | driving 5-15 kPa	Leerlauf ~0 | Fahrt 5-15 kPa	minimo ~0 | marcia 5-15 kPa
+Dystanse (ECU)	Distances (ECU)	Strecken (ECU)	Distanze (ECU)
+Licznik (CAŁK.)	Odometer (TOTAL)	Kilometerstand (GESAMT)	Contachilometri (TOT.)
+Następna regen. (szac.)	Next regen. (est.)	Nächste Regen. (gesch.)	Prossima rigen. (stima)
+Wymiana oleju (OILCHG)	Oil change (OILCHG)	Ölwechsel (OILCHG)	Cambio olio (OILCHG)
+PRZYPOMNIENIA SERWISOWE	SERVICE REMINDERS	WARTUNGSERINNERUNGEN	PROMEMORIA MANUTENZIONE
+Brak przypomnień	No reminders	Keine Erinnerungen	Nessun promemoria
+Dotknij +, aby dodać przegląd, rotację opon lub inny termin.	Tap + to add a service, tyre rotation or another deadline.	Tippen Sie auf +, um eine Inspektion, einen Reifenwechsel oder einen anderen Termin hinzuzufügen.	Tocca + per aggiungere tagliando, inversione gomme o altre scadenze.
+Dodaj przypomnienie	Add reminder	Erinnerung hinzufügen	Aggiungi promemoria
+Opcjonalne funkcje oparte na Claude (wyjaśnianie kodów błędów, analiza skanowania ECU). Klucz pozostaje tylko w telefonie.	Optional Claude-based features (fault code explanations, ECU scan analysis). The key stays on this phone only.	Optionale Funktionen auf Basis von Claude (Erklärung von Fehlercodes, Analyse des ECU-Scans). Der Schlüssel bleibt nur auf dem Telefon.	Funzioni opzionali basate su Claude (spiegazione codici errore, analisi scansione ECU). La chiave resta solo sul telefono.
+KLUCZ API ANTHROPIC	ANTHROPIC API KEY	ANTHROPIC-API-SCHLÜSSEL	CHIAVE API ANTHROPIC
+Klucz uzyskasz na console.anthropic.com → API Keys	Get a key at console.anthropic.com → API Keys	Einen Schlüssel erhalten Sie unter console.anthropic.com → API Keys	Ottieni una chiave su console.anthropic.com → API Keys
+MODEL	MODEL	MODELL	MODELLO
+Testuj połączenie	Test connection	Verbindung testen	Testa connessione
+💰  ZUŻYCIE (SZACUNEK LOKALNY)	💰  USAGE (LOCAL ESTIMATE)	💰  NUTZUNG (LOKALE SCHÄTZUNG)	💰  UTILIZZO (STIMA LOCALE)
+Zapytania: 0	Requests: 0	Anfragen: 0	Richieste: 0
+Tokeny: 0 wej. / 0 wyj.	Tokens: 0 in / 0 out	Tokens: 0 ein / 0 aus	Token: 0 in / 0 out
+Szacowany koszt łącznie: $0.0000	Estimated total cost: $0.0000	Geschätzte Gesamtkosten: $0.0000	Costo stimato totale: $0.0000
+Ostatnie zapytanie: $0.0000	Last request: $0.0000	Letzte Anfrage: $0.0000	Ultima richiesta: $0.0000
+Zeruj liczniki	Reset counters	Zähler zurücksetzen	Azzera contatori
+Koszt to lokalny szacunek na podstawie tokenów każdej odpowiedzi. Oficjalne rozliczenie jest w Konsoli Anthropic.	The cost is a local estimate from the tokens of each response. The official count is in the Anthropic Console.	Die Kosten sind eine lokale Schätzung anhand der Tokens jeder Antwort. Die offizielle Abrechnung finden Sie in der Anthropic Console.	Il costo è una stima locale calcolata dai token di ogni risposta. Il conteggio ufficiale è nella Console Anthropic.
+Ikona MK5 DPF	MK5 DPF icon	MK5-DPF-Symbol	Icona MK5 DPF
+Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM	Ford Mondeo Mk5 · 2.0 EcoBlue 190 hp	Ford Mondeo Mk5 · 2.0 EcoBlue 190 PS	Ford Mondeo Mk5 · 2.0 EcoBlue 190 CV
+Autor oryginału: Andrea Sesuru	Original author: Andrea Sesuru	Ursprünglicher Autor: Andrea Sesuru	Autore originale: Andrea Sesuru
+Nowe przypomnienie	New reminder	Neue Erinnerung	Nuovo promemoria
+Nazwa serwisu	Service name	Name der Wartung	Nome intervento
+np. Rotacja opon	e.g. Tyre rotation	z. B. Reifenwechsel	es. Inversione gomme
+Przypominaj co (km)	Remind every (km)	Erinnern alle (km)	Ricordami ogni (km)
+np. 10000	e.g. 10000	z. B. 10000	es. 10000
+Ostatni serwis (przebieg, km)	Last service (mileage, km)	Letzte Wartung (Kilometerstand, km)	Ultimo tagliando (km del contachilometri)
+np. 95230	e.g. 95230	z. B. 95230	es. 95230
+Dziś	Today	Heute	Oggi
+Połącz adapter OBD2, aby użyć aktualnego przebiegu.	Connect the OBD2 adapter to use the current mileage.	Verbinden Sie den OBD2-Adapter, um den aktuellen Kilometerstand zu verwenden.	Connetti l'adattatore OBD2 per usare il chilometraggio attuale.
+Anuluj	Cancel	Abbrechen	Annulla
+Przegląd olejowy	Oil service	Ölservice	Tagliando olio
+Termin za 12.500 km	Due in 12,500 km	Fällig in 12.500 km	Scade tra 12.500 km
+Wykonano przy 95.230 km  ·  Następny przy 110.230 km	Done at 95,230 km  ·  Next at 110,230 km	Durchgeführt bei 95.230 km  ·  Nächste bei 110.230 km	Fatto a 95.230 km  ·  Prossimo a 110.230 km
+Usuń	Delete	Löschen	Elimina
+Edytuj	Edit	Bearbeiten	Modifica
+Wykonano	Done	Erledigt	Fatto
+SADZA	SOOT	RUSS	FULIGGINE
+EGT SZCZYT	EGT PEAK	EGT-SPITZE	EGT PICCO
+CHŁODZ.	COOLANT	KÜHLM.	REFRIG.
+📡 Diagn.	📡 Diag.	📡 Diag.	📡 Diagn.
+📋 Historia	📋 History	📋 Verlauf	📋 Storico
+🔧 Serwis	🔧 Service	🔧 Wartung	🔧 Servizio
+Sadza %s · Obc. %s%s	Soot %s · Load %s%s	Ruß %s · Bel. %s%s	Fuliggine %s · Car. %s%s
+Delta P (różnica ciśnień)	Delta P (pressure difference)	Delta P (Druckdifferenz)	Delta P (differenza di pressione)
+Od ostatniej regeneracji	Since last regeneration	Seit letzter Regeneration	Dall'ultima rigenerazione
+EGT (temp. spalin)	EGT (exhaust temp.)	EGT (Abgastemp.)	EGT (temp. scarico)
+Płyn chłodzący	Coolant	Kühlmittel	Liquido refrigerante
+Temperatura oleju	Oil temperature	Öltemperatur	Temperatura olio
+Obroty	Engine speed	Drehzahl	Giri motore
+obr./min	rpm	U/min	giri/min
+Prędkość	Speed	Geschwindigkeit	Velocità
+Obciążenie silnika	Engine load	Motorlast	Carico motore
+Ciśnienie w kolektorze	Manifold pressure	Saugrohrdruck	Pressione collettore
+Akumulator	Battery	Batterie	Batteria
+Ciśnienie w listwie	Rail pressure	Raildruck	Pressione rail
+Powietrze dolotowe	Intake air	Ansaugluft	Aria aspirata
+Od wymiany oleju	Since oil change	Seit Ölwechsel	Da cambio olio
+Sadza %s · Obc. %s · ΔP %s	Soot %s · Load %s · ΔP %s	Ruß %s · Bel. %s · ΔP %s	Fuliggine %s · Car. %s · ΔP %s
+Silnik	Engine	Motor	Motore
+Płyn %s · Olej %s · %s	Coolant %s · Oil %s · %s	Kühlm. %s · Öl %s · %s	Refrig. %s · Olio %s · %s
+Jazda	Driving	Fahrt	Guida
+%s · obciążenie %s	%s · load %s	%s · Last %s	%s · carico %s
+Zasilanie	Power	Versorgung	Alimentazione
+Akumulator %s	Battery %s	Batterie %s	Batteria %s
+Licznik %s · od regen. %s	Odometer %s · since regen. %s	Kilometerstand %s · seit Regen. %s	Contachilometri %s · da rigen. %s
+Połączenie OBD	OBD connection	OBD-Verbindung	Connessione OBD
+Połączono	Connected	Verbunden	Connesso
+Rozłączono	Disconnected	Getrennt	Disconnesso
+Regen: brak	Regen: none	Regen: keine	Rigen.: nessuna
+⚠ Wysoka temp.	⚠ High temp.	⚠ Hohe Temp.	⚠ Temp. alta
+REGEN AKTYWNA	REGEN ACTIVE	REGEN AKTIV	RIGEN. ATTIVA
+Regen zakończona	Regen completed	Regen abgeschlossen	Rigen. completata
+⚠ Wysoka temp. — nie gaś silnika	⚠ High temp. — don't switch off the engine	⚠ Hohe Temp. — Motor nicht abstellen	⚠ Temp. alta — non spegnere il motore
+AKTYWNA — nie gaś silnika!	ACTIVE — don't switch off the engine!	AKTIV — Motor nicht abstellen!	ATTIVA — non spegnere il motore!
+Zakończona — można zgasić silnik	Completed — safe to switch off the engine	Abgeschlossen — Motor darf abgestellt werden	Completata — puoi spegnere il motore
+Sadza %s  ·  Obciążenie %s  ·  ΔP %s	Soot %s  ·  Load %s  ·  ΔP %s	Ruß %s  ·  Beladung %s  ·  ΔP %s	Fuliggine %s  ·  Carico %s  ·  ΔP %s
+Uwaga — nie gasić silnika	Caution — don't switch off the engine	Achtung — Motor nicht abstellen	Attenzione — non spegnere il motore
+AKTYWNA — nie gasić silnika!	ACTIVE — don't switch off the engine!	AKTIV — Motor nicht abstellen!	ATTIVA — non spegnere il motore!
+Zakończona	Completed	Abgeschlossen	Completata
+  ·  Temp. EGT	  ·  EGT temp.	  ·  EGT-Temp.	  ·  Temp. EGT
+  ·  Sadza ↓	  ·  Soot ↓	  ·  Ruß ↓	  ·  Fuliggine ↓
+  ·  ΔT filtra	  ·  Filter ΔT	  ·  Filter-ΔT	  ·  ΔT filtro
+EGT wlot %s  ·  EGT wylot %s  ·  Silnik %s	EGT in %s  ·  EGT out %s  ·  Engine %s	EGT vor %s  ·  EGT nach %s  ·  Motor %s	EGT ingresso %s  ·  EGT uscita %s  ·  Motore %s
+Ponowne łączenie z Android-Vlink…	Reconnecting to Android-Vlink…	Verbinde erneut mit Android-Vlink…	Riconnessione ad Android-Vlink…
+Monitorowanie DPF	DPF monitoring	DPF-Überwachung	Monitoraggio DPF
+Stan DPF na żywo — widoczny podczas monitorowania	Live DPF status — visible while monitoring	DPF-Status live — sichtbar während der Überwachung	Stato DPF live — visibile durante il monitoraggio
+Ciche powiadomienia o połączeniu/rozłączeniu Bluetooth	Silent notifications about Bluetooth connect/disconnect	Stille Benachrichtigungen über Bluetooth-Verbindung/-Trennung	Notifiche silenziose di connessione/disconnessione Bluetooth
+Przypomnienia o przeglądzie	Service reminders	Inspektionserinnerungen	Promemoria tagliando
+Przypomnienia o umówieniu przeglądu w warsztacie	Reminders to book a service at the garage	Erinnerungen zur Terminvereinbarung in der Werkstatt	Promemoria per prenotare il tagliando dal meccanico
+Chłodzenie turbosprężarki	Turbocharger cooldown	Turbolader-Abkühlung	Raffreddamento turbo
+Ciche powiadomienia o schładzaniu turbo po jeździe	Silent notifications about turbo cooldown after driving	Stille Benachrichtigungen zur Turbo-Abkühlung nach der Fahrt	Avvisi silenziosi per il raffreddamento del turbo dopo il viaggio
+Przypomnienia serwisowe	Maintenance reminders	Wartungserinnerungen	Promemoria manutenzione
+Terminy serwisowe: przegląd, opony, filtry	Maintenance deadlines: service, tyres, filters	Wartungstermine: Inspektion, Reifen, Filter	Scadenze manutenzione: tagliando, gomme, filtri
+%s  •  Sadza: %s  •  EGT: %s	%s  •  Soot: %s  •  EGT: %s	%s  •  Ruß: %s  •  EGT: %s	%s  •  Fuliggine: %s  •  EGT: %s
+OBD połączony	OBD connected	OBD verbunden	OBD connesso
+Połączono z %s — monitoring aktywny	Connected to %s — monitoring active	Verbunden mit %s — Überwachung aktiv	Connesso a %s — monitoraggio attivo
+%s — termin się zbliża	%s — due soon	%s — bald fällig	%s — in scadenza
+Termin za %,d km. Pamiętaj o umówieniu wizyty.	Due in %,d km. Remember to book an appointment.	Fällig in %,d km. Denken Sie an die Terminvereinbarung.	Scade tra %,d km. Ricordati di prenotare.
+Tylko %,d km do terminu. Umów wizytę od razu.	Only %,d km until due. Book an appointment now.	Nur noch %,d km bis zur Fälligkeit. Jetzt Termin vereinbaren.	Solo %,d km alla scadenza. Prenota subito.
+%s — PO TERMINIE	%s — OVERDUE	%s — ÜBERFÄLLIG	%s — SCADUTO
+Termin minął. Wykonaj serwis jak najszybciej.	Deadline passed. Have it serviced as soon as possible.	Termin überschritten. Bitte so bald wie möglich warten lassen.	Scadenza superata. Effettua la manutenzione il prima possibile.
+📸 Zapisano stan regeneracji	📸 Regeneration state captured	📸 Regenerationsstatus erfasst	📸 Stato rigenerazione catturato
+Zapisano %s parametrów ECU. Otwórz i dotknij "Udostępnij zapis".	%s ECU parameters saved. Open and tap "Share capture".	%s ECU-Parameter gespeichert. Öffnen und "Aufzeichnung teilen" tippen.	%s parametri ECU salvati. Apri e tocca "Condividi cattura".
+Zapisano %s parametrów ECU podczas regeneracji. 	%s ECU parameters recorded during regeneration. 	%s ECU-Parameter während der Regeneration aufgezeichnet. 	%s parametri ECU registrati durante la rigenerazione. 
+Gdy się zatrzymasz, otwórz skaner ECU i dotknij "Udostępnij zapis regen.", aby wysłać log.	When you stop, open the ECU scanner and tap "Share regen. capture" to send the log.	Wenn Sie anhalten, öffnen Sie den ECU-Scanner und tippen Sie auf "Regen.-Aufzeichnung teilen", um das Protokoll zu senden.	Quando ti fermi, apri lo scanner ECU e tocca "Condividi cattura regen." per inviare il log.
+Adapter OBD	OBD adapter	OBD-Adapter	Adattatore OBD
+REGEN ZAKOŃCZONA	REGEN COMPLETED	REGEN ABGESCHLOSSEN	RIGEN. COMPLETATA
+Trwa analiza AI…	AI analysis in progress…	KI-Analyse läuft…	Analisi AI in corso…
+Błąd AI	AI error	KI-Fehler	Errore AI
+Nieznany błąd	Unknown error	Unbekannter Fehler	Errore sconosciuto
+Zamknij	Close	Schließen	Chiudi
+Brak klucza AI	AI key missing	KI-Schlüssel fehlt	Chiave AI mancante
+Aby korzystać z funkcji AI, potrzebny jest klucz API Anthropic.\nOtworzyć ustawienia AI teraz?	To use the AI features you need an Anthropic API key.\nOpen the AI settings now?	Für die KI-Funktionen wird ein Anthropic-API-Schlüssel benötigt.\nKI-Einstellungen jetzt öffnen?	Per usare le funzioni AI serve una chiave API Anthropic.\nAprire le impostazioni AI ora?
+Otwórz ustawienia	Open settings	Einstellungen öffnen	Apri impostazioni
+Przygotowuję dane o samochodzie…	Preparing car data…	Fahrzeugdaten werden vorbereitet…	Preparo i dati dell'auto…
+(dane niedostępne)	(data unavailable)	(Daten nicht verfügbar)	(dati non disponibili)
+Cześć! Jestem asystentem Twojego auta (%s). Przeczytałem aktualne dane i historię. 	Hi! I'm your car's assistant (%s). I've read the current data and history. 	Hallo! Ich bin der Assistent Ihres Fahrzeugs (%s). Ich habe die aktuellen Daten und den Verlauf gelesen. 	Ciao! Sono l'assistente della tua auto (%s). Ho letto i dati attuali e lo storico. 
+Pytaj śmiało — np. "jak się ma DPF?", "dlaczego tyle przerwanych regeneracji?", "kiedy wymienić olej?".	Ask away — e.g. "how is the DPF doing?", "why so many interrupted regenerations?", "when should I change the oil?".	Fragen Sie ruhig — z. B. "Wie geht es dem DPF?", "Warum so viele abgebrochene Regenerationen?", "Wann muss ich das Öl wechseln?".	Chiedimi pure — es. "come sta il DPF?", "perché tante rigenerazioni interrotte?", "quando cambio l'olio?".
+⚠️ Nie ustawiono klucza API. Wpisz go w «Ustawienia AI», abym mógł odpowiadać.	⚠️ No API key set. Enter it in «AI settings» so I can answer.	⚠️ Kein API-Schlüssel gesetzt. Tragen Sie ihn unter «KI-Einstellungen» ein, damit ich antworten kann.	⚠️ Nessuna chiave API impostata. Inseriscila in «Impostazioni AI» per farmi rispondere.
+Błąd: %s	Error: %s	Fehler: %s	Errore: %s
+Profil silnika	Engine profile	Motorprofil	Profilo motore
+Profil zmieniony. Rozłącz i połącz ponownie adapter OBD2.	Profile changed. Disconnect and reconnect the OBD2 adapter.	Profil geändert. OBD2-Adapter trennen und erneut verbinden.	Profilo cambiato. Disconnetti e riconnetti l'adattatore OBD2.
+norma < 50% · krytyczne > 80%	normal < 50% · critical > 80%	normal < 50% · kritisch > 80%	normale < 50% · critico > 80%
+OBCIĄŻENIE DPF	DPF LOAD	DPF-BELADUNG	CARICO DPF
+bieg jałowy ~0 · jazda 5-15 kPa	idle ~0 · driving 5-15 kPa	Leerlauf ~0 · Fahrt 5-15 kPa	minimo ~0 · marcia 5-15 kPa
+EGT WLOT	EGT INLET	EGT EINLASS	EGT INGRESSO
+norma < 500°C · regeneracja 600-700°C	normal < 500°C · regeneration 600-700°C	normal < 500°C · Regeneration 600-700°C	normale < 500°C · rigenerazione 600-700°C
+EGT WYLOT	EGT OUTLET	EGT AUSLASS	EGT USCITA
+drugi czujnik EGT w układzie wydechowym	second EGT sensor in the exhaust system	zweiter EGT-Sensor im Abgassystem	secondo sensore EGT di scarico
+bieg jałowy ~800 · norma 1.000-3.000	idle ~800 · normal 1,000-3,000	Leerlauf ~800 · normal 1.000-3.000	minimo ~800 · normale 1.000-3.000
+PRĘDKOŚĆ	SPEED	GESCHWINDIGKEIT	VELOCITÀ
+OBCIĄŻENIE SILNIKA	ENGINE LOAD	MOTORLAST	CARICO MOTORE
+norma < 60% · wysokie > 85%	normal < 60% · high > 85%	normal < 60% · hoch > 85%	normale < 60% · alto > 85%
+norma 0-1,5 bar	normal 0-1.5 bar	normal 0-1,5 bar	normale 0-1,5 bar
+PŁYN CHŁODZĄCY	COOLANT	KÜHLMITTEL	REFRIGERANTE
+AKUMULATOR	BATTERY	BATTERIE	BATTERIA
+silnik pracuje 13,8-14,4 V · słaby < 12 V	engine running 13.8-14.4 V · weak < 12 V	Motor läuft 13,8-14,4 V · schwach < 12 V	acceso 13,8-14,4 V · debole < 12 V
+CIŚNIENIE RAILA	RAIL PRESSURE	RAILDRUCK	PRESSIONE RAIL
+min. ~250 · pełne obciążenie ~1.600	min. ~250 · full load ~1,600	min. ~250 · Volllast ~1.600	min. ~250 · pieno carico ~1.600
+TEMP. POWIETRZA	AIR TEMP.	LUFTTEMP.	TEMP. ARIA
+KM DO REGENERACJI	KM TO REGENERATION	KM BIS REGENERATION	KM ALLA RIGEN.
+szacunek ECU · maleje w czasie jazdy · ~0 = regeneracja wkrótce	ECU estimate · decreases while driving · ~0 = regeneration soon	ECU-Schätzung · sinkt während der Fahrt · ~0 = Regeneration bald	stima ECU · scende guidando · ~0 = rigenerazione vicina
+KM OD WYMIANY OLEJU	KM SINCE OIL CHANGE	KM SEIT ÖLWECHSEL	KM DA CAMBIO OLIO
+LICZNIK	ODOMETER	KILOMETERSTAND	CONTACHILOMETRI
+przebieg całkowity ze sterownika	total mileage from the ECU	Gesamtkilometerstand vom Steuergerät	chilometri totali dalla centralina
+Adapter niepołączony — połącz się w zakładce Monitor.	Adapter not connected — connect on the Monitor tab.	Adapter nicht verbunden — auf dem Reiter Monitor verbinden.	Adattatore non connesso — collegati dalla scheda Monitor.
+Odczyt kodów…	Reading codes…	Codes werden gelesen…	Lettura codici in corso…
+Błąd odczytu. Spróbuj ponownie.	Read error. Please try again.	Lesefehler. Bitte erneut versuchen.	Errore di lettura. Riprova.
+Kasuj kody błędów	Clear fault codes	Fehlercodes löschen	Cancella codici errore
+Kasuje zapisane kody i gasi kontrolkę silnika.\n\n	Clears the stored codes and turns off the check engine light.\n\n	Löscht die gespeicherten Codes und schaltet die Motorkontrollleuchte aus.\n\n	Cancella i codici memorizzati e spegne la spia motore.\n\n
+Jeśli usterka nadal występuje, kontrolka zapali się ponownie. Kontynuować?	If the fault persists, the light will come on again. Continue?	Besteht der Fehler weiter, leuchtet die Lampe erneut auf. Fortfahren?	Se il problema persiste, la spia si riaccenderà. Continuare?
+Kasuj	Clear	Löschen	Cancella
+Kasowanie…	Clearing…	Löschen läuft…	Cancellazione in corso…
+Kasowanie nie powiodło się.	Clearing failed.	Löschen fehlgeschlagen.	Cancellazione non riuscita.
+Kody skasowane.	Codes cleared.	Codes gelöscht.	Codici cancellati.
+Skasowano. Odczytaj ponownie, aby potwierdzić.	Cleared. Read again to confirm.	Gelöscht. Zur Bestätigung erneut auslesen.	Cancellati. Rileggi per conferma.
+✅ Brak zapisanych kodów błędów.	✅ No fault codes stored.	✅ Keine Fehlercodes gespeichert.	✅ Nessun codice errore memorizzato.
+Znalezione kody: %s	Codes found: %s	Gefundene Codes: %s	Codici trovati: %s
+🔴  Potwierdzone (kontrolka silnika)	🔴  Confirmed (check engine light)	🔴  Bestätigt (Motorkontrollleuchte)	🔴  Confermati (spia motore)
+🟡  Oczekujące	🟡  Pending	🟡  Ausstehend	🟡  In sospeso
+🔒  Stałe	🔒  Permanent	🔒  Permanent	🔒  Permanenti
+Kody odczytane ze sterownika:\n	Codes read from the ECU:\n	Vom Steuergerät gelesene Codes:\n	Codici letti dalla centralina:\n
+- %s (oczekujący): %s\n	- %s (pending): %s\n	- %s (ausstehend): %s\n	- %s (in sospeso): %s\n
+- %s (stały): %s\n	- %s (permanent): %s\n	- %s (permanent): %s\n	- %s (permanente): %s\n
+\nDane na żywo:\n	\nLive data:\n	\nLive-Daten:\n	\nDati live:\n
+Sadza %s, Obciążenie %s, 	Soot %s, Load %s, 	Ruß %s, Beladung %s, 	Fuliggine %s, Carico %s, 
+Wyjaśnienie kodów	Code explanation	Code-Erklärung	Spiegazione codici
+Adapter OBD nie jest połączony. Najpierw połącz się na ekranie głównym.	OBD adapter is not connected. Connect on the main screen first.	OBD-Adapter ist nicht verbunden. Zuerst auf dem Hauptbildschirm verbinden.	L'adattatore OBD non è connesso. Connettiti prima dalla schermata principale.
+Skanowanie anulowane	Scan cancelled	Scan abgebrochen	Scansione annullata
+Udostępnij raport ECU	Share ECU report	ECU-Bericht teilen	Condividi report ECU
+Błąd zapisu: %s	Save error: %s	Speicherfehler: %s	Errore salvataggio: %s
+Brak zapisu. Zostanie utworzony automatycznie podczas regeneracji.	No capture yet. One will be created automatically during a regeneration.	Noch keine Aufzeichnung. Sie wird automatisch während einer Regeneration erstellt.	Nessuna cattura ancora. Verrà creata in automatico durante una rigenerazione.
+Udostępnij zapis regen.	Share regen. capture	Regen.-Aufzeichnung teilen	Condividi cattura regen.
+Błąd udostępniania: %s	Sharing error: %s	Fehler beim Teilen: %s	Errore condivisione: %s
+✅ Skanowanie zakończone	✅ Scan complete	✅ Scan abgeschlossen	✅ Scansione completata
+Faza: %s	Phase: %s	Phase: %s	Fase: %s
+\n\n══ SKANOWANIE ZAKOŃCZONE ══\n	\n\n══ SCAN COMPLETE ══\n	\n\n══ SCAN ABGESCHLOSSEN ══\n	\n\n══ SCANSIONE COMPLETATA ══\n
+  Odpowiedzi : %s\n	  Replies : %s\n	  Antworten : %s\n	  Risposte : %s\n
+  Negatywne  : %s\n	  Negative: %s\n	  Negative : %s\n	  Negative : %s\n
+  Brak odp.  : %s\n	  No reply: %s\n	  Keine Antw.: %s\n	  Nessuna risp.: %s\n
+\nDotknij [Udostępnij log], aby wysłać raport.	\nTap [Share log] to send the report.	\nTippen Sie auf [Protokoll teilen], um den Bericht zu senden.	\nTocca [Condividi log] per inviare il report.
+Skanowanie zakończone! Odpowiedziało PID-ów: %s.	Scan complete! PIDs that replied: %s.	Scan abgeschlossen! Geantwortete PIDs: %s.	Scansione completata! PID con risposta: %s.
+Brak PID-ów z odpowiedzią do analizy.	No PIDs with a reply to analyze.	Keine PIDs mit Antwort zur Analyse.	Nessun PID con risposta da analizzare.
+PID-y z odpowiedzią pozytywną:\n	PIDs with a positive reply:\n	PIDs mit positiver Antwort:\n	PID con risposta positiva:\n
+Analiza skanowania	Scan analysis	Scan-Analyse	Analisi scansione
+🟢 DPF w dobrej kondycji	🟢 DPF in good condition	🟢 DPF in gutem Zustand	🟢 DPF in salute
+🟡 interwał nieco krótki	🟡 interval a bit short	🟡 Intervall etwas kurz	🟡 intervallo un po' corto
+🔴 regeneruje zbyt często — sprawdź DPF/olej	🔴 regenerating too often — check DPF/oil	🔴 regeneriert zu oft — DPF/Öl prüfen	🔴 rigenera troppo spesso — verifica DPF/olio
+🔧 Regeneracja średnio co ~%,d km  ·  %s	🔧 Regeneration on average every ~%,d km  ·  %s	🔧 Regeneration durchschnittlich alle ~%,d km  ·  %s	🔧 Rigenerazione in media ogni ~%,d km  ·  %s
+Wyślij raport do mechanika	Send report to the mechanic	Bericht an die Werkstatt senden	Invia report al meccanico
+Błąd eksportu: %s	Export error: %s	Exportfehler: %s	Errore export: %s
+🌡  Wykryta po temperaturze	🌡  Detected by temperature	🌡  Über Temperatur erkannt	🌡  Rilevata via temperatura
+✓ Zakończona	✓ Completed	✓ Abgeschlossen	✓ Completata
+✓ Zakończona (naturalnie)	✓ Completed (naturally)	✓ Abgeschlossen (natürlich)	✓ Terminata (naturale)
+⚠ Przerwana	⚠ Interrupted	⚠ Abgebrochen	⚠ Interrotta
+⟳ W trakcie	⟳ In progress	⟳ Läuft	⟳ In corso
+⚠ Regeneracja przerwana — sadza nie została zredukowana. Rozważ regenerację wymuszoną (Ford IDS).	⚠ Regeneration interrupted — soot was not reduced. Consider a forced regeneration (Ford IDS).	⚠ Regeneration abgebrochen — Ruß wurde nicht reduziert. Eine erzwungene Regeneration (Ford IDS) erwägen.	⚠ Rigenerazione interrotta — fuliggine non ridotta. Valuta una rigenerazione forzata (Ford IDS).
+Do połączenia z adapterem OBD wymagane są uprawnienia Bluetooth.	Bluetooth permissions are required to connect to the OBD adapter.	Für die Verbindung mit dem OBD-Adapter sind Bluetooth-Berechtigungen erforderlich.	Per connettersi all'adattatore OBD servono i permessi Bluetooth.
+Ponowne łączenie z %s…	Reconnecting to %s…	Verbinde erneut mit %s…	Riconnessione a %s…
+Połącz z urządzeniem	Connect to device	Mit Gerät verbinden	Connetti dispositivo
+Połącz ponownie: %s	Reconnect: %s	Erneut verbinden: %s	Riconnetti: %s
+Szukaj nowego urządzenia…	Search for a new device…	Neues Gerät suchen…	Cerca nuovo dispositivo…
+Wybierz urządzenie OBD2	Select OBD2 device	OBD2-Gerät auswählen	Seleziona dispositivo OBD2
+Urządzenia (%s)	Devices (%s)	Geräte (%s)	Dispositivi (%s)
+Bluetooth niedostępny	Bluetooth unavailable	Bluetooth nicht verfügbar	Bluetooth non disponibile
+Bez nazwy	Unnamed	Ohne Namen	Senza nome
+Znalezione urządzenia: %s	Devices found: %s	Gefundene Geräte: %s	Dispositivi trovati: %s
+Skanowanie BLE nieudane (%s)	BLE scan failed (%s)	BLE-Scan fehlgeschlagen (%s)	Scansione BLE fallita (%s)
+Nie znaleziono urządzeń	No devices found	Keine Geräte gefunden	Nessun dispositivo trovato
+Edytuj przypomnienie	Edit reminder	Erinnerung bearbeiten	Modifica promemoria
+Edytuj interwał przeglądu	Edit service interval	Wartungsintervall bearbeiten	Modifica intervallo tagliando
+Adapter niepołączony — wpisz przebieg ręcznie	Adapter not connected — enter the mileage manually	Adapter nicht verbunden — Kilometerstand manuell eingeben	Adattatore non connesso — inserisci i km manualmente
+Podaj prawidłowy interwał	Enter a valid interval	Gültiges Intervall eingeben	Inserisci un intervallo valido
+Podaj nazwę	Enter a name	Namen eingeben	Inserisci un titolo
+Podaj przebieg ostatniego serwisu	Enter the mileage of the last service	Kilometerstand der letzten Wartung eingeben	Inserisci i km dell'ultima manutenzione
+Potwierdź serwis	Confirm service	Wartung bestätigen	Conferma manutenzione
+Czy wykonano "%s"?\n\n	Did you do "%s"?\n\n	Wurde "%s" durchgeführt?\n\n	Hai effettuato "%s"?\n\n
+Zostanie zapisany przy %,d km.\n	It will be recorded at %,d km.\n	Es wird bei %,d km gespeichert.\n	Verrà registrato a %,d km.\n
+Kolejne przypomnienie nastąpi przy %,d km.	The next reminder will trigger at %,d km.	Die nächste Erinnerung erfolgt bei %,d km.	Il prossimo promemoria scatterà a %,d km.
+Tak, potwierdzam	Yes, confirm	Ja, bestätigen	Sì, confermo
+Czy wykonano "%s"?	Did you do "%s"?	Wurde "%s" durchgeführt?	Hai effettuato "%s"?
+Aktualny przebieg	Current mileage	Aktueller Kilometerstand	Odometro attuale
+Podaj aktualny przebieg, aby zapisać "%s".	Enter the current mileage to record "%s".	Geben Sie den aktuellen Kilometerstand ein, um "%s" zu speichern.	Inserisci i km attuali per registrare "%s".
+Podaj prawidłową wartość	Enter a valid value	Gültigen Wert eingeben	Inserisci un valore valido
+Usuń przypomnienie	Delete reminder	Erinnerung löschen	Elimina promemoria
+Usunąć "%s"?	Delete "%s"?	"%s" löschen?	Eliminare "%s"?
+WKRÓTCE TERMIN	DUE SOON	BALD FÄLLIG	IN SCADENZA
+PILNE	URGENT	DRINGEND	URGENTE
+PO TERMINIE	OVERDUE	ÜBERFÄLLIG	SCADUTO
+Po terminie o %,d km	Overdue by %,d km	Überfällig um %,d km	Scaduto da %,d km
+Termin za %,d km	Due in %,d km	Fällig in %,d km	Scade tra %,d km
+Wykonano przy %,d km  ·  Następny przy %,d km	Done at %,d km  ·  Next at %,d km	Durchgeführt bei %,d km  ·  Nächste bei %,d km	Fatto a %,d km  ·  Prossimo a %,d km
+Następny przy %,d km	Next at %,d km	Nächste bei %,d km	Prossimo a %,d km
+Interwał	Interval	Intervall	Intervallo
+Ustawienia zapisane	Settings saved	Einstellungen gespeichert	Impostazioni salvate
+Liczniki wyzerowane	Counters reset	Zähler zurückgesetzt	Contatori azzerati
+Najpierw wpisz klucz API	Enter the API key first	Zuerst den API-Schlüssel eingeben	Inserisci prima la chiave API
+Sprawdzanie…	Checking…	Prüfe…	Verifica…
+Połączenie udane ✓	Connection successful ✓	Verbindung erfolgreich ✓	Connessione riuscita ✓
+Zapytania: %s	Requests: %s	Anfragen: %s	Richieste: %s
+Tokeny: %,d wej. / %,d wyj.	Tokens: %,d in / %,d out	Tokens: %,d ein / %,d aus	Token: %,d in / %,d out
+Szacowany koszt łącznie: $%.4f	Estimated total cost: $%.4f	Geschätzte Gesamtkosten: $%.4f	Costo stimato totale: $%.4f
+Ostatnie zapytanie: $%.4f	Last request: $%.4f	Letzte Anfrage: $%.4f	Ultima richiesta: $%.4f
+Kod spoza bazy — sprawdź w warsztacie (wyszukaj "%s")	Code not in the database — check at a garage (search for "%s")	Code nicht in der Datenbank — in der Werkstatt prüfen lassen (nach "%s" suchen)	Codice non in archivio — verifica in officina (cerca "%s")
+Skuteczność DPF poniżej progu (rząd 1)	DPF efficiency below threshold (bank 1)	DPF-Wirkungsgrad unter Schwellenwert (Bank 1)	Efficienza DPF sotto soglia (bancata 1)
+Skuteczność DPF poniżej progu (rząd 2)	DPF efficiency below threshold (bank 2)	DPF-Wirkungsgrad unter Schwellenwert (Bank 2)	Efficienza DPF sotto soglia (bancata 2)
+DPF — nadmierna ilość popiołu	DPF — excessive ash accumulation	DPF — übermäßige Aschebeladung	DPF — accumulo eccessivo di cenere
+Czujnik ciśnienia różnicowego DPF — obwód	DPF differential pressure sensor — circuit	DPF-Differenzdrucksensor — Stromkreis	Sensore pressione differenziale DPF — circuito
+Czujnik ciśnienia różnicowego DPF — nieprawidłowy sygnał	DPF differential pressure sensor — implausible signal	DPF-Differenzdrucksensor — unplausibles Signal	Sensore pressione differenziale DPF — segnale non plausibile
+Czujnik ciśnienia różnicowego DPF — sygnał niski	DPF differential pressure sensor — signal low	DPF-Differenzdrucksensor — Signal zu niedrig	Sensore pressione differenziale DPF — segnale basso
+Czujnik ciśnienia różnicowego DPF — sygnał wysoki	DPF differential pressure sensor — signal high	DPF-Differenzdrucksensor — Signal zu hoch	Sensore pressione differenziale DPF — segnale alto
+Ciśnienie różnicowe DPF zbyt niskie	DPF differential pressure too low	DPF-Differenzdruck zu niedrig	Pressione differenziale DPF troppo bassa
+Ciśnienie różnicowe DPF zbyt wysokie	DPF differential pressure too high	DPF-Differenzdruck zu hoch	Pressione differenziale DPF troppo alta
+Nieprawidłowy czas trwania regeneracji DPF	Invalid DPF regeneration duration	Ungültige Dauer der DPF-Regeneration	Durata rigenerazione DPF non valida
+Nieprawidłowa częstotliwość regeneracji DPF	Invalid DPF regeneration frequency	Ungültige Häufigkeit der DPF-Regeneration	Frequenza rigenerazione DPF non valida
+DPF — nadmierne zapełnienie sadzą	DPF — excessive soot accumulation	DPF — übermäßige Rußbeladung	DPF — accumulo eccessivo di fuliggine
+Wysoka ilość cząstek w DPF — wymagana regeneracja	High particulate load in DPF — regeneration required	Hohe Partikelbeladung im DPF — Regeneration erforderlich	Alta quantità di particolato nel DPF — rigenerazione necessaria
+Niewystarczający przepływ EGR	EGR flow insufficient	EGR-Durchfluss unzureichend	Flusso EGR insufficiente
+Nadmierny przepływ EGR	EGR flow excessive	EGR-Durchfluss zu hoch	Flusso EGR eccessivo
+Obwód zaworu EGR	EGR valve circuit	EGR-Ventil — Stromkreis	Circuito valvola EGR
+Zawór EGR — zakres/parametry pracy	EGR valve — range/performance	EGR-Ventil — Bereich/Leistung	Valvola EGR — intervallo/prestazioni
+Czujnik położenia EGR — sygnał niski	EGR position sensor — signal low	EGR-Positionssensor — Signal zu niedrig	Sensore posizione EGR — segnale basso
+Czujnik położenia EGR — sygnał wysoki	EGR position sensor — signal high	EGR-Positionssensor — Signal zu hoch	Sensore posizione EGR — segnale alto
+Czujnik położenia EGR — obwód	EGR position sensor — circuit	EGR-Positionssensor — Stromkreis	Sensore posizione EGR — circuito
+Czujnik położenia EGR 'A' — parametry pracy	EGR position sensor 'A' — performance	EGR-Positionssensor 'A' — Leistung	Sensore posizione EGR 'A' — prestazioni
+Ciśnienie w listwie/układzie paliwa zbyt niskie	Fuel rail/system pressure too low	Kraftstoffdruck in Rail/System zu niedrig	Pressione rail/impianto carburante troppo bassa
+Ciśnienie w listwie/układzie paliwa zbyt wysokie	Fuel rail/system pressure too high	Kraftstoffdruck in Rail/System zu hoch	Pressione rail/impianto carburante troppo alta
+Regulator ciśnienia paliwa — parametry pracy	Fuel pressure regulator — performance	Kraftstoffdruckregler — Leistung	Regolatore pressione carburante — prestazioni
+Regulator ciśnienia paliwa 1 — obwód	Fuel pressure regulator 1 — circuit	Kraftstoffdruckregler 1 — Stromkreis	Regolatore pressione carburante 1 — circuito
+Wykryto duży wyciek w układzie paliwowym	Large leak detected in the fuel system	Großes Leck im Kraftstoffsystem erkannt	Rilevata grossa perdita nell'impianto carburante
+Wykryto mały wyciek w układzie paliwowym	Small leak detected in the fuel system	Kleines Leck im Kraftstoffsystem erkannt	Rilevata piccola perdita nell'impianto carburante
+Czujnik ciśnienia w listwie — zakres/parametry pracy	Fuel rail pressure sensor — range/performance	Raildrucksensor — Bereich/Leistung	Sensore pressione rail — intervallo/prestazioni
+Czujnik ciśnienia w listwie — sygnał niski	Fuel rail pressure sensor — signal low	Raildrucksensor — Signal zu niedrig	Sensore pressione rail — segnale basso
+Czujnik ciśnienia w listwie — sygnał wysoki	Fuel rail pressure sensor — signal high	Raildrucksensor — Signal zu hoch	Sensore pressione rail — segnale alto
+Obwód wtryskiwacza cylindra 1	Injector circuit — cylinder 1	Einspritzventil — Stromkreis Zylinder 1	Circuito iniettore — cilindro 1
+Obwód wtryskiwacza cylindra 2	Injector circuit — cylinder 2	Einspritzventil — Stromkreis Zylinder 2	Circuito iniettore — cilindro 2
+Obwód wtryskiwacza cylindra 3	Injector circuit — cylinder 3	Einspritzventil — Stromkreis Zylinder 3	Circuito iniettore — cilindro 3
+Obwód wtryskiwacza cylindra 4	Injector circuit — cylinder 4	Einspritzventil — Stromkreis Zylinder 4	Circuito iniettore — cilindro 4
+Cylinder 1 — wyrównanie/udział w pracy	Cylinder 1 — contribution/balance	Zylinder 1 — Laufruhe/Beitrag	Cilindro 1 — contributo/bilanciamento
+Cylinder 2 — wyrównanie/udział w pracy	Cylinder 2 — contribution/balance	Zylinder 2 — Laufruhe/Beitrag	Cilindro 2 — contributo/bilanciamento
+Cylinder 3 — wyrównanie/udział w pracy	Cylinder 3 — contribution/balance	Zylinder 3 — Laufruhe/Beitrag	Cilindro 3 — contributo/bilanciamento
+Cylinder 4 — wyrównanie/udział w pracy	Cylinder 4 — contribution/balance	Zylinder 4 — Laufruhe/Beitrag	Cilindro 4 — contributo/bilanciamento
+Ciśnienie paliwa — nadciśnienie (Ford)	Fuel pressure — overpressure (Ford)	Kraftstoffdruck — Überdruck (Ford)	Pressione carburante — sovrapressione (Ford)
+Nadmierne doładowanie turbo (overboost)	Turbo overboost	Turbo-Überladedruck (Overboost)	Sovralimentazione turbo (overboost)
+Czujnik ciśnienia doładowania 'A' — obwód	Boost pressure sensor 'A' — circuit	Ladedrucksensor 'A' — Stromkreis	Sensore pressione di sovralimentazione 'A' — circuito
+Czujnik ciśnienia doładowania 'A' — zakres/parametry pracy	Boost pressure sensor 'A' — range/performance	Ladedrucksensor 'A' — Bereich/Leistung	Sensore pressione di sovralimentazione 'A' — intervallo/prestazioni
+Siłownik wastegate turbo — obwód	Turbo wastegate actuator — circuit	Turbo-Wastegate-Steller — Stromkreis	Attuatore wastegate turbo — circuito
+Elektrozawór wastegate turbo 'A' — sygnał niski	Turbo wastegate solenoid 'A' — signal low	Turbo-Wastegate-Magnetventil 'A' — Signal zu niedrig	Elettrovalvola wastegate turbo 'A' — segnale basso
+Elektrozawór wastegate turbo 'A' — sygnał wysoki	Turbo wastegate solenoid 'A' — signal high	Turbo-Wastegate-Magnetventil 'A' — Signal zu hoch	Elettrovalvola wastegate turbo 'A' — segnale alto
+Zbyt niskie doładowanie turbo (underboost)	Turbo underboost	Turbo-Ladedruck zu niedrig (Underboost)	Sovralimentazione turbo insufficiente (underboost)
+Regulacja ciśnienia doładowania — nadciśnienie (Ford)	Boost pressure control — overpressure (Ford)	Ladedruckregelung — Überdruck (Ford)	Regolazione pressione di sovralimentazione — sovrapressione (Ford)
+Obwód czujnika masy powietrza (MAF)	Mass air flow (MAF) sensor — circuit	Luftmassenmesser (MAF) — Stromkreis	Sensore massa d'aria (MAF) — circuito
+Czujnik masy powietrza (MAF) — zakres/parametry pracy	Mass air flow (MAF) sensor — range/performance	Luftmassenmesser (MAF) — Bereich/Leistung	Sensore massa d'aria (MAF) — intervallo/prestazioni
+Czujnik masy powietrza (MAF) — sygnał niski	Mass air flow (MAF) sensor — signal low	Luftmassenmesser (MAF) — Signal zu niedrig	Sensore massa d'aria (MAF) — segnale basso
+Czujnik masy powietrza (MAF) — sygnał wysoki	Mass air flow (MAF) sensor — signal high	Luftmassenmesser (MAF) — Signal zu hoch	Sensore massa d'aria (MAF) — segnale alto
+Czujnik ciśnienia w kolektorze (MAP) — sygnał niski	Manifold pressure (MAP) sensor — signal low	Saugrohrdrucksensor (MAP) — Signal zu niedrig	Sensore pressione collettore (MAP) — segnale basso
+Czujnik ciśnienia w kolektorze (MAP) — sygnał wysoki	Manifold pressure (MAP) sensor — signal high	Saugrohrdrucksensor (MAP) — Signal zu hoch	Sensore pressione collettore (MAP) — segnale alto
+Czujnik temperatury powietrza dolotowego — sygnał niski	Intake air temperature sensor — signal low	Ansauglufttemperatursensor — Signal zu niedrig	Sensore temperatura aria aspirata — segnale basso
+Czujnik temperatury powietrza dolotowego — sygnał wysoki	Intake air temperature sensor — signal high	Ansauglufttemperatursensor — Signal zu hoch	Sensore temperatura aria aspirata — segnale alto
+Moduł sterowania świecami żarowymi — obwód	Glow plug control module — circuit	Glühkerzen-Steuergerät — Stromkreis	Modulo controllo candelette — circuito
+Świeca żarowa cylindra 1 — obwód	Glow plug cylinder 1 — circuit	Glühkerze Zylinder 1 — Stromkreis	Candeletta cilindro 1 — circuito
+Świeca żarowa cylindra 2 — obwód	Glow plug cylinder 2 — circuit	Glühkerze Zylinder 2 — Stromkreis	Candeletta cilindro 2 — circuito
+Świeca żarowa cylindra 3 — obwód	Glow plug cylinder 3 — circuit	Glühkerze Zylinder 3 — Stromkreis	Candeletta cilindro 3 — circuito
+Świeca żarowa cylindra 4 — obwód	Glow plug cylinder 4 — circuit	Glühkerze Zylinder 4 — Stromkreis	Candeletta cilindro 4 — circuito
+Czujnik temperatury spalin 1 — obwód	Exhaust gas temperature sensor 1 — circuit	Abgastemperatursensor 1 — Stromkreis	Sensore temperatura gas di scarico 1 — circuito
+Czujnik temperatury spalin 1 — sygnał wysoki	Exhaust gas temperature sensor 1 — signal high	Abgastemperatursensor 1 — Signal zu hoch	Sensore temperatura gas di scarico 1 — segnale alto
+Czujnik temperatury spalin 3 — sygnał niski	Exhaust gas temperature sensor 3 — signal low	Abgastemperatursensor 3 — Signal zu niedrig	Sensore temperatura gas di scarico 3 — segnale basso
+Czujnik temperatury spalin 3 — sygnał wysoki	Exhaust gas temperature sensor 3 — signal high	Abgastemperatursensor 3 — Signal zu hoch	Sensore temperatura gas di scarico 3 — segnale alto
+Termostat — płyn chłodzący poniżej temperatury regulacji	Thermostat — coolant below regulating temperature	Thermostat — Kühlmittel unter Regeltemperatur	Termostato — liquido refrigerante sotto la temperatura di regolazione
+Czujnik temperatury płynu chłodzącego — zakres/parametry pracy	Coolant temperature sensor — range/performance	Kühlmitteltemperatursensor — Bereich/Leistung	Sensore temperatura liquido refrigerante — intervallo/prestazioni
+Czujnik temperatury płynu chłodzącego — sygnał niski	Coolant temperature sensor — signal low	Kühlmitteltemperatursensor — Signal zu niedrig	Sensore temperatura liquido refrigerante — segnale basso
+Czujnik temperatury płynu chłodzącego — sygnał wysoki	Coolant temperature sensor — signal high	Kühlmitteltemperatursensor — Signal zu hoch	Sensore temperatura liquido refrigerante — segnale alto
+Korelacja wału korbowego i rozrządu (rząd 1)	Crankshaft/camshaft correlation (bank 1)	Korrelation Kurbelwelle/Nockenwelle (Bank 1)	Correlazione albero motore/albero a camme (bancata 1)
+Czujnik położenia wału korbowego 'A' — obwód	Crankshaft position sensor 'A' — circuit	Kurbelwellensensor 'A' — Stromkreis	Sensore posizione albero motore 'A' — circuito
+Czujnik położenia wałka rozrządu 'A' — obwód	Camshaft position sensor 'A' — circuit	Nockenwellensensor 'A' — Stromkreis	Sensore posizione albero a camme 'A' — circuito
+Monitory OBD nieukończone (testy gotowości w toku)	OBD monitors incomplete (readiness tests pending)	OBD-Monitore unvollständig (Bereitschaftstests laufen)	Monitor OBD incompleti (test di prontezza in corso)
+Utracono komunikację ze sterownikiem silnika (ECM/PCM)	Lost communication with engine control module (ECM/PCM)	Kommunikation mit Motorsteuergerät (ECM/PCM) verloren	Persa la comunicazione con la centralina motore (ECM/PCM)

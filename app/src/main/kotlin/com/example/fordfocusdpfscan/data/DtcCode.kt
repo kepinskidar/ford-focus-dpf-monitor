@@ -8,8 +8,8 @@ package com.example.fordfocusdpfscan.data
 //   07 — pending (current drive cycle, not yet confirmed)
 //   0A — permanent (cannot be cleared until the ECU re-verifies the repair)
 //
-// Descriptions are in Italian and focus on the codes most relevant to the
-// Ford Focus 1.5 TDCi (EDC17C70): DPF, EGR, common-rail, turbo/boost, glow plugs.
+// Descriptions are in Polish and focus on common diesel codes:
+// DPF, EGR, common-rail, turbo/boost, glow plugs.
 // Unknown codes fall back to a generic message with the raw code.
 // ═══════════════════════════════════════════════════════════════════════════════
 
@@ -33,90 +33,91 @@ object DtcDatabase {
     // Common powertrain codes for a diesel Focus. Not exhaustive by design —
     // unknown codes still display with a helpful fallback message.
     private val DESCRIPTIONS: Map<String, String> = mapOf(
-        // ── DPF / particolato ────────────────────────────────────────────────
-        "P2002" to "Efficienza DPF sotto soglia (banco 1)",
-        "P2003" to "Efficienza DPF sotto soglia (banco 2)",
-        "P242F" to "DPF — accumulo cenere eccessivo",
-        "P2452" to "Sensore pressione differenziale DPF — circuito",
-        "P2453" to "Sensore pressione differenziale DPF — segnale anomalo",
-        "P2454" to "Sensore pressione differenziale DPF — segnale basso",
-        "P2455" to "Sensore pressione differenziale DPF — segnale alto",
-        "P244A" to "Pressione differenziale DPF troppo bassa",
-        "P244B" to "Pressione differenziale DPF troppo alta",
-        "P2458" to "Durata rigenerazione DPF anomala",
-        "P2459" to "Frequenza rigenerazione DPF anomala",
-        "P2463" to "DPF — accumulo particolato eccessivo (soot)",
-        "P1206" to "Volume particolato DPF elevato — rigenerazione necessaria",
+        // ── DPF / cząstki stałe ──────────────────────────────────────────────
+        "P2002" to "Skuteczność DPF poniżej progu (rząd 1)",
+        "P2003" to "Skuteczność DPF poniżej progu (rząd 2)",
+        "P242F" to "DPF — nadmierna ilość popiołu",
+        "P2452" to "Czujnik ciśnienia różnicowego DPF — obwód",
+        "P2453" to "Czujnik ciśnienia różnicowego DPF — nieprawidłowy sygnał",
+        "P2454" to "Czujnik ciśnienia różnicowego DPF — sygnał niski",
+        "P2455" to "Czujnik ciśnienia różnicowego DPF — sygnał wysoki",
+        "P244A" to "Ciśnienie różnicowe DPF zbyt niskie",
+        "P244B" to "Ciśnienie różnicowe DPF zbyt wysokie",
+        "P2458" to "Nieprawidłowy czas trwania regeneracji DPF",
+        "P2459" to "Nieprawidłowa częstotliwość regeneracji DPF",
+        "P2463" to "DPF — nadmierne zapełnienie sadzą",
+        "P1206" to "Wysoka ilość cząstek w DPF — wymagana regeneracja",
         // ── EGR ──────────────────────────────────────────────────────────────
-        "P0401" to "Flusso EGR insufficiente",
-        "P0402" to "Flusso EGR eccessivo",
-        "P0403" to "Circuito valvola EGR",
-        "P0404" to "Valvola EGR — range/prestazioni",
-        "P0405" to "Sensore posizione EGR — segnale basso",
-        "P0406" to "Sensore posizione EGR — segnale alto",
-        "P0409" to "Sensore posizione EGR — circuito",
-        "P046C" to "Sensore posizione EGR 'A' — prestazioni",
-        // ── Common rail / iniezione ──────────────────────────────────────────
-        "P0087" to "Pressione rail/sistema carburante troppo bassa",
-        "P0088" to "Pressione rail/sistema carburante troppo alta",
-        "P0089" to "Regolatore pressione carburante — prestazioni",
-        "P0090" to "Regolatore pressione carburante 1 — circuito",
-        "P0093" to "Perdita grande nel sistema carburante rilevata",
-        "P0094" to "Piccola perdita nel sistema carburante rilevata",
-        "P0191" to "Sensore pressione rail — range/prestazioni",
-        "P0192" to "Sensore pressione rail — segnale basso",
-        "P0193" to "Sensore pressione rail — segnale alto",
-        "P0201" to "Circuito iniettore cilindro 1",
-        "P0202" to "Circuito iniettore cilindro 2",
-        "P0203" to "Circuito iniettore cilindro 3",
-        "P0204" to "Circuito iniettore cilindro 4",
-        "P0263" to "Cilindro 1 — bilanciamento/contributo",
-        "P0266" to "Cilindro 2 — bilanciamento/contributo",
-        "P0269" to "Cilindro 3 — bilanciamento/contributo",
-        "P0272" to "Cilindro 4 — bilanciamento/contributo",
-        "P1290" to "Pressione carburante — sovrapressione (Ford)",
-        // ── Turbo / sovralimentazione ────────────────────────────────────────
-        "P0234" to "Sovralimentazione turbo eccessiva (overboost)",
-        "P0235" to "Sensore pressione turbo 'A' — circuito",
-        "P0236" to "Sensore pressione turbo 'A' — range/prestazioni",
-        "P0243" to "Attuatore wastegate turbo — circuito",
-        "P0245" to "Solenoide wastegate turbo 'A' — segnale basso",
-        "P0246" to "Solenoide wastegate turbo 'A' — segnale alto",
-        "P0299" to "Sottopressione turbo (underboost)",
-        "P132B" to "Controllo pressione turbo — sovrapressione (Ford)",
-        // ── Aria / MAF / MAP ─────────────────────────────────────────────────
-        "P0100" to "Circuito sensore portata aria (MAF)",
-        "P0101" to "Sensore portata aria (MAF) — range/prestazioni",
-        "P0102" to "Sensore portata aria (MAF) — segnale basso",
-        "P0103" to "Sensore portata aria (MAF) — segnale alto",
-        "P0107" to "Sensore pressione collettore (MAP) — segnale basso",
-        "P0108" to "Sensore pressione collettore (MAP) — segnale alto",
-        "P0112" to "Sensore temperatura aria aspirata — segnale basso",
-        "P0113" to "Sensore temperatura aria aspirata — segnale alto",
-        // ── Candelette / avviamento ──────────────────────────────────────────
-        "P0670" to "Modulo controllo candelette — circuito",
-        "P0671" to "Candeletta cilindro 1 — circuito",
-        "P0672" to "Candeletta cilindro 2 — circuito",
-        "P0673" to "Candeletta cilindro 3 — circuito",
-        "P0674" to "Candeletta cilindro 4 — circuito",
-        // ── Temperature gas di scarico (EGT) ─────────────────────────────────
-        "P0544" to "Sensore temperatura gas scarico 1 — circuito",
-        "P0546" to "Sensore temperatura gas scarico 1 — segnale alto",
-        "P242C" to "Sensore temperatura gas scarico 3 — segnale basso",
-        "P242D" to "Sensore temperatura gas scarico 3 — segnale alto",
-        // ── Refrigerante / termostato ────────────────────────────────────────
-        "P0128" to "Termostato — refrigerante sotto temperatura regolazione",
-        "P0116" to "Sensore temperatura refrigerante — range/prestazioni",
-        "P0117" to "Sensore temperatura refrigerante — segnale basso",
-        "P0118" to "Sensore temperatura refrigerante — segnale alto",
-        // ── Generici ─────────────────────────────────────────────────────────
-        "P0016" to "Correlazione albero motore/albero a camme (banco 1)",
-        "P0335" to "Sensore posizione albero motore 'A' — circuito",
-        "P0340" to "Sensore posizione albero a camme 'A' — circuito",
-        "P1000" to "Monitor OBD non completati (test di prontezza in corso)",
-        "U0100" to "Persa comunicazione con la centralina motore (ECM/PCM)"
+        "P0401" to "Niewystarczający przepływ EGR",
+        "P0402" to "Nadmierny przepływ EGR",
+        "P0403" to "Obwód zaworu EGR",
+        "P0404" to "Zawór EGR — zakres/parametry pracy",
+        "P0405" to "Czujnik położenia EGR — sygnał niski",
+        "P0406" to "Czujnik położenia EGR — sygnał wysoki",
+        "P0409" to "Czujnik położenia EGR — obwód",
+        "P046C" to "Czujnik położenia EGR 'A' — parametry pracy",
+        // ── Układ paliwowy / common rail ─────────────────────────────────────
+        "P0087" to "Ciśnienie w listwie/układzie paliwa zbyt niskie",
+        "P0088" to "Ciśnienie w listwie/układzie paliwa zbyt wysokie",
+        "P0089" to "Regulator ciśnienia paliwa — parametry pracy",
+        "P0090" to "Regulator ciśnienia paliwa 1 — obwód",
+        "P0093" to "Wykryto duży wyciek w układzie paliwowym",
+        "P0094" to "Wykryto mały wyciek w układzie paliwowym",
+        "P0191" to "Czujnik ciśnienia w listwie — zakres/parametry pracy",
+        "P0192" to "Czujnik ciśnienia w listwie — sygnał niski",
+        "P0193" to "Czujnik ciśnienia w listwie — sygnał wysoki",
+        "P0201" to "Obwód wtryskiwacza cylindra 1",
+        "P0202" to "Obwód wtryskiwacza cylindra 2",
+        "P0203" to "Obwód wtryskiwacza cylindra 3",
+        "P0204" to "Obwód wtryskiwacza cylindra 4",
+        "P0263" to "Cylinder 1 — wyrównanie/udział w pracy",
+        "P0266" to "Cylinder 2 — wyrównanie/udział w pracy",
+        "P0269" to "Cylinder 3 — wyrównanie/udział w pracy",
+        "P0272" to "Cylinder 4 — wyrównanie/udział w pracy",
+        "P1290" to "Ciśnienie paliwa — nadciśnienie (Ford)",
+        // ── Turbo / doładowanie ──────────────────────────────────────────────
+        "P0234" to "Nadmierne doładowanie turbo (overboost)",
+        "P0235" to "Czujnik ciśnienia doładowania 'A' — obwód",
+        "P0236" to "Czujnik ciśnienia doładowania 'A' — zakres/parametry pracy",
+        "P0243" to "Siłownik wastegate turbo — obwód",
+        "P0245" to "Elektrozawór wastegate turbo 'A' — sygnał niski",
+        "P0246" to "Elektrozawór wastegate turbo 'A' — sygnał wysoki",
+        "P0299" to "Zbyt niskie doładowanie turbo (underboost)",
+        "P132B" to "Regulacja ciśnienia doładowania — nadciśnienie (Ford)",
+        // ── Powietrze / MAF / MAP ────────────────────────────────────────────
+        "P0100" to "Obwód czujnika masy powietrza (MAF)",
+        "P0101" to "Czujnik masy powietrza (MAF) — zakres/parametry pracy",
+        "P0102" to "Czujnik masy powietrza (MAF) — sygnał niski",
+        "P0103" to "Czujnik masy powietrza (MAF) — sygnał wysoki",
+        "P0107" to "Czujnik ciśnienia w kolektorze (MAP) — sygnał niski",
+        "P0108" to "Czujnik ciśnienia w kolektorze (MAP) — sygnał wysoki",
+        "P0112" to "Czujnik temperatury powietrza dolotowego — sygnał niski",
+        "P0113" to "Czujnik temperatury powietrza dolotowego — sygnał wysoki",
+        // ── Świece żarowe / rozruch ──────────────────────────────────────────
+        "P0670" to "Moduł sterowania świecami żarowymi — obwód",
+        "P0671" to "Świeca żarowa cylindra 1 — obwód",
+        "P0672" to "Świeca żarowa cylindra 2 — obwód",
+        "P0673" to "Świeca żarowa cylindra 3 — obwód",
+        "P0674" to "Świeca żarowa cylindra 4 — obwód",
+        // ── Temperatura spalin (EGT) ─────────────────────────────────────────
+        "P0544" to "Czujnik temperatury spalin 1 — obwód",
+        "P0546" to "Czujnik temperatury spalin 1 — sygnał wysoki",
+        "P242C" to "Czujnik temperatury spalin 3 — sygnał niski",
+        "P242D" to "Czujnik temperatury spalin 3 — sygnał wysoki",
+        // ── Płyn chłodzący / termostat ───────────────────────────────────────
+        "P0128" to "Termostat — płyn chłodzący poniżej temperatury regulacji",
+        "P0116" to "Czujnik temperatury płynu chłodzącego — zakres/parametry pracy",
+        "P0117" to "Czujnik temperatury płynu chłodzącego — sygnał niski",
+        "P0118" to "Czujnik temperatury płynu chłodzącego — sygnał wysoki",
+        // ── Ogólne ───────────────────────────────────────────────────────────
+        "P0016" to "Korelacja wału korbowego i rozrządu (rząd 1)",
+        "P0335" to "Czujnik położenia wału korbowego 'A' — obwód",
+        "P0340" to "Czujnik położenia wałka rozrządu 'A' — obwód",
+        "P1000" to "Monitory OBD nieukończone (testy gotowości w toku)",
+        "U0100" to "Utracono komunikację ze sterownikiem silnika (ECM/PCM)"
     )
 
     fun describe(code: String): String =
-        DESCRIPTIONS[code.uppercase()] ?: "Codice non in archivio — verifica in officina (cerca \"$code\")"
+        DESCRIPTIONS[code.uppercase()]?.let { com.example.fordfocusdpfscan.i18n.tr(it) }
+            ?: com.example.fordfocusdpfscan.i18n.tr("Kod spoza bazy — sprawdź w warsztacie (wyszukaj \"%s\")").format(code)
 }

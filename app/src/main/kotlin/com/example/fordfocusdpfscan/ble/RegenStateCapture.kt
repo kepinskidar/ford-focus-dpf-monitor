@@ -49,7 +49,7 @@ class RegenStateCapture(
         delay(300)
 
         val sb = StringBuilder()
-        val ts = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ITALY).format(Date())
+        val ts = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("pl", "PL")).format(Date())
         val d = DpfRepository.dpfData.value
 
         sb.appendLine("═══════════════════════════════════════════════════")

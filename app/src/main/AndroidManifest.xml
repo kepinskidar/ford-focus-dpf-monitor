@@ -73,7 +73,7 @@
         <activity
             android:name=".ui.DiagnosticaActivity"
             android:exported="false"
-            android:label="Diagnostica"
+            android:label="Diagnostyka"
             android:parentActivityName=".ui.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
@@ -83,7 +83,7 @@
         <activity
             android:name=".ui.EcuScanActivity"
             android:exported="false"
-            android:label="ECU Scanner"
+            android:label="Skaner ECU"
             android:parentActivityName=".ui.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
@@ -93,7 +93,7 @@
         <activity
             android:name=".ui.DtcActivity"
             android:exported="false"
-            android:label="Codici Errore"
+            android:label="Kody błędów"
             android:parentActivityName=".ui.MainActivity" />
 
         <!-- ─────────────────────────────────────────────────────────────────
@@ -102,7 +102,7 @@
         <activity
             android:name=".ui.SettingsActivity"
             android:exported="false"
-            android:label="Impostazioni AI"
+            android:label="Ustawienia AI"
             android:parentActivityName=".ui.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
@@ -110,7 +110,7 @@
         <activity
             android:name=".ui.AiChatActivity"
             android:exported="false"
-            android:label="Assistente AI"
+            android:label="Asystent AI"
             android:parentActivityName=".ui.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
@@ -120,7 +120,7 @@
         <activity
             android:name=".ui.HistoryActivity"
             android:exported="false"
-            android:label="Storico Rigenerazioni"
+            android:label="Historia regeneracji"
             android:parentActivityName=".ui.MainActivity" />
 
         <!-- ─────────────────────────────────────────────────────────────────
@@ -129,13 +129,14 @@
         <activity
             android:name=".ui.MaintenanceActivity"
             android:exported="false"
-            android:label="Manutenzione"
+            android:label="Serwis"
             android:parentActivityName=".ui.MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
         <!-- ─────────────────────────────────────────────────────────────────
              ANDROID AUTO — CarAppService entry point
-             Category IOT = monitoring/utility app (not navigation/parking)
+             Category POI (was IOT): the IOT category did not show up in the Android Auto
+             launcher for a sideloaded APK, so POI is used instead.
         ───────────────────────────────────────────────────────────────────── -->
         <!-- ─────────────────────────────────────────────────────────────────
              ANDROID AUTO — required meta-data so the AA host discovers
@@ -145,14 +146,26 @@
             android:name="com.google.android.gms.car.application"
             android:resource="@xml/automotive_app_desc" />
 
+        <!-- Android Auto as a MEDIA app: sideloaded media apps are listed by
+             Android Auto without any extra setup (read-only DPF dashboard). -->
+        <service
+            android:name=".car.DpfMediaService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:icon="@drawable/ic_mk5_dpf">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
         <service
             android:name=".car.DpfCarAppService"
             android:exported="true"
             android:label="@string/app_name"
-            android:icon="@drawable/ic_ford_focus">
+            android:icon="@drawable/ic_mk5_dpf">
             <intent-filter>
                 <action android:name="androidx.car.app.CarAppService" />
-                <category android:name="androidx.car.app.category.IOT" />
+                <category android:name="androidx.car.app.category.POI" />
             </intent-filter>
             <meta-data
                 android:name="androidx.car.app.minCarApiLevel"

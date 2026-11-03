@@ -4,5 +4,6 @@
     "template" covers PaneTemplate, ListTemplate, MessageTemplate etc.
 -->
 <automotiveApp>
+    <uses name="media" />
     <uses name="template" />
 </automotiveApp>

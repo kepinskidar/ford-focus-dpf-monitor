@@ -149,7 +149,7 @@ class RegenHistoryRepository(context: Context) {
     /** Compact regen-history summary used as context for the AI assistant. */
     suspend fun aiHistorySummary(): String {
         val all = dao.getAllSessionsOnce()   // newest first
-        if (all.isEmpty()) return "Nessuna rigenerazione registrata."
+        if (all.isEmpty()) return "Brak zapisanych regeneracji."
         val done        = all.count { it.result == "COMPLETED" || it.result == "ENDED_NATURAL" }
         val interrupted = all.count { it.result == "INTERRUPTED" }
         val avgSoot = all
@@ -157,13 +157,13 @@ class RegenHistoryRepository(context: Context) {
             .map { it.preSootPct - it.postSootPct!! }
             .average().let { if (it.isNaN()) 0.0 else it }
         val sb = StringBuilder()
-        sb.append("Rigenerazioni totali: ${all.size} (completate/naturali: $done, interrotte: $interrupted).\n")
-        sb.append("Riduzione soot media: ${"%.1f".format(avgSoot)}%.\n")
-        sb.append("Ultime sessioni (recenti prima):\n")
+        sb.append("Regeneracje łącznie: ${all.size} (zakończone/naturalne: $done, przerwane: $interrupted).\n")
+        sb.append("Średnia redukcja sadzy: ${"%.1f".format(avgSoot)}%.\n")
+        sb.append("Ostatnie sesje (najnowsze pierwsze):\n")
         all.take(5).forEach { s ->
             val pre  = if (s.preSootPct >= 0) "${s.preSootPct.toInt()}%" else "?"
             val post = s.postSootPct?.let { "${it.toInt()}%" } ?: "?"
-            sb.append("- ${s.result}: soot $pre→$post, EGT picco ${s.peakEgtC.toInt()}°C, odo ${s.preOdometerKm} km\n")
+            sb.append("- ${s.result}: sadza $pre→$post, EGT szczyt ${s.peakEgtC.toInt()}°C, licznik ${s.preOdometerKm} km\n")
         }
         return sb.toString().trim()
     }
@@ -176,9 +176,9 @@ class RegenHistoryRepository(context: Context) {
      * Generates a complete HTML report string suitable for sharing with a mechanic.
      * Includes: vehicle info, summary stats, session table, and per-session details.
      */
-    suspend fun generateHtmlReport(vehicleInfo: String = "Ford Focus 1.5 TDCi (EDC17C70)"): String {
+    suspend fun generateHtmlReport(vehicleInfo: String = "Ford Mondeo Mk5 2.0 EcoBlue 190 KM"): String {
         val sessions   = dao.getAllSessionsOnce()
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ITALY)
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pl", "PL"))
         val genDate    = dateFormat.format(Date())
 
         val completed  = sessions.count { it.result == "COMPLETED" }
@@ -201,10 +201,10 @@ class RegenHistoryRepository(context: Context) {
             val deltaPre = if (s.preDeltaPKpa >= 0) "${"%.2f".format(s.preDeltaPKpa)} kPa" else "—"
             val deltaPeak= if (s.peakDeltaPKpa > 0) "${"%.2f".format(s.peakDeltaPKpa)} kPa" else "—"
             val resultBadge = when (s.result) {
-                "COMPLETED"     -> "<span class=\"ok\">✓ Completata</span>"
-                "ENDED_NATURAL" -> "<span class=\"ok\">✓ Terminata (naturale)</span>"
-                "INTERRUPTED"   -> "<span class=\"warn\">⚠ Interrotta</span>"
-                "IN_PROGRESS"   -> "<span class=\"info\">⟳ In corso</span>"
+                "COMPLETED"     -> "<span class=\"ok\">✓ Zakończona</span>"
+                "ENDED_NATURAL" -> "<span class=\"ok\">✓ Zakończona (naturalnie)</span>"
+                "INTERRUPTED"   -> "<span class=\"warn\">⚠ Przerwana</span>"
+                "IN_PROGRESS"   -> "<span class=\"info\">⟳ W trakcie</span>"
                 else            -> s.result
             }
             val rowClass = if (s.result == "INTERRUPTED") " class=\"interrupted-row\"" else ""
@@ -225,7 +225,7 @@ class RegenHistoryRepository(context: Context) {
 
         return """
 <!DOCTYPE html>
-<html lang="it">
+<html lang="pl">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -259,47 +259,47 @@ class RegenHistoryRepository(context: Context) {
 </head>
 <body>
 
-<h1>📋 DPF Monitor — Report Rigenerazioni</h1>
+<h1>📋 MK5 DPF — Raport regeneracji</h1>
 
 <div class="header-block">
   <div class="vehicle-box">
-    <p><b>Veicolo:</b> $vehicleInfo</p>
-    <p><b>Centralina:</b> EDC17C70 (Bosch)</p>
-    <p><b>OBD Dongle:</b> Android-Vlink (BLE/SPP)</p>
-    <p><b>Report generato:</b> $genDate</p>
-    <p><b>App:</b> DPF Monitor v${BuildConfig.VERSION_NAME}</p>
+    <p><b>Pojazd:</b> $vehicleInfo</p>
+    <p><b>Sterownik:</b> ECU silnika (OBD2, nagłówek 7E0)</p>
+    <p><b>Adapter OBD:</b> Android-Vlink (BLE/SPP)</p>
+    <p><b>Raport wygenerowano:</b> $genDate</p>
+    <p><b>Aplikacja:</b> MK5 DPF v${BuildConfig.VERSION_NAME}</p>
   </div>
 </div>
 
-<h2>Riepilogo</h2>
+<h2>Podsumowanie</h2>
 <div class="summary-grid">
-  <div class="stat"><div class="stat-val">${sessions.size}</div><div class="stat-lbl">Regen totali</div></div>
-  <div class="stat"><div class="stat-val">$completed</div><div class="stat-lbl">Completate</div></div>
-  <div class="stat"><div class="stat-val">$interrupted</div><div class="stat-lbl">Interrotte</div></div>
-  <div class="stat"><div class="stat-val">${avgDuration} min</div><div class="stat-lbl">Durata media</div></div>
-  <div class="stat"><div class="stat-val">${"%.1f".format(avgSootReduction)}%</div><div class="stat-lbl">Riduz. soot media</div></div>
+  <div class="stat"><div class="stat-val">${sessions.size}</div><div class="stat-lbl">Regeneracje łącznie</div></div>
+  <div class="stat"><div class="stat-val">$completed</div><div class="stat-lbl">Zakończone</div></div>
+  <div class="stat"><div class="stat-val">$interrupted</div><div class="stat-lbl">Przerwane</div></div>
+  <div class="stat"><div class="stat-val">${avgDuration} min</div><div class="stat-lbl">Średni czas</div></div>
+  <div class="stat"><div class="stat-val">${"%.1f".format(avgSootReduction)}%</div><div class="stat-lbl">Śr. redukcja sadzy</div></div>
 </div>
 
 <div class="note-box">
-  <b>Note per il meccanico:</b><br>
-  • <b>Soot %</b>: livello particolato nel DPF (0–320%). Sopra 100% la centralina avvia la rigenerazione attiva, sopra 320% il DPF va sostituito.<br>
-  • <b>EGT Picco</b>: temperatura massima raggiunta dai gas di scarico durante la regen. Range normale: 500–650 °C. Sopra 700 °C verificare iniettori.<br>
-  • <b>Delta P</b>: pressione differenziale DPF (monte – valle). Valori elevati a fine regen indicano cenere residua (non eliminabile con la regen).<br>
-  • <b>Regen interrotta</b>: il motore è stato spento durante la rigenerazione. Il soot non si è ridotto — valutare rigenerazione forzata con Ford IDS.
+  <b>Uwagi dla mechanika:</b><br>
+  • <b>Sadza %</b>: poziom cząstek stałych w DPF (0–320%). Powyżej 100% sterownik uruchamia regenerację aktywną, powyżej 320% DPF należy wymienić.<br>
+  • <b>EGT szczyt</b>: maksymalna temperatura spalin podczas regeneracji. Norma: 500–650 °C. Powyżej 700 °C sprawdź wtryskiwacze.<br>
+  • <b>Delta P</b>: ciśnienie różnicowe DPF (przed – za filtrem). Wysokie wartości po regeneracji oznaczają resztkowy popiół (nie usuwa go regeneracja).<br>
+  • <b>Regeneracja przerwana</b>: silnik został zgaszony w trakcie regeneracji. Sadza nie zmalała — rozważ regenerację wymuszoną (Ford IDS).
 </div>
 
-<h2>Storico rigenerazioni</h2>
+<h2>Historia regeneracji</h2>
 <table>
   <thead>
     <tr>
-      <th>Data e ora</th>
-      <th>Odometro</th>
-      <th>Durata</th>
-      <th>Soot (prima → dopo)</th>
-      <th>EGT picco</th>
-      <th>Delta P (inizio → picco)</th>
-      <th>Coolant</th>
-      <th>Risultato</th>
+      <th>Data i godzina</th>
+      <th>Licznik</th>
+      <th>Czas</th>
+      <th>Sadza (przed → po)</th>
+      <th>EGT szczyt</th>
+      <th>Delta P (start → szczyt)</th>
+      <th>Płyn chł.</th>
+      <th>Wynik</th>
     </tr>
   </thead>
   <tbody>
@@ -308,8 +308,8 @@ class RegenHistoryRepository(context: Context) {
 </table>
 
 <div class="footer">
-  Report generato automaticamente da DPF Monitor v${BuildConfig.VERSION_NAME} · Ford Focus 1.5 TDCi EDC17C70<br>
-  I dati provengono dalla centralina motore tramite protocollo OBD2 (ISO 15765-4 CAN, ATSH7E0).
+  Raport wygenerowany automatycznie przez MK5 DPF v${BuildConfig.VERSION_NAME} · $vehicleInfo<br>
+  Dane pochodzą ze sterownika silnika przez OBD2 (ISO 15765-4 CAN, ATSH7E0).
 </div>
 
 </body>

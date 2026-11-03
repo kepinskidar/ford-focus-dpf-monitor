@@ -23,7 +23,7 @@
         android:id="@+id/tvMockBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="👁  DATI DI ESEMPIO — nessuna rigenerazione reale ancora registrata"
+        android:text="👁  PRZYKŁADOWE DANE — nie zarejestrowano jeszcze prawdziwej regeneracji"
         android:textColor="#000000"
         android:textSize="11sp"
         android:textStyle="bold"
@@ -49,7 +49,7 @@
                 android:text="0" android:textSize="22sp" android:textStyle="bold"
                 android:textColor="#4F8EF7"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="TOTALI" android:textSize="9sp" android:textColor="@color/text_secondary"/>
+                android:text="RAZEM" android:textSize="9sp" android:textColor="@color/text_secondary"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                 android:text="0" android:textSize="22sp" android:textStyle="bold"
                 android:textColor="#34C759"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="COMPLET." android:textSize="9sp" android:textColor="@color/text_secondary"/>
+                android:text="ZAKOŃCZ." android:textSize="9sp" android:textColor="@color/text_secondary"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:text="—" android:textSize="22sp" android:textStyle="bold"
                 android:textColor="@color/text_primary"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="DURATA" android:textSize="9sp" android:textColor="@color/text_secondary"/>
+                android:text="CZAS" android:textSize="9sp" android:textColor="@color/text_secondary"/>
         </LinearLayout>
 
         <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:text="—" android:textSize="22sp" android:textStyle="bold"
                 android:textColor="#34C759"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="SOOT MED." android:textSize="9sp" android:textColor="@color/text_secondary"/>
+                android:text="ŚR. SADZA" android:textSize="9sp" android:textColor="@color/text_secondary"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="8dp"
-        android:text="📄  Esporta report per meccanico"
+        android:text="📄  Eksportuj raport dla mechanika"
         android:textSize="13sp"
         android:textColor="#4F8EF7"
         android:backgroundTint="@android:color/transparent"
@@ -131,7 +131,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SOOT PRIMA / DOPO REGEN"
+                android:text="SADZA PRZED / PO REGEN."
                 android:textColor="@color/text_secondary"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -159,7 +159,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prima"
+                    android:text="Przed"
                     android:textColor="@color/text_secondary"
                     android:textSize="10sp"
                     android:layout_marginEnd="16dp"/>
@@ -172,7 +172,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dopo"
+                    android:text="Po"
                     android:textColor="@color/text_secondary"
                     android:textSize="10sp"/>
 
@@ -194,11 +194,11 @@
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="📋" android:textSize="48sp" android:layout_marginBottom="12dp"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Nessuna rigenerazione registrata"
+            android:text="Brak zarejestrowanych regeneracji"
             android:textColor="@color/text_primary" android:textSize="16sp"
             android:textStyle="bold" android:gravity="center" android:layout_marginBottom="8dp"/>
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="Lo storico si popola automaticamente quando l'app rileva una rigenerazione attiva del DPF."
+            android:text="Historia wypełnia się automatycznie, gdy aplikacja wykryje aktywną regenerację DPF."
             android:textColor="@color/text_secondary" android:textSize="13sp"
             android:gravity="center" android:lineSpacingMultiplier="1.4"/>
     </LinearLayout>

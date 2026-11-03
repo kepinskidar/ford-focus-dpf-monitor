@@ -21,7 +21,7 @@
         android:id="@+id/tvNotConnectedBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="⚡ Dongle OBD2 non connesso — collegati dal tab Monitor per vedere i dati live"
+        android:text="⚡ Adapter OBD2 niepołączony — połącz się w zakładce Monitor, aby zobaczyć dane na żywo"
         android:textColor="#FF9F0A"
         android:textSize="11sp"
         android:textStyle="bold"
@@ -66,7 +66,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🔥  DPF AVANZATO"
+                    android:text="🔥  DPF ZAAWANSOWANE"
                     android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:textStyle="bold"
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Filtro antiparticolato — valori live dalla ECU"
+                    android:text="Filtr cząstek stałych — wartości na żywo ze sterownika"
                     android:textColor="@color/text_hint"
                     android:textSize="10sp"
                     android:layout_marginTop="1dp"/>
@@ -171,7 +171,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⚙️  MOTORE LIVE"
+                    android:text="⚙️  SILNIK NA ŻYWO"
                     android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:textStyle="bold"
@@ -179,7 +179,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sensori motore — lettura OBD2 in tempo reale"
+                    android:text="Czujniki silnika — odczyt OBD2 w czasie rzeczywistym"
                     android:textColor="@color/text_hint"
                     android:textSize="10sp"
                     android:layout_marginTop="1dp"/>
@@ -276,7 +276,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="🔌  ALIMENTAZIONE"
+                    android:text="🔌  ZASILANIE"
                     android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:textStyle="bold"
@@ -284,7 +284,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Batteria, pressione carburante, aria aspirata"
+                    android:text="Akumulator, ciśnienie paliwa, powietrze dolotowe"
                     android:textColor="@color/text_hint"
                     android:textSize="10sp"
                     android:layout_marginTop="1dp"/>
@@ -354,7 +354,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📍  DISTANZE"
+                    android:text="📍  DYSTANSE"
                     android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:textStyle="bold"
@@ -362,7 +362,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contatori chilometri letti dalla ECU"
+                    android:text="Liczniki kilometrów odczytane ze sterownika"
                     android:textColor="@color/text_hint"
                     android:textSize="10sp"
                     android:layout_marginTop="1dp"/>

@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.car
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -71,14 +72,14 @@ object NotificationHelper {
     private var channelsCreated = false
 
     // ── Cached icon bitmap — decoded once off the main thread, then reused ──────
-    // ic_ford_focus.png is 5 MB on disk. Decoding it synchronously on the main
+    // ic_mk5_dpf.png is a large PNG. Decoding it synchronously on the main
     // thread (first event notification) caused a ServiceANR. We now pre-warm the
     // cache from a background thread in warmIconCache(), called at app startup.
     // getIconBitmap() falls back to a tiny placeholder until the cache is ready.
     private var cachedIconBitmap: android.graphics.Bitmap? = null
 
     /**
-     * Decode and cache ic_ford_focus.png on a background thread.
+     * Decode and cache ic_mk5_dpf.png on a background thread.
      * Call this from FocusApp.onCreate() so the bitmap is ready before
      * the first regen notification fires.
      */
@@ -87,7 +88,7 @@ object NotificationHelper {
         val appContext = context.applicationContext
         Thread {
             val size = (128 * appContext.resources.displayMetrics.density).toInt()
-            val raw = BitmapFactory.decodeResource(appContext.resources, R.drawable.ic_ford_focus)
+            val raw = BitmapFactory.decodeResource(appContext.resources, R.drawable.ic_mk5_dpf)
             if (raw != null) {
                 val scaled = android.graphics.Bitmap.createScaledBitmap(raw, size, size, true)
                 if (scaled !== raw) raw.recycle()
@@ -117,10 +118,10 @@ object NotificationHelper {
         // ── Channel 1: Persistent (silent status bar) ─────────────────────────
         val persistentChannel = NotificationChannel(
             CHANNEL_PERSISTENT,
-            "DPF Monitoring",
+            tr("Monitorowanie DPF"),
             NotificationManager.IMPORTANCE_LOW
         ).apply {
-            description = "Live DPF status — always visible while monitoring"
+            description = tr("Stan DPF na żywo — widoczny podczas monitorowania")
             setSound(null, null)
             enableVibration(false)
         }
@@ -131,10 +132,10 @@ object NotificationHelper {
         )
         val regenChannel = NotificationChannel(
             CHANNEL_REGEN,
-            context.getString(R.string.notif_channel_name),
+            tr(context.getString(R.string.notif_channel_name)),
             NotificationManager.IMPORTANCE_HIGH
         ).apply {
-            description = context.getString(R.string.notif_channel_desc)
+            description = tr(context.getString(R.string.notif_channel_desc))
             val audioAttr = AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_NOTIFICATION_EVENT)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -150,10 +151,10 @@ object NotificationHelper {
         // ── Channel 3: Connection events (silent popup — no sound) ────────────
         val connectionChannel = NotificationChannel(
             CHANNEL_CONNECTION,
-            "Connessione OBD",
+            tr("Połączenie OBD"),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "Notifiche silenziose per connessione/disconnessione Bluetooth"
+            description = tr("Ciche powiadomienia o połączeniu/rozłączeniu Bluetooth")
             setSound(null, null)
             enableVibration(false)
         }
@@ -161,10 +162,10 @@ object NotificationHelper {
         // ── Channel 4: Service reminders (silent popup — no sound) ───────────
         val serviceChannel = NotificationChannel(
             CHANNEL_SERVICE,
-            "Promemoria tagliando",
+            tr("Przypomnienia o przeglądzie"),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "Promemoria per prenotare il tagliando dal meccanico"
+            description = tr("Przypomnienia o umówieniu przeglądu w warsztacie")
             setSound(null, null)
             enableVibration(false)
         }
@@ -172,10 +173,10 @@ object NotificationHelper {
         // ── Channel 5: Turbo cooldown (silent — informational only) ──────────
         val cooldownChannel = NotificationChannel(
             CHANNEL_COOLDOWN,
-            "Raffreddamento turbo",
+            tr("Chłodzenie turbosprężarki"),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "Avvisi silenziosi per il raffreddamento del turbo dopo il viaggio"
+            description = tr("Ciche powiadomienia o schładzaniu turbo po jeździe")
             setSound(null, null)
             enableVibration(false)
         }
@@ -183,10 +184,10 @@ object NotificationHelper {
         // ── Channel 6: Maintenance reminders (silent — informational) ────────
         val maintenanceChannel = NotificationChannel(
             CHANNEL_MAINTENANCE,
-            "Promemoria manutenzione",
+            tr("Przypomnienia serwisowe"),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "Scadenze manutenzione: tagliando, gomme, filtri"
+            description = tr("Terminy serwisowe: przegląd, opony, filtry")
             setSound(null, null)
             enableVibration(false)
         }
@@ -220,7 +221,7 @@ object NotificationHelper {
 
         return NotificationCompat.Builder(context, CHANNEL_PERSISTENT)
             .setSmallIcon(R.drawable.ic_car_header)
-            .setContentTitle(context.getString(R.string.notif_persistent_title))
+            .setContentTitle(tr(context.getString(R.string.notif_persistent_title)))
             .setContentText(summary)
             .setOngoing(true)             // Cannot be swiped away
             .setOnlyAlertOnce(true)       // No sound on updates
@@ -230,10 +231,10 @@ object NotificationHelper {
     }
 
     private fun buildPersistentSummary(data: DpfData): String {
-        val connected = if (data.bleConnected) "Connected" else "Disconnected"
+        val connected = if (data.bleConnected) tr("Połączono") else tr("Rozłączono")
         val soot = if (data.sootPercentage >= 0) "${"%.0f".format(data.sootPercentage)}%" else "– –"
         val egt  = if (data.egtCelsius >= 0) "${"%.0f".format(data.egtCelsius)}°C" else "– –"
-        return "$connected  •  Soot: $soot  •  EGT: $egt"
+        return tr("%s  •  Sadza: %s  •  EGT: %s").format(connected, soot, egt)
     }
 
     fun updatePersistentNotification(context: Context, notification: Notification) {
@@ -249,8 +250,8 @@ object NotificationHelper {
     fun notifyWarning(context: Context) {
         postEventNotification(
             context,
-            title = context.getString(R.string.notif_warning_title),
-            text  = context.getString(R.string.notif_warning_text),
+            title = tr(context.getString(R.string.notif_warning_title)),
+            text  = tr(context.getString(R.string.notif_warning_text)),
             color = Color.parseColor("#F57F17")   // amber
         )
         Log.d(TAG, "⚠ WARNING notification posted")
@@ -260,8 +261,8 @@ object NotificationHelper {
     fun notifyActive(context: Context) {
         postEventNotification(
             context,
-            title    = context.getString(R.string.notif_active_title),
-            text     = context.getString(R.string.notif_active_text),
+            title    = tr(context.getString(R.string.notif_active_title)),
+            text     = tr(context.getString(R.string.notif_active_text)),
             color    = Color.parseColor("#C62828"),   // red
             priority = NotificationCompat.PRIORITY_MAX
         )
@@ -272,8 +273,8 @@ object NotificationHelper {
     fun notifyCompleted(context: Context) {
         postEventNotification(
             context,
-            title = context.getString(R.string.notif_complete_title),
-            text  = context.getString(R.string.notif_complete_text),
+            title = tr(context.getString(R.string.notif_complete_title)),
+            text  = tr(context.getString(R.string.notif_complete_text)),
             color = Color.parseColor("#2E7D32")   // green
         )
         Log.d(TAG, "✅ COMPLETED regen notification posted")
@@ -283,8 +284,8 @@ object NotificationHelper {
     fun notifyBleLost(context: Context) {
         postConnectionNotification(
             context,
-            title = context.getString(R.string.notif_ble_lost_title),
-            text  = context.getString(R.string.notif_ble_lost_text),
+            title = tr(context.getString(R.string.notif_ble_lost_title)),
+            text  = tr(context.getString(R.string.notif_ble_lost_text)),
             color = Color.parseColor("#546E7A")   // grey
         )
         Log.d(TAG, "📵 BLE lost notification posted (silent)")
@@ -294,8 +295,8 @@ object NotificationHelper {
     fun notifyBleConnected(context: Context, deviceName: String) {
         postConnectionNotification(
             context,
-            title = "OBD Connesso",
-            text  = "Connesso a $deviceName — monitoraggio attivo",
+            title = tr("OBD połączony"),
+            text  = tr("Połączono z %s — monitoring aktywny").format(deviceName),
             color = Color.parseColor("#2E7D32")   // green
         )
         Log.d(TAG, "✅ BLE connected notification posted (silent)")
@@ -312,8 +313,8 @@ object NotificationHelper {
     fun notifyCooldownStarted(context: Context) {
         postCooldownNotification(
             context,
-            title = context.getString(R.string.notif_cooldown_started_title),
-            text  = context.getString(R.string.notif_cooldown_started_text),
+            title = tr(context.getString(R.string.notif_cooldown_started_title)),
+            text  = tr(context.getString(R.string.notif_cooldown_started_text)),
             color = Color.parseColor("#F57F17")   // amber
         )
         Log.d(TAG, "Cooldown started notification posted")
@@ -326,8 +327,8 @@ object NotificationHelper {
     fun notifyCooldownComplete(context: Context) {
         postCooldownNotification(
             context,
-            title = context.getString(R.string.notif_cooldown_complete_title),
-            text  = context.getString(R.string.notif_cooldown_complete_text),
+            title = tr(context.getString(R.string.notif_cooldown_complete_title)),
+            text  = tr(context.getString(R.string.notif_cooldown_complete_text)),
             color = Color.parseColor("#2E7D32")   // green
         )
         Log.d(TAG, "Cooldown complete notification posted")
@@ -349,8 +350,8 @@ object NotificationHelper {
         postMaintenanceNotification(
             context   = context,
             reminder  = reminder,
-            title     = "${reminder.title} — in scadenza",
-            text      = "Scade tra %,d km. Ricordati di prenotare.".format(kmLeft),
+            title     = tr("%s — termin się zbliża").format(reminder.title),
+            text      = tr("Termin za %,d km. Pamiętaj o umówieniu wizyty.").format(kmLeft),
             color     = Color.parseColor("#FF9500"),   // amber
             priority  = NotificationCompat.PRIORITY_DEFAULT
         )
@@ -362,8 +363,8 @@ object NotificationHelper {
         postMaintenanceNotification(
             context   = context,
             reminder  = reminder,
-            title     = "${reminder.title} — urgente!",
-            text      = "Solo %,d km alla scadenza. Prenota subito.".format(kmLeft),
+            title     = "${reminder.title} — pilne!",
+            text      = tr("Tylko %,d km do terminu. Umów wizytę od razu.").format(kmLeft),
             color     = Color.parseColor("#FF6B00"),   // deep orange
             priority  = NotificationCompat.PRIORITY_HIGH
         )
@@ -375,8 +376,8 @@ object NotificationHelper {
         postMaintenanceNotification(
             context   = context,
             reminder  = reminder,
-            title     = "${reminder.title} — SCADUTO",
-            text      = "Scadenza superata. Effettua la manutenzione il prima possibile.",
+            title     = tr("%s — PO TERMINIE").format(reminder.title),
+            text      = tr("Termin minął. Wykonaj serwis jak najszybciej."),
             color     = Color.parseColor("#FF3B30"),   // red
             priority  = NotificationCompat.PRIORITY_HIGH,
             autoCancel = false   // stays until dismissed
@@ -593,16 +594,16 @@ object NotificationHelper {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val title = "📸 Stato regen catturato"
-        val text  = "$pidCount parametri ECU salvati. Apri e tocca \"Condividi cattura\"."
+        val title = tr("📸 Zapisano stan regeneracji")
+        val text  = tr("Zapisano %s parametrów ECU. Otwórz i dotknij \"Udostępnij zapis\".").format(pidCount)
 
         val notification = NotificationCompat.Builder(context, CHANNEL_CONNECTION)
             .setSmallIcon(R.drawable.ic_car_header)
             .setContentTitle(title)
             .setContentText(text)
             .setStyle(NotificationCompat.BigTextStyle().bigText(
-                "$pidCount parametri ECU registrati durante la rigenerazione. " +
-                "Quando ti fermi, apri lo scanner ECU e tocca \"Condividi cattura regen\" per inviarmi il log."
+                tr("Zapisano %s parametrów ECU podczas regeneracji. ").format(pidCount) +
+                tr("Gdy się zatrzymasz, otwórz skaner ECU i dotknij \"Udostępnij zapis regen.\", aby wysłać log.")
             ))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setCategory(NotificationCompat.CATEGORY_STATUS)

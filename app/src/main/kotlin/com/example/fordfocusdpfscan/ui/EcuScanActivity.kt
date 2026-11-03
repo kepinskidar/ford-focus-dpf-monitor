@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableStringBuilder
@@ -60,6 +61,7 @@ class EcuScanActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEcuScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        com.example.fordfocusdpfscan.i18n.I18n.apply(window.decorView)
 
         setupToolbar()
         setupButtons()
@@ -89,7 +91,7 @@ class EcuScanActivity : AppCompatActivity() {
             val bleManager = BleManagerHolder.instance
             if (bleManager == null) {
                 Toast.makeText(this,
-                    "OBD dongle not connected. Connect first from the main screen.",
+                    tr("Adapter OBD nie jest połączony. Najpierw połącz się na ekranie głównym."),
                     Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -118,7 +120,7 @@ class EcuScanActivity : AppCompatActivity() {
             scanner?.cancelScan()
             binding.btnStopScan.visibility  = View.GONE
             binding.btnStartScan.visibility = View.VISIBLE
-            binding.tvCurrentPhase.text = "Scan cancelled"
+            binding.tvCurrentPhase.text = tr("Skanowanie anulowane")
         }
 
         // ── Share log — writes a .txt file and shares via FileProvider ───────
@@ -129,7 +131,7 @@ class EcuScanActivity : AppCompatActivity() {
             try {
                 val dateTag = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
                 val dir = File(cacheDir, "scan_reports").also { it.mkdirs() }
-                val file = File(dir, "FOCUS_scan_$dateTag.txt")
+                val file = File(dir, "MK5DPF_scan_$dateTag.txt")
                 file.writeText(logText, Charsets.UTF_8)
 
                 val uri = FileProvider.getUriForFile(
@@ -139,13 +141,13 @@ class EcuScanActivity : AppCompatActivity() {
                 )
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_SUBJECT, "FOCUS ECU PID Scan Report")
+                    putExtra(Intent.EXTRA_SUBJECT, "MK5 DPF — raport skanowania PID ECU")
                     putExtra(Intent.EXTRA_STREAM, uri)
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
-                startActivity(Intent.createChooser(intent, "Condividi report ECU"))
+                startActivity(Intent.createChooser(intent, tr("Udostępnij raport ECU")))
             } catch (e: Exception) {
-                Toast.makeText(this, "Errore salvataggio: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, tr("Błąd zapisu: %s").format(e.message), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -160,7 +162,7 @@ class EcuScanActivity : AppCompatActivity() {
         val file = File(filesDir, RegenStateCapture.FILE_NAME)
         if (!file.exists() || file.length() == 0L) {
             Toast.makeText(this,
-                "Nessuna cattura ancora. Verrà creata in automatico durante una rigenerazione.",
+                tr("Brak zapisu. Zostanie utworzony automatycznie podczas regeneracji."),
                 Toast.LENGTH_LONG).show()
             return
         }
@@ -168,13 +170,13 @@ class EcuScanActivity : AppCompatActivity() {
             val uri = FileProvider.getUriForFile(this, "${packageName}.provider", file)
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_SUBJECT, "FOCUS — Cattura stato regen")
+                putExtra(Intent.EXTRA_SUBJECT, "MK5 DPF — zapis stanu regeneracji")
                 putExtra(Intent.EXTRA_STREAM, uri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
-            startActivity(Intent.createChooser(intent, "Condividi cattura regen"))
+            startActivity(Intent.createChooser(intent, tr("Udostępnij zapis regen.")))
         } catch (e: Exception) {
-            Toast.makeText(this, "Errore condivisione: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, tr("Błąd udostępniania: %s").format(e.message), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -208,10 +210,10 @@ class EcuScanActivity : AppCompatActivity() {
     private fun updateStats(state: ScanState) {
         // Phase label
         val phaseLabel = when {
-            state.isCompleted -> "✅ Scan complete"
+            state.isCompleted -> tr("✅ Skanowanie zakończone")
             state.isRunning && state.currentPhase != null ->
-                "Phase: ${state.currentPhase.displayName}"
-            else -> "Ready to scan"
+                tr("Faza: %s").format(state.currentPhase.displayName)
+            else -> tr("Gotowy do skanowania")
         }
         binding.tvCurrentPhase.text = phaseLabel
 
@@ -262,7 +264,7 @@ class EcuScanActivity : AppCompatActivity() {
         val decoded = result.decodedValue?.let { " = $it" } ?: ""
         val label   = result.label?.let { "  [$it]" } ?: ""
         val pid     = result.pidHex.padEnd(8)
-        val resp    = if (result.status == PidStatus.TIMEOUT) "(timeout)" else result.responseHex
+        val resp    = if (result.status == PidStatus.TIMEOUT) "(brak odpowiedzi)" else result.responseHex
         return "[${result.status.symbol}] $pid  $resp$decoded$label"
     }
 
@@ -275,18 +277,18 @@ class EcuScanActivity : AppCompatActivity() {
 
         // Append summary footer to log
         binding.tvLog.append(
-            "\n\n══ SCAN COMPLETE ══\n" +
-            "  Replied : ${state.totalResponded}\n" +
-            "  Negative: ${state.totalNegative}\n" +
-            "  Timeout : ${state.totalTimeout}\n" +
-            "\nTap [Share Log] to send the report."
+            tr("\n\n══ SKANOWANIE ZAKOŃCZONE ══\n") +
+            tr("  Odpowiedzi : %s\n").format(state.totalResponded) +
+            tr("  Negatywne  : %s\n").format(state.totalNegative) +
+            tr("  Brak odp.  : %s\n").format(state.totalTimeout) +
+            tr("\nDotknij [Udostępnij log], aby wysłać raport.")
         )
 
         binding.scrollLog.post {
             binding.scrollLog.fullScroll(View.FOCUS_DOWN)
         }
 
-        Toast.makeText(this, "Scan complete! ${state.totalResponded} PIDs responded.", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, tr("Skanowanie zakończone! Odpowiedziało PID-ów: %s.").format(state.totalResponded), Toast.LENGTH_LONG).show()
     }
 
     // ═════════════════════════════════════════════════════════════════════════
@@ -297,16 +299,16 @@ class EcuScanActivity : AppCompatActivity() {
         val responded = EcuScanRepository.scanState.value.results
             .filter { it.status == PidStatus.RESPONDED }
         if (responded.isEmpty()) {
-            Toast.makeText(this, "Nessun PID con risposta da analizzare.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, tr("Brak PID-ów z odpowiedzią do analizy."), Toast.LENGTH_SHORT).show()
             return
         }
-        val sb = StringBuilder("PID con risposta positiva:\n")
+        val sb = StringBuilder(tr("PID-y z odpowiedzią pozytywną:\n"))
         for (r in responded) {
             sb.append(r.pidHex).append("  ").append(r.responseHex)
             r.decodedValue?.let { sb.append(" = ").append(it) }
             r.label?.let { sb.append("  [").append(it).append("]") }
             sb.append('\n')
         }
-        AiAssist.run(this, "Analisi scansione", AiPrompts.scanSystem(), sb.toString())
+        AiAssist.run(this, tr("Analiza skanowania"), AiPrompts.scanSystem(com.example.fordfocusdpfscan.ble.EngineProfile.active(this)), sb.toString())
     }
 }

@@ -23,10 +23,9 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_ford_focus"
-            android:scaleType="centerCrop"
-            app:shapeAppearanceOverlay="@style/ShapeCircle"
-            android:contentDescription="DPF Monitor icon"/>
+            android:src="@drawable/ic_mk5_dpf"
+            android:scaleType="fitCenter"
+            android:contentDescription="Ikona MK5 DPF"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -37,15 +36,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DPF Monitor"
+                android:text="MK5 DPF"
                 android:textColor="@color/text_primary"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.01"/>
             <TextView
+                android:id="@+id/tvVehicleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ford Focus 1.5 TDCi · EDC17C70"
+                android:text="Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM"
                 android:textColor="@color/text_secondary"
                 android:textSize="11sp"/>
         </LinearLayout>
@@ -95,7 +95,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="📋 Storico"
+            android:text="📋 Historia"
             android:gravity="center"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -109,7 +109,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="🔧 Servizi"
+            android:text="🔧 Serwis"
             android:gravity="center"
             android:textSize="11sp"
             android:textStyle="bold"

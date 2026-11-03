@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
@@ -80,7 +81,7 @@ class MainActivity : BaseTabActivity() {
             startBleService()
         } else {
             Toast.makeText(this,
-                "Bluetooth permissions are required to connect to the OBD dongle.",
+                tr("Do połączenia z adapterem OBD wymagane są uprawnienia Bluetooth."),
                 Toast.LENGTH_LONG).show()
         }
     }
@@ -129,7 +130,7 @@ class MainActivity : BaseTabActivity() {
 
         Log.d("FOCUS_Main", "Auto-connecting to $lastName ($lastAddress)…")
         Toast.makeText(this,
-            "Riconnessione a $lastName…",
+            tr("Ponowne łączenie z %s…").format(lastName),
             Toast.LENGTH_SHORT).show()
         connectToDeviceAddress(lastAddress)
     }
@@ -324,19 +325,19 @@ class MainActivity : BaseTabActivity() {
                 }
             )
         } else {
-            binding.tvDpfDeltaP.text = getString(R.string.value_no_data)
+            binding.tvDpfDeltaP.text = tr(getString(R.string.value_no_data))
             binding.tvDpfDeltaP.setTextColor(getColor(R.color.text_secondary))
         }
 
         // ── Regen Status ──────────────────────────────────────────────────────
         val (regenText, regenColor) = when (data.regenStatus) {
-            RegenStatus.INACTIVE  -> Pair(getString(R.string.regen_inactive),
+            RegenStatus.INACTIVE  -> Pair(tr(getString(R.string.regen_inactive)),
                 getColor(R.color.status_ok))
-            RegenStatus.WARNING   -> Pair(getString(R.string.regen_warning),
+            RegenStatus.WARNING   -> Pair(tr(getString(R.string.regen_warning)),
                 getColor(R.color.status_warning))
-            RegenStatus.ACTIVE    -> Pair(getString(R.string.regen_active),
+            RegenStatus.ACTIVE    -> Pair(tr(getString(R.string.regen_active)),
                 getColor(R.color.status_danger))
-            RegenStatus.COMPLETED -> Pair(getString(R.string.regen_completed),
+            RegenStatus.COMPLETED -> Pair(tr(getString(R.string.regen_completed)),
                 getColor(R.color.status_ok))
         }
         binding.tvRegenStatus.text = regenText
@@ -345,7 +346,7 @@ class MainActivity : BaseTabActivity() {
         // ── EGT ───────────────────────────────────────────────────────────────
         binding.tvEgt.text = if (data.egtCelsius >= 0)
             "${"%.0f".format(data.egtCelsius)} °C"
-        else getString(R.string.value_no_data)
+        else tr(getString(R.string.value_no_data))
 
         binding.tvEgt.setTextColor(
             when {
@@ -358,7 +359,7 @@ class MainActivity : BaseTabActivity() {
         // ── Coolant ───────────────────────────────────────────────────────────
         binding.tvCoolant.text = if (data.coolantTempC >= 0)
             "${"%.0f".format(data.coolantTempC)} °C"
-        else getString(R.string.value_no_data)
+        else tr(getString(R.string.value_no_data))
 
         binding.tvCoolant.setTextColor(
             if (data.coolantTempC > 100f) getColor(R.color.status_danger)
@@ -368,17 +369,17 @@ class MainActivity : BaseTabActivity() {
         // ── Odometer (live from ECU — PID 22 DD01) ───────────────────────────
         binding.tvOdometer.text = if (data.odometerKm > 0L)
             "%,d km".format(data.odometerKm)
-        else getString(R.string.value_no_data)
+        else tr(getString(R.string.value_no_data))
 
         // ── Km alla prossima rigenerazione (ECU countdown — PID 22 050B) ──────
         binding.tvLastRegen.text = if (data.kmSinceLastRegen >= 0L)
-            "tra ~%,d km".format(data.kmSinceLastRegen)
-        else getString(R.string.value_no_data)
+            "za ~%,d km".format(data.kmSinceLastRegen)
+        else tr(getString(R.string.value_no_data))
 
         // ── Km dall'ultimo cambio olio (ECU — PID 22 0542) ────────────────────
         binding.tvOilChange.text = if (data.kmSinceOilChange >= 0L)
             "%,d km".format(data.kmSinceOilChange)
-        else getString(R.string.value_no_data)
+        else tr(getString(R.string.value_no_data))
     }
 
     private fun updateConnectionCard(connected: Boolean) {
@@ -389,7 +390,7 @@ class MainActivity : BaseTabActivity() {
         lastConnectedState = connected
 
         if (connected) {
-            binding.tvConnectionStatus.text = getString(R.string.status_connected)
+            binding.tvConnectionStatus.text = tr(getString(R.string.status_connected))
             binding.tvConnectionStatus.setTextColor(getColor(R.color.status_ok))
             binding.btnScan.visibility       = View.GONE
             binding.btnDisconnect.visibility = View.VISIBLE
@@ -399,7 +400,7 @@ class MainActivity : BaseTabActivity() {
             binding.layoutConnectionButtons.visibility = View.GONE
             binding.tvConnectionChevron.text = "▸"
         } else {
-            binding.tvConnectionStatus.text = getString(R.string.status_disconnected)
+            binding.tvConnectionStatus.text = tr(getString(R.string.status_disconnected))
             binding.tvConnectionStatus.setTextColor(getColor(R.color.status_neutral))
             binding.btnScan.visibility       = View.VISIBLE
             binding.btnDisconnect.visibility = View.GONE
@@ -441,15 +442,15 @@ class MainActivity : BaseTabActivity() {
 
         if (lastAddress != null) {
             AlertDialog.Builder(this)
-                .setTitle("Connetti dispositivo")
+                .setTitle(tr("Połącz z urządzeniem"))
                 .setItems(arrayOf(
-                    "Riconnetti: $lastName",
-                    "Cerca nuovo dispositivo…"
+                    tr("Połącz ponownie: %s").format(lastName),
+                    tr("Szukaj nowego urządzenia…")
                 )) { _, which ->
                     if (which == 0) connectToDeviceAddress(lastAddress)
                     else showDevicePicker()
                 }
-                .setNegativeButton("Annulla", null)
+                .setNegativeButton(tr("Anuluj"), null)
                 .show()
         } else {
             showDevicePicker()
@@ -464,7 +465,7 @@ class MainActivity : BaseTabActivity() {
         val listAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems)
 
         val dialog = AlertDialog.Builder(this)
-            .setTitle("Seleziona dispositivo OBD2")
+            .setTitle(tr("Wybierz urządzenie OBD2"))
             .setAdapter(listAdapter) { _, which ->
                 val device = discoveredDevices[which]
                 stopDeviceScan()
@@ -474,7 +475,7 @@ class MainActivity : BaseTabActivity() {
                     .apply()
                 connectToDeviceAddress(device.address)
             }
-            .setNegativeButton("Annulla") { _, _ -> stopDeviceScan() }
+            .setNegativeButton(tr("Anuluj")) { _, _ -> stopDeviceScan() }
             .create()
 
         devicePickerDialog = dialog
@@ -488,18 +489,18 @@ class MainActivity : BaseTabActivity() {
             val name = device.name ?: device.address
             if (discoveredDevices.none { it.address == device.address }) {
                 discoveredDevices.add(device)
-                listItems.add("★ $name  (già associato)\n${device.address}")
+                listItems.add("★ $name  (sparowane)\n${device.address}")
             }
         }
         if (bonded.isNotEmpty()) {
             listAdapter.notifyDataSetChanged()
-            dialog.setTitle("Dispositivi (${discoveredDevices.size})")
+            dialog.setTitle(tr("Urządzenia (%s)").format(discoveredDevices.size))
         }
 
         // ── Poi fa scan BLE per aggiungere eventuali dispositivi BLE ──────────
         val scanner = bleAdapter?.bluetoothLeScanner ?: run {
             if (discoveredDevices.isEmpty())
-                Toast.makeText(this, "Bluetooth non disponibile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, tr("Bluetooth niedostępny"), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -510,20 +511,20 @@ class MainActivity : BaseTabActivity() {
         bleScanCallback = object : ScanCallback() {
             override fun onScanResult(callbackType: Int, result: ScanResult) {
                 val device = result.device
-                val name   = device.name?.takeIf { it.isNotBlank() } ?: "Senza nome"
+                val name   = device.name?.takeIf { it.isNotBlank() } ?: tr("Bez nazwy")
                 if (discoveredDevices.none { it.address == device.address }) {
                     discoveredDevices.add(device)
                     runOnUiThread {
-                        listItems.add("$name  (BLE)\n${device.address}")
+                        listItems.add(tr("%s  (BLE)\n%s").format(name, device.address))
                         listAdapter.notifyDataSetChanged()
-                        dialog.setTitle("Dispositivi trovati: ${discoveredDevices.size}")
+                        dialog.setTitle(tr("Znalezione urządzenia: %s").format(discoveredDevices.size))
                     }
                 }
             }
             override fun onScanFailed(errorCode: Int) {
                 runOnUiThread {
                     Toast.makeText(this@MainActivity,
-                        "Scansione BLE fallita ($errorCode)", Toast.LENGTH_SHORT).show()
+                        tr("Skanowanie BLE nieudane (%s)").format(errorCode), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -533,7 +534,7 @@ class MainActivity : BaseTabActivity() {
         scanStopHandler.postDelayed({
             stopDeviceScan()
             if (dialog.isShowing && discoveredDevices.isEmpty())
-                dialog.setTitle("Nessun dispositivo trovato")
+                dialog.setTitle(tr("Nie znaleziono urządzeń"))
         }, 10_000)
     }
 
@@ -548,7 +549,7 @@ class MainActivity : BaseTabActivity() {
 
     /** Starts the foreground service targeting a specific device MAC address. */
     private fun connectToDeviceAddress(address: String) {
-        binding.tvConnectionStatus.text = getString(R.string.status_scanning)
+        binding.tvConnectionStatus.text = tr(getString(R.string.status_scanning))
         val intent = Intent(this, DpfForegroundService::class.java).apply {
             action = DpfForegroundService.ACTION_CONNECT_ADDRESS
             putExtra(DpfForegroundService.EXTRA_DEVICE_ADDRESS, address)
@@ -557,7 +558,7 @@ class MainActivity : BaseTabActivity() {
     }
 
     private fun startBleService() {
-        binding.tvConnectionStatus.text = getString(R.string.status_scanning)
+        binding.tvConnectionStatus.text = tr(getString(R.string.status_scanning))
         val intent = Intent(this, DpfForegroundService::class.java).apply {
             action = DpfForegroundService.ACTION_CONNECT
         }

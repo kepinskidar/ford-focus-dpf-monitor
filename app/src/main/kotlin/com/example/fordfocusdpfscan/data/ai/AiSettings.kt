@@ -42,7 +42,7 @@ class AiSettings(context: Context) {
         val MODEL_LABELS = mapOf(
             "claude-opus-4-8" to "Opus 4.8 — max qualità  ($5 / $25 per 1M)",
             "claude-sonnet-5" to "Sonnet 5 — bilanciato  ($3 / $15 per 1M)",
-            "claude-haiku-4-5" to "Haiku 4.5 — economico/veloce  ($1 / $5 per 1M)"
+            "claude-haiku-4-5" to "Haiku 4.5 — tani/szybki  ($1 / $5 per 1M)"
         )
     }
 

@@ -31,16 +31,16 @@ enum class PidStatus(val symbol: String) {
 
 /** The scan phases executed in order by EcuPidScanner. */
 enum class ScanPhase(val displayName: String) {
-    PRIORITY      ("Priority PIDs (known/important)"),
-    MODE01_SWEEP  ("Mode 01 — Full sweep 00–FF"),
-    MODE09_INFO   ("Mode 09 — Vehicle info (VIN…)"),
-    UDS_05xx      ("UDS 22 05xx — DPF Load/Soot area (2.0 TDCi analogue)"),
-    UDS_09xx      ("UDS 22 09xx — DPF pressure community PIDs"),
-    UDS_10xx      ("UDS 22 11xx (DPF / Engine — confirmed range)"),
+    PRIORITY      ("PID-y priorytetowe (znane/ważne)"),
+    MODE01_SWEEP  ("Tryb 01 — pełne skanowanie 00–FF"),
+    MODE09_INFO   ("Tryb 09 — informacje o pojeździe (VIN…)"),
+    UDS_05xx      ("UDS 22 05xx — obszar obciążenia/sadzy DPF (odpowiednik z 2.0 TDCi)"),
+    UDS_09xx      ("UDS 22 09xx — PID-y ciśnienia DPF (społeczność)"),
+    UDS_10xx      ("UDS 22 11xx (DPF / silnik — potwierdzony zakres)"),
     UDS_40xx      ("UDS 22 40xx–41xx (TPMS / BCM)"),
-    UDS_DDxx      ("UDS 22 DDxx (Odometer + counters — full range)"),
-    UDS_F1xx      ("UDS 22 F1xx (Standard UDS IDs)"),
-    UDS_FDxx      ("UDS 22 FDxx — Regen counters (last regen km, failed regens…)")
+    UDS_DDxx      ("UDS 22 DDxx (licznik + liczniki — pełny zakres)"),
+    UDS_F1xx      ("UDS 22 F1xx (standardowe ID UDS)"),
+    UDS_FDxx      ("UDS 22 FDxx — liczniki regeneracji (km od ostatniej, nieudane…)")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -144,16 +144,16 @@ object EcuScanRepository {
 
         return buildString {
             appendLine("═══════════════════════════════════════════════════════")
-            appendLine("  FOCUS — ECU PID SCAN REPORT")
-            appendLine("  Generated: $dateStr")
+            appendLine("  MK5 DPF — RAPORT SKANOWANIA PID ECU")
+            appendLine("  Wygenerowano: $dateStr")
             appendLine("═══════════════════════════════════════════════════════")
             appendLine()
-            appendLine("  SUMMARY")
+            appendLine("  PODSUMOWANIE")
             appendLine("  ─────────────────────────────────────────────────────")
-            appendLine("  PIDs queried    : ${state.totalQueried}")
-            appendLine("  Positive replies: ${state.totalResponded}  ✓")
-            appendLine("  Negative replies: ${state.totalNegative}  ✗")
-            appendLine("  Timeouts        : ${state.totalTimeout}  –")
+            appendLine("  Zapytane PID-y  : ${state.totalQueried}")
+            appendLine("  Odp. pozytywne  : ${state.totalResponded}  ✓")
+            appendLine("  Odp. negatywne  : ${state.totalNegative}  ✗")
+            appendLine("  Brak odpowiedzi : ${state.totalTimeout}  –")
             appendLine()
 
             // Group results by phase for readability
@@ -172,12 +172,12 @@ object EcuScanRepository {
 
             appendLine()
             appendLine("═══════════════════════════════════════════════════════")
-            appendLine("  END OF REPORT")
+            appendLine("  KONIEC RAPORTU")
             appendLine()
-            appendLine("  HOW TO USE THIS LOG:")
-            appendLine("  1. Look for ✓ lines — these are PIDs your ECU supports.")
-            appendLine("  2. ★★★ labels = priority candidates for EGT / regen flag.")
-            appendLine("  3. Send this file to the developer to map real PID values.")
+            appendLine("  JAK UŻYWAĆ TEGO LOGU:")
+            appendLine("  1. Szukaj linii ✓ — to PID-y obsługiwane przez Twoje ECU.")
+            appendLine("  2. Etykiety ★★★ = priorytetowi kandydaci na EGT / flagę regeneracji.")
+            appendLine("  3. Wyślij ten plik, aby zmapować rzeczywiste wartości PID.")
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,7 @@ object AiAssist {
 
         val progress = AlertDialog.Builder(activity)
             .setTitle(title)
-            .setMessage("Analisi con AI in corso…")
+            .setMessage(tr("Trwa analiza AI…"))
             .setCancelable(false)
             .create()
         progress.show()
@@ -35,7 +36,7 @@ object AiAssist {
             if (progress.isShowing) progress.dismiss()
             result
                 .onSuccess { showResult(activity, title, it) }
-                .onFailure { showResult(activity, "Errore AI", it.message ?: "Errore sconosciuto") }
+                .onFailure { showResult(activity, tr("Błąd AI"), it.message ?: tr("Nieznany błąd")) }
         }
     }
 
@@ -44,18 +45,18 @@ object AiAssist {
         AlertDialog.Builder(activity)
             .setTitle(title)
             .setMessage(message)          // AppCompat wraps long text in a ScrollView
-            .setPositiveButton("Chiudi", null)
+            .setPositiveButton(tr("Zamknij"), null)
             .show()
     }
 
     private fun promptForKey(activity: AppCompatActivity) {
         AlertDialog.Builder(activity)
-            .setTitle("Chiave AI mancante")
-            .setMessage("Per usare le funzioni AI serve una chiave API Anthropic.\nAprire Impostazioni AI ora?")
-            .setPositiveButton("Apri Impostazioni") { _, _ ->
+            .setTitle(tr("Brak klucza AI"))
+            .setMessage(tr("Aby korzystać z funkcji AI, potrzebny jest klucz API Anthropic.\nOtworzyć ustawienia AI teraz?"))
+            .setPositiveButton(tr("Otwórz ustawienia")) { _, _ ->
                 activity.startActivity(Intent(activity, SettingsActivity::class.java))
             }
-            .setNegativeButton("Annulla", null)
+            .setNegativeButton(tr("Anuluj"), null)
             .show()
     }
 }

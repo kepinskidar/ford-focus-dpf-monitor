@@ -78,7 +78,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="OBD2 Connection"
+                                android:text="Połączenie OBD2"
                                 android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -148,7 +148,7 @@
                             android:id="@+id/btnScanEcu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Scansiona ECU PIDs"
+                            android:text="Skanuj PID-y ECU"
                             android:textSize="12sp"
                             android:visibility="gone"
                             app:backgroundTint="@color/dpf_blue_dark"
@@ -161,7 +161,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="🔧  Codici errore (spia motore)"
+                            android:text="🔧  Kody błędów (kontrolka silnika)"
                             android:textSize="12sp"
                             android:visibility="gone"
                             app:backgroundTint="@color/dpf_blue_dark"
@@ -176,7 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        android:text="💬  Assistente AI"
+                        android:text="💬  Asystent AI"
                         android:textSize="12sp"
                         app:backgroundTint="@color/dpf_blue_dark"
                         app:strokeColor="@color/dpf_orange"
@@ -188,7 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="🤖  Impostazioni AI"
+                        android:text="🤖  Ustawienia AI"
                         android:textSize="12sp"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         app:strokeColor="@color/dpf_orange" />
@@ -216,7 +216,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="DPF STATUS"
+                        android:text="STAN DPF"
                         android:textColor="@color/text_secondary"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -385,7 +385,7 @@
                                 android:id="@+id/tvDpfDeltaNote"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="idle ~0 | cruise 5-15 kPa"
+                                android:text="bieg jałowy ~0 | jazda 5-15 kPa"
                                 android:textColor="@color/text_secondary"
                                 android:textSize="10sp" />
 
@@ -460,7 +460,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Temperature"
+                        android:text="Temperatury"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -540,7 +540,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Distanze (ECU)"
+                        android:text="Dystanse (ECU)"
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -558,7 +558,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Odometro (TOT)"
+                            android:text="Licznik (CAŁK.)"
                             android:textColor="@color/text_secondary"
                             android:textSize="13sp" />
 
@@ -585,7 +585,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Prossima regen (stima)"
+                            android:text="Następna regen. (szac.)"
                             android:textColor="@color/text_secondary"
                             android:textSize="13sp" />
 
@@ -611,7 +611,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Cambio olio (OILCHG)"
+                            android:text="Wymiana oleju (OILCHG)"
                             android:textColor="@color/text_secondary"
                             android:textSize="13sp" />
 

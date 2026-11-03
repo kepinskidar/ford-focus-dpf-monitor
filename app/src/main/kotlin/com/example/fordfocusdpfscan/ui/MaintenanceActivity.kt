@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -107,6 +108,7 @@ class MaintenanceActivity : BaseTabActivity() {
 
     private fun showAddDialog(editing: MaintenanceReminder? = null) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_add_maintenance, null)
+            .also { com.example.fordfocusdpfscan.i18n.I18n.apply(it) }
 
         val tvTitle       = dialogView.findViewById<TextView>(R.id.tvDialogTitle)
         val etTitle       = dialogView.findViewById<TextInputEditText>(R.id.etTitle)
@@ -119,7 +121,7 @@ class MaintenanceActivity : BaseTabActivity() {
 
         // Pre-fill if editing
         if (editing != null) {
-            tvTitle.text         = "Modifica promemoria"
+            tvTitle.text         = tr("Edytuj przypomnienie")
             etTitle.setText(editing.title)
             etInterval.setText(editing.intervalKm.toString())
             etLastDone.setText(editing.lastDoneKm.toString())
@@ -129,7 +131,7 @@ class MaintenanceActivity : BaseTabActivity() {
         // the title is fixed and the "last done" km stays synced from the ECU.
         val isAuto = editing?.isAutoManaged == true
         if (isAuto) {
-            tvTitle.text = "Modifica intervallo tagliando"
+            tvTitle.text = tr("Edytuj interwał przeglądu")
             etTitle.isEnabled = false
             dialogView.findViewById<View>(R.id.tvLastDoneLabel).visibility = View.GONE
             dialogView.findViewById<View>(R.id.rowLastDone).visibility = View.GONE
@@ -148,7 +150,7 @@ class MaintenanceActivity : BaseTabActivity() {
                 etLastDone.requestFocus()
                 Toast.makeText(
                     this,
-                    "Dongle non connesso — inserisci i km manualmente",
+                    tr("Adapter niepołączony — wpisz przebieg ręcznie"),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -171,7 +173,7 @@ class MaintenanceActivity : BaseTabActivity() {
             // new alert limit is re-evaluated on the next odometer update.
             if (isAuto && editing != null) {
                 if (interval == null || interval <= 0) {
-                    Toast.makeText(this, "Inserisci un intervallo valido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, tr("Podaj prawidłowy interwał"), Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 }
                 lifecycleScope.launch {
@@ -191,11 +193,11 @@ class MaintenanceActivity : BaseTabActivity() {
 
             when {
                 title.isNullOrBlank() ->
-                    Toast.makeText(this, "Inserisci un titolo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, tr("Podaj nazwę"), Toast.LENGTH_SHORT).show()
                 interval == null || interval <= 0 ->
-                    Toast.makeText(this, "Inserisci un intervallo valido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, tr("Podaj prawidłowy interwał"), Toast.LENGTH_SHORT).show()
                 lastDone == null || lastDone < 0 ->
-                    Toast.makeText(this, "Inserisci i km dell'ultima manutenzione", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, tr("Podaj przebieg ostatniego serwisu"), Toast.LENGTH_SHORT).show()
                 else -> {
                     lifecycleScope.launch {
                         if (editing == null) {
@@ -234,36 +236,36 @@ class MaintenanceActivity : BaseTabActivity() {
         if (currentOdometer > 0L) {
             // ECU connected — show confirmation with live km
             AlertDialog.Builder(this)
-                .setTitle("Conferma manutenzione")
+                .setTitle(tr("Potwierdź serwis"))
                 .setMessage(
-                    "Hai effettuato \"${reminder.title}\"?\n\n" +
-                    "Verrà registrato a %,d km.\n" +
-                    "Il prossimo promemoria scatterà a %,d km."
+                    tr("Czy wykonano \"%s\"?\n\n").format(reminder.title) +
+                    tr("Zostanie zapisany przy %,d km.\n") +
+                    tr("Kolejne przypomnienie nastąpi przy %,d km.")
                         .format(currentOdometer, currentOdometer + reminder.intervalKm)
                 )
-                .setPositiveButton("Sì, confermo") { _, _ ->
+                .setPositiveButton(tr("Tak, potwierdzam")) { _, _ ->
                     lifecycleScope.launch {
                         repo.markDone(reminder.id, currentOdometer)
                         Toast.makeText(
                             this@MaintenanceActivity,
-                            "\"${reminder.title}\" registrato a %,d km".format(currentOdometer),
+                            "\"${reminder.title}\" zapisano przy %,d km".format(currentOdometer),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
-                .setNegativeButton("Annulla", null)
+                .setNegativeButton(tr("Anuluj"), null)
                 .create()
                 .also { d -> d.window?.setBackgroundDrawableResource(R.drawable.bg_dialog_rounded) }
                 .show()
         } else {
             // No ECU — first confirm, then ask km
             AlertDialog.Builder(this)
-                .setTitle("Conferma manutenzione")
-                .setMessage("Hai effettuato \"${reminder.title}\"?")
-                .setPositiveButton("Sì, confermo") { _, _ ->
+                .setTitle(tr("Potwierdź serwis"))
+                .setMessage(tr("Czy wykonano \"%s\"?").format(reminder.title))
+                .setPositiveButton(tr("Tak, potwierdzam")) { _, _ ->
                     showDoneManualKmDialog(reminder)
                 }
-                .setNegativeButton("Annulla", null)
+                .setNegativeButton(tr("Anuluj"), null)
                 .create()
                 .also { d -> d.window?.setBackgroundDrawableResource(R.drawable.bg_dialog_rounded) }
                 .show()
@@ -286,25 +288,25 @@ class MaintenanceActivity : BaseTabActivity() {
             addView(input)
         }
         AlertDialog.Builder(this)
-            .setTitle("Odometro attuale")
-            .setMessage("Inserisci i km attuali per registrare \"${reminder.title}\".")
+            .setTitle(tr("Aktualny przebieg"))
+            .setMessage(tr("Podaj aktualny przebieg, aby zapisać \"%s\".").format(reminder.title))
             .setView(container)
-            .setPositiveButton("Registra") { _, _ ->
+            .setPositiveButton(tr("Zapisz")) { _, _ ->
                 val km = input.text?.toString()?.toLongOrNull()
                 if (km != null && km > 0) {
                     lifecycleScope.launch {
                         repo.markDone(reminder.id, km)
                         Toast.makeText(
                             this@MaintenanceActivity,
-                            "\"${reminder.title}\" registrato a %,d km".format(km),
+                            "\"${reminder.title}\" zapisano przy %,d km".format(km),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 } else {
-                    Toast.makeText(this, "Inserisci un valore valido", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, tr("Podaj prawidłową wartość"), Toast.LENGTH_SHORT).show()
                 }
             }
-            .setNegativeButton("Annulla", null)
+            .setNegativeButton(tr("Anuluj"), null)
             .create()
             .also { d -> d.window?.setBackgroundDrawableResource(R.drawable.bg_dialog_rounded) }
             .show()
@@ -316,12 +318,12 @@ class MaintenanceActivity : BaseTabActivity() {
 
     private fun showDeleteConfirmDialog(reminder: MaintenanceReminder) {
         AlertDialog.Builder(this)
-            .setTitle("Elimina promemoria")
-            .setMessage("Eliminare \"${reminder.title}\"?")
-            .setPositiveButton("Elimina") { _, _ ->
+            .setTitle(tr("Usuń przypomnienie"))
+            .setMessage(tr("Usunąć \"%s\"?").format(reminder.title))
+            .setPositiveButton(tr("Usuń")) { _, _ ->
                 lifecycleScope.launch { repo.delete(reminder) }
             }
-            .setNegativeButton("Annulla", null)
+            .setNegativeButton(tr("Anuluj"), null)
             .create()
             .also { d -> d.window?.setBackgroundDrawableResource(R.drawable.bg_dialog_rounded) }
             .show()

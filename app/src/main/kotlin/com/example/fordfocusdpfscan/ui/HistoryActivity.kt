@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -161,11 +162,11 @@ class HistoryActivity : BaseTabActivity() {
         if (intervals.isNotEmpty()) {
             val avg = intervals.average().toInt()
             val hint = when {
-                avg >= 400 -> "🟢 DPF in salute"
-                avg >= 250 -> "🟡 intervallo un po' corto"
-                else       -> "🔴 rigenera troppo spesso — verifica DPF/olio"
+                avg >= 400 -> tr("🟢 DPF w dobrej kondycji")
+                avg >= 250 -> tr("🟡 interwał nieco krótki")
+                else       -> tr("🔴 regeneruje zbyt często — sprawdź DPF/olej")
             }
-            tvInterval.text = "🔧 Rigenerazione in media ogni ~%,d km  ·  %s".format(avg, hint)
+            tvInterval.text = tr("🔧 Regeneracja średnio co ~%,d km  ·  %s").format(avg, hint)
             tvInterval.visibility = View.VISIBLE
         } else {
             tvInterval.visibility = View.GONE
@@ -192,11 +193,11 @@ class HistoryActivity : BaseTabActivity() {
         val preGroup  = withData.mapIndexed { i, s -> BarEntry(i.toFloat(), s.preSootPct) }
         val postGroup = withData.mapIndexed { i, s -> BarEntry(i.toFloat(), s.postSootPct!!) }
 
-        val preSet = BarDataSet(preGroup, "Prima").apply {
+        val preSet = BarDataSet(preGroup, tr("Przed")).apply {
             color = 0xFFFF3B30.toInt()
             setDrawValues(false)
         }
-        val postSet = BarDataSet(postGroup, "Dopo").apply {
+        val postSet = BarDataSet(postGroup, tr("Po")).apply {
             color = 0xFF00C853.toInt()
             setDrawValues(false)
         }
@@ -245,9 +246,9 @@ class HistoryActivity : BaseTabActivity() {
     private fun exportReport() {
         lifecycleScope.launch {
             try {
-                val html = historyRepo.generateHtmlReport()
+                val html = historyRepo.generateHtmlReport(com.example.fordfocusdpfscan.ble.EngineProfile.active(this@HistoryActivity).displayName)
                 val fileName = "DPF_Report_${
-                    SimpleDateFormat("yyyyMMdd_HHmm", Locale.ITALY).format(Date())
+                    SimpleDateFormat("yyyyMMdd_HHmm", Locale("pl", "PL")).format(Date())
                 }.html"
                 val file = File(cacheDir, fileName)
                 file.writeText(html, Charsets.UTF_8)
@@ -261,13 +262,13 @@ class HistoryActivity : BaseTabActivity() {
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type     = "text/html"
                     putExtra(Intent.EXTRA_STREAM, uri)
-                    putExtra(Intent.EXTRA_SUBJECT, "Report DPF — Ford Focus 1.5 TDCi")
+                    putExtra(Intent.EXTRA_SUBJECT, "Raport DPF — ${com.example.fordfocusdpfscan.ble.EngineProfile.active(this@HistoryActivity).displayName}")
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
-                startActivity(Intent.createChooser(intent, "Invia report al meccanico"))
+                startActivity(Intent.createChooser(intent, tr("Wyślij raport do mechanika")))
 
             } catch (e: Exception) {
-                Toast.makeText(this@HistoryActivity, "Errore export: ${e.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@HistoryActivity, tr("Błąd eksportu: %s").format(e.message), Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -288,6 +289,7 @@ class HistoryActivity : BaseTabActivity() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
             val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_regen_session, parent, false)
+                .also { com.example.fordfocusdpfscan.i18n.I18n.apply(it) }
             return VH(v)
         }
 
@@ -299,7 +301,7 @@ class HistoryActivity : BaseTabActivity() {
 
         inner class VH(view: View) : RecyclerView.ViewHolder(view) {
 
-            private val fmt = SimpleDateFormat("dd MMM yyyy · HH:mm", Locale.ITALY)
+            private val fmt = SimpleDateFormat("dd MMM yyyy · HH:mm", Locale("pl", "PL"))
 
             fun bind(s: RegenSession, num: Int) {
                 val v = itemView
@@ -315,7 +317,7 @@ class HistoryActivity : BaseTabActivity() {
                 // (no ECU regen-flag PID exists for the EDC17C70), so we label the
                 // source honestly rather than claiming a "Forzata · ECU" reading.
                 val tvType = v.findViewById<TextView>(R.id.tvRegenType)
-                tvType.text = "🌡  Rilevata via temperatura"
+                tvType.text = tr("🌡  Wykryta po temperaturze")
                 tvType.setTextColor(0xFF4F8EF7.toInt())
                 tvType.setBackgroundColor(0x224F8EF7)
 
@@ -335,10 +337,10 @@ class HistoryActivity : BaseTabActivity() {
                 // Result badge
                 val tvResult = v.findViewById<TextView>(R.id.tvResult)
                 when (s.result) {
-                    "COMPLETED"     -> { tvResult.text = "✓ Completata";            tvResult.setTextColor(0xFF34C759.toInt()) }
-                    "ENDED_NATURAL" -> { tvResult.text = "✓ Terminata (naturale)"; tvResult.setTextColor(0xFF34C759.toInt()) }
-                    "INTERRUPTED"   -> { tvResult.text = "⚠ Interrotta";           tvResult.setTextColor(0xFFFF9F0A.toInt()) }
-                    "IN_PROGRESS"   -> { tvResult.text = "⟳ In corso";             tvResult.setTextColor(0xFF4F8EF7.toInt()) }
+                    "COMPLETED"     -> { tvResult.text = tr("✓ Zakończona");            tvResult.setTextColor(0xFF34C759.toInt()) }
+                    "ENDED_NATURAL" -> { tvResult.text = tr("✓ Zakończona (naturalnie)"); tvResult.setTextColor(0xFF34C759.toInt()) }
+                    "INTERRUPTED"   -> { tvResult.text = tr("⚠ Przerwana");           tvResult.setTextColor(0xFFFF9F0A.toInt()) }
+                    "IN_PROGRESS"   -> { tvResult.text = tr("⟳ W trakcie");             tvResult.setTextColor(0xFF4F8EF7.toInt()) }
                     else            -> { tvResult.text = s.result }
                 }
 
@@ -346,7 +348,7 @@ class HistoryActivity : BaseTabActivity() {
                 val warnView = v.findViewById<TextView>(R.id.tvWarningNote)
                 if (s.result == "INTERRUPTED") {
                     warnView.visibility = View.VISIBLE
-                    warnView.text = "⚠ Regen interrotta — soot non ridotto. Valutare regen forzata con Ford IDS."
+                    warnView.text = tr("⚠ Regeneracja przerwana — sadza nie została zredukowana. Rozważ regenerację wymuszoną (Ford IDS).")
                 } else {
                     warnView.visibility = View.GONE
                 }

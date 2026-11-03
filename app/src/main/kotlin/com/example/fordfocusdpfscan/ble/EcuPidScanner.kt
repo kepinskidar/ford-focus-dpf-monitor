@@ -133,20 +133,20 @@ class EcuPidScanner(private val bleManager: BleManager) {
             "22 11A8" to "★★★ DPF Load [CONFIRMED]",
             "22 DD00" to "Odometer (raw 4-byte — see DD01)",
             "22 DD01" to "★★★ Odometer Ford [CONFIRMED] (3-byte km)",
-            "22 DD02" to "★★ Distanza ultimo ciclo / counter (1 byte)",
+            "22 DD02" to "★★ Dystans ostatniego cyklu / licznik (1 bajt)",
             "22 DD04" to "Odometer area — byte flag",
-            "22 DD05" to "★ Counter decrescente (possibile conto DPF)",
+            "22 DD05" to "★ Licznik malejący (możliwy odlicznik DPF)",
             "22 DD06" to "Odometer area — byte flag",
             // ── Standard OBD2 DPF PIDs (confirmed on this ECU) ──────────────
             "01 7A" to "★★★ DPF ΔP / pressione differenziale [CONFERMATO]",
             // ── Ford 2.0 TDCi DPF analogues — test on 1.5 TDCi ──────────────
-            "22 0579" to "★★★ DPF Load % (Ford 2.0 TDCi — test su 1.5)",
-            "22 057B" to "★★★ DPF Soot g (Ford 2.0 TDCi — test su 1.5)",
+            "22 0579" to "★★★ DPF Load % (Ford 2.0 TDCi — testowane na 1.5)",
+            "22 057B" to "★★★ DPF Soot g (Ford 2.0 TDCi — testowane na 1.5)",
             // ── Community Ford diesel DPF PIDs ───────────────────────────────
             "22 09E2" to "★★ DPF differential pressure kPa (community PID)",
-            "22 FD87" to "★★ DPF rigenerazioni fallite (counter)",
-            "22 FD89" to "★★ Distanza media tra rigenerazioni (km)",
-            "22 FD8A" to "★★ Ultima rigenerazione — km percorsi",
+            "22 FD87" to "★★ DPF nieudane regeneracje (licznik)",
+            "22 FD89" to "★★ Średni dystans między regeneracjami (km)",
+            "22 FD8A" to "★★ Ostatnia regeneracja — przejechane km",
             // ── EDC17C70 specific — Ford Focus TDCI ──────────────────────────
             "22 1175" to "★★★ EGT sensor (Ford TDCI)",
             "22 117C" to "★★★ DPF regen flag (Ford TDCI)",
@@ -444,7 +444,7 @@ class EcuPidScanner(private val bleManager: BleManager) {
                 } else null
                 "22FD8A" -> if (bytes.size >= 5) {
                     val raw = ((bytes[3].toInt() and 0xFF) shl 8) or (bytes[4].toInt() and 0xFF)
-                    "raw=$raw km — ultima rigenerazione"
+                    "raw=$raw km — ostatnia regeneracja"
                 } else null
                 // ── Ford confirmed ────────────────────────────────────────────
                 "221149" -> if (bytes.size >= 5) {

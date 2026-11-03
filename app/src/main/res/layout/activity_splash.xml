@@ -12,29 +12,28 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
-    <!-- Ford Focus icon — circular clip via ShapeableImageView -->
+    <!-- App icon (rounded square, transparent corners) -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/splashIcon"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:src="@drawable/ic_ford_focus"
-        android:scaleType="centerCrop"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/ic_mk5_dpf"
+        android:scaleType="fitCenter"
         android:alpha="0"
-        app:shapeAppearanceOverlay="@style/ShapeCircle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/splashTitle"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintVertical_bias="0.42"
-        android:contentDescription="DPF Monitor icon"/>
+        android:contentDescription="Ikona MK5 DPF"/>
 
     <!-- App name -->
     <TextView
         android:id="@+id/splashTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DPF Monitor"
+        android:text="MK5 DPF"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -51,7 +50,7 @@
         android:id="@+id/splashSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ford Focus 1.5 TDCi · EDC17C70"
+        android:text="Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM"
         android:textColor="#4F8EF7"
         android:textSize="15sp"
         android:letterSpacing="0.04"
@@ -79,7 +78,7 @@
         android:id="@+id/splashCredits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Developed by Andrea Sesuru"
+        android:text="Autor oryginału: Andrea Sesuru"
         android:textColor="#6A7D90"
         android:textSize="13sp"
         android:letterSpacing="0.04"

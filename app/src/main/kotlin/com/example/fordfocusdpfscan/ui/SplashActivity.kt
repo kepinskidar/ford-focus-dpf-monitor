@@ -8,6 +8,7 @@ import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fordfocusdpfscan.R
+import com.example.fordfocusdpfscan.i18n.I18n
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // SplashActivity — app entry point.
@@ -26,11 +27,21 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // First launch: ask for the language, then rebuild this screen in that language.
+        if (!I18n.isChosen(this)) {
+            I18n.showLanguageDialog(this, cancelable = false) { recreate() }
+            return
+        }
+
         setContentView(R.layout.activity_splash)
+        I18n.apply(window.decorView)
 
         val icon     = findViewById<View>(R.id.splashIcon)
         val title    = findViewById<View>(R.id.splashTitle)
         val subtitle = findViewById<View>(R.id.splashSubtitle)
+        (subtitle as? android.widget.TextView)?.text =
+            com.example.fordfocusdpfscan.ble.EngineProfile.active(this).subtitle
         val divider  = findViewById<View>(R.id.splashDivider)
         val credits  = findViewById<View>(R.id.splashCredits)
         val root     = findViewById<View>(R.id.splashRoot)
