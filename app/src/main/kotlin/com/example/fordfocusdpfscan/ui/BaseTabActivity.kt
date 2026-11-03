@@ -1,15 +1,18 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.content.Intent
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import com.example.fordfocusdpfscan.BuildConfig
 import com.example.fordfocusdpfscan.R
+import com.example.fordfocusdpfscan.ble.EngineProfile
 import kotlin.math.abs
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -65,6 +68,51 @@ abstract class BaseTabActivity : AppCompatActivity() {
         // (not just Monitor). The layout's hardcoded default would otherwise show
         // a stale version on Diagnostica / Storico / Manutenzione.
         findViewById<TextView>(R.id.tvFooterVersion)?.text = "v${BuildConfig.VERSION_NAME}"
+
+        com.example.fordfocusdpfscan.i18n.I18n.apply(window.decorView)
+
+        // Vehicle subtitle = active engine profile; tap for profile / language.
+        findViewById<TextView>(R.id.tvVehicleSubtitle)?.let { tv ->
+            tv.text = "${EngineProfile.active(this).subtitle} ▾"
+            tv.setOnClickListener { showSettingsMenu(tv) }
+        }
+    }
+
+    // ═════════════════════════════════════════════════════════════════════════
+    // Engine profile picker
+    // ═════════════════════════════════════════════════════════════════════════
+
+    private fun showSettingsMenu(subtitleView: TextView) {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setItems(arrayOf(tr("Profil silnika"), "Język / Language")) { _, which ->
+                if (which == 0) showEngineProfileDialog(subtitleView)
+                else com.example.fordfocusdpfscan.i18n.I18n.showLanguageDialog(this, cancelable = true) {
+                    com.example.fordfocusdpfscan.i18n.I18n.restartApp(this)
+                }
+            }
+            .show()
+    }
+
+    private fun showEngineProfileDialog(subtitleView: TextView) {
+        val profiles = EngineProfile.ALL
+        val current = EngineProfile.active(this)
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(tr("Profil silnika"))
+            .setSingleChoiceItems(
+                profiles.map { it.displayName }.toTypedArray(),
+                profiles.indexOfFirst { it.id == current.id }
+            ) { dialog, which ->
+                EngineProfile.setActive(this, profiles[which])
+                subtitleView.text = "${profiles[which].subtitle} ▾"
+                Toast.makeText(
+                    this,
+                    tr("Profil zmieniony. Rozłącz i połącz ponownie adapter OBD2."),
+                    Toast.LENGTH_LONG
+                ).show()
+                dialog.dismiss()
+            }
+            .setNegativeButton(tr("Anuluj"), null)
+            .show()
     }
 
     // ═════════════════════════════════════════════════════════════════════════

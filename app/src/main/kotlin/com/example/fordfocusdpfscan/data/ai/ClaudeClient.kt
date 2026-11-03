@@ -49,7 +49,7 @@ class ClaudeClient(private val settings: AiSettings) {
         val key = settings.apiKey
         if (key.isNullOrBlank()) {
             return@withContext Result.failure(
-                IllegalStateException("Chiave API non impostata. Aprila da Impostazioni AI.")
+                IllegalStateException("Nie ustawiono klucza API. Wpisz go w Ustawieniach AI.")
             )
         }
         val model = settings.model
@@ -80,7 +80,7 @@ class ClaudeClient(private val settings: AiSettings) {
             http.newCall(request).execute().use { resp ->
                 val raw = resp.body?.string().orEmpty()
                 if (!resp.isSuccessful) {
-                    val msg = parseErrorMessage(raw) ?: "Errore HTTP ${resp.code}"
+                    val msg = parseErrorMessage(raw) ?: "Błąd HTTP ${resp.code}"
                     return@withContext Result.failure(RuntimeException(msg))
                 }
                 val json = JSONObject(raw)
@@ -107,7 +107,7 @@ class ClaudeClient(private val settings: AiSettings) {
                 else Result.success(text)
             }
         } catch (e: Exception) {
-            Result.failure(RuntimeException("Errore di rete: ${e.message ?: "connessione fallita"}"))
+            Result.failure(RuntimeException("Błąd sieci: ${e.message ?: "połączenie nieudane"}"))
         }
     }
 

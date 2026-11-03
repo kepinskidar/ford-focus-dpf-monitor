@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
@@ -42,6 +43,7 @@ class DtcActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dtc)
+        com.example.fordfocusdpfscan.i18n.I18n.apply(window.decorView)
         btnRead   = findViewById(R.id.btnReadDtc)
         btnClear  = findViewById(R.id.btnClearDtc)
         tvStatus  = findViewById(R.id.tvDtcStatus)
@@ -58,7 +60,7 @@ class DtcActivity : AppCompatActivity() {
         val ble = BleManagerHolder.instance
         if (ble == null) {
             Toast.makeText(this,
-                "Dongle non connesso — collegati dal tab Monitor.", Toast.LENGTH_LONG).show()
+                tr("Adapter niepołączony — połącz się w zakładce Monitor."), Toast.LENGTH_LONG).show()
             return null
         }
         return DtcReader(ble)
@@ -67,11 +69,11 @@ class DtcActivity : AppCompatActivity() {
     private fun readCodes() {
         val reader = reader() ?: return
         lifecycleScope.launch {
-            setBusy(true, "Lettura codici in corso…")
+            setBusy(true, tr("Odczyt kodów…"))
             val result = withContext(Dispatchers.IO) { runCatching { reader.readAll() }.getOrNull() }
             setBusy(false, null)
             if (result == null) {
-                tvStatus.text = "Errore di lettura. Riprova."
+                tvStatus.text = tr("Błąd odczytu. Spróbuj ponownie.")
                 return@launch
             }
             render(result)
@@ -80,30 +82,30 @@ class DtcActivity : AppCompatActivity() {
 
     private fun confirmClear() {
         AlertDialog.Builder(this)
-            .setTitle("Cancella codici errore")
+            .setTitle(tr("Kasuj kody błędów"))
             .setMessage(
-                "Cancella i codici memorizzati e spegne la spia motore.\n\n" +
-                "Se il problema persiste, la spia si riaccenderà. Continuare?"
+                tr("Kasuje zapisane kody i gasi kontrolkę silnika.\n\n") +
+                tr("Jeśli usterka nadal występuje, kontrolka zapali się ponownie. Kontynuować?")
             )
-            .setPositiveButton("Cancella") { _, _ -> clearCodes() }
-            .setNegativeButton("Annulla", null)
+            .setPositiveButton(tr("Kasuj")) { _, _ -> clearCodes() }
+            .setNegativeButton(tr("Anuluj"), null)
             .show()
     }
 
     private fun clearCodes() {
         val reader = reader() ?: return
         lifecycleScope.launch {
-            setBusy(true, "Cancellazione in corso…")
+            setBusy(true, tr("Kasowanie…"))
             val ok = withContext(Dispatchers.IO) { runCatching { reader.clearCodes() }.getOrDefault(false) }
             if (!ok) {
                 setBusy(false, null)
-                tvStatus.text = "Cancellazione non riuscita."
+                tvStatus.text = tr("Kasowanie nie powiodło się.")
                 return@launch
             }
-            Toast.makeText(this@DtcActivity, "Codici cancellati.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@DtcActivity, tr("Kody skasowane."), Toast.LENGTH_SHORT).show()
             val result = withContext(Dispatchers.IO) { runCatching { reader.readAll() }.getOrNull() }
             setBusy(false, null)
-            if (result != null) render(result) else tvStatus.text = "Cancellati. Rileggi per conferma."
+            if (result != null) render(result) else tvStatus.text = tr("Skasowano. Odczytaj ponownie, aby potwierdzić.")
         }
     }
 
@@ -117,18 +119,18 @@ class DtcActivity : AppCompatActivity() {
         lastResult = result
         container.removeAllViews()
         if (result.isEmpty) {
-            tvStatus.text = "✅ Nessun codice errore memorizzato."
+            tvStatus.text = tr("✅ Brak zapisanych kodów błędów.")
             btnClear.visibility = View.GONE
             btnExplain.visibility = View.GONE
             return
         }
-        tvStatus.text = "${result.total} codici trovati"
+        tvStatus.text = tr("Znalezione kody: %s").format(result.total)
         btnClear.visibility = View.VISIBLE
         btnExplain.visibility = View.VISIBLE
 
-        addSection("🔴  Confermati (spia motore)", result.stored,    0xFFFF3B30.toInt())
-        addSection("🟡  In sospeso",               result.pending,   0xFFFF9F0A.toInt())
-        addSection("🔒  Permanenti",               result.permanent, 0xFF9E9E9E.toInt())
+        addSection(tr("🔴  Potwierdzone (kontrolka silnika)"), result.stored,    0xFFFF3B30.toInt())
+        addSection(tr("🟡  Oczekujące"),               result.pending,   0xFFFF9F0A.toInt())
+        addSection(tr("🔒  Stałe"),               result.permanent, 0xFF9E9E9E.toInt())
     }
 
     private fun addSection(title: String, codes: List<DtcCode>, accent: Int) {
@@ -176,20 +178,20 @@ class DtcActivity : AppCompatActivity() {
     private fun explainWithAi() {
         val result = lastResult ?: return
         val d = DpfRepository.dpfData.value
-        fun n(v: Float, unit: String) = if (v >= 0f) "${v.toInt()}$unit" else "n/d"
+        fun n(v: Float, unit: String) = if (v >= 0f) "${v.toInt()}$unit" else "b/d"
 
-        val sb = StringBuilder("Codici letti dalla centralina:\n")
-        result.stored.forEach    { sb.append("- ${it.code} (confermato): ${it.description}\n") }
-        result.pending.forEach   { sb.append("- ${it.code} (in sospeso): ${it.description}\n") }
-        result.permanent.forEach { sb.append("- ${it.code} (permanente): ${it.description}\n") }
-        sb.append("\nContesto dati live:\n")
-        sb.append("Soot ${n(d.sootPercentage, "%")}, Load ${n(d.loadPercentage, "%")}, ")
-        sb.append("EGT ${n(d.egtCelsius, "°C")}, ")
-        sb.append("Delta P ")
-        sb.append(if (d.dpfDeltaPressureKpa >= 0f) "%.1f kPa".format(d.dpfDeltaPressureKpa) else "n/d")
-        sb.append(", km da ultima regen ${d.kmSinceLastRegen}")
-        sb.append(", km da cambio olio ${d.kmSinceOilChange}, odometro ${d.odometerKm}")
+        val sb = StringBuilder(tr("Kody odczytane ze sterownika:\n"))
+        result.stored.forEach    { sb.append("- ${it.code} (potwierdzony): ${it.description}\n") }
+        result.pending.forEach   { sb.append(tr("- %s (oczekujący): %s\n").format(it.code, it.description)) }
+        result.permanent.forEach { sb.append(tr("- %s (stały): %s\n").format(it.code, it.description)) }
+        sb.append(tr("\nDane na żywo:\n"))
+        sb.append(tr("Sadza %s, Obciążenie %s, ").format(n(d.sootPercentage, "%"), n(d.loadPercentage, "%")))
+        sb.append(tr("EGT %s, ").format(n(d.egtCelsius, "°C")))
+        sb.append(tr("Delta P "))
+        sb.append(if (d.dpfDeltaPressureKpa >= 0f) "%.1f kPa".format(d.dpfDeltaPressureKpa) else "b/d")
+        sb.append(", km od ostatniej regen. ${d.kmSinceLastRegen}")
+        sb.append(", km od wymiany oleju ${d.kmSinceOilChange}, licznik ${d.odometerKm}")
 
-        AiAssist.run(this, "Spiegazione codici", AiPrompts.dtcSystem(), sb.toString())
+        AiAssist.run(this, tr("Wyjaśnienie kodów"), AiPrompts.dtcSystem(com.example.fordfocusdpfscan.ble.EngineProfile.active(this)), sb.toString())
     }
 }

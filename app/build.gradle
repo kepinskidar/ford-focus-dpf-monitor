@@ -43,6 +43,7 @@ android {
 dependencies {
     // ── Android Auto / Car App Library ───────────────────────────────────────
     implementation 'androidx.car.app:app:1.4.0'
+    implementation 'androidx.media:media:1.7.0'
 
     // ── Kotlin Coroutines (BLE polling + StateFlow) ───────────────────────────
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'

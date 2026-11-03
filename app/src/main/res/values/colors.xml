@@ -6,6 +6,7 @@
     ─────────────────────────────────────────────────────────────────────── -->
 
     <!-- Ford Blue brand colours -->
+    <color name="launcher_bg">#02122E</color>
     <color name="dpf_blue_dark">#003478</color>      <!-- Ford Blue official -->
     <color name="dpf_blue_mid">#004A9F</color>       <!-- Ford Medium Blue -->
     <color name="dpf_blue_light">#0066CC</color>     <!-- Ford Accent / buttons -->

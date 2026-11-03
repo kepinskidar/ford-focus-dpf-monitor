@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🤖  Impostazioni AI"
+            android:text="🤖  Ustawienia AI"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
             android:textStyle="bold"/>
@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Funzioni opzionali basate su Claude (spiegazione codici errore, analisi scansione ECU). La chiave resta solo sul telefono."
+            android:text="Opcjonalne funkcje oparte na Claude (wyjaśnianie kodów błędów, analiza skanowania ECU). Klucz pozostaje tylko w telefonie."
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
             android:layout_marginTop="4dp"
@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CHIAVE API ANTHROPIC"
+            android:text="KLUCZ API ANTHROPIC"
             android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ottieni una chiave su console.anthropic.com → API Keys"
+            android:text="Klucz uzyskasz na console.anthropic.com → API Keys"
             android:textColor="@color/text_hint"
             android:textSize="11sp"
             android:layout_marginTop="4dp"
@@ -71,7 +71,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MODELLO"
+            android:text="MODEL"
             android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="Salva"
+                android:text="Zapisz"
                 app:backgroundTint="@color/dpf_blue_light"/>
 
             <com.google.android.material.button.MaterialButton
@@ -104,7 +104,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Testa connessione"
+                android:text="Testuj połączenie"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 app:strokeColor="@color/dpf_orange"/>
         </LinearLayout>
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="💰  UTILIZZO (STIMA LOCALE)"
+            android:text="💰  ZUŻYCIE (SZACUNEK LOKALNY)"
             android:textColor="@color/text_secondary"
             android:textSize="11sp"
             android:textStyle="bold"
@@ -131,7 +131,7 @@
             android:id="@+id/tvCalls"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chiamate: 0"
+            android:text="Zapytania: 0"
             android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:layout_marginBottom="4dp"/>
@@ -140,7 +140,7 @@
             android:id="@+id/tvTokens"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Token: 0 in / 0 out"
+            android:text="Tokeny: 0 wej. / 0 wyj."
             android:textColor="@color/text_primary"
             android:textSize="14sp"
             android:layout_marginBottom="4dp"/>
@@ -149,7 +149,7 @@
             android:id="@+id/tvCost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Costo stimato totale: $0.0000"
+            android:text="Szacowany koszt łącznie: $0.0000"
             android:textColor="#34C759"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -159,7 +159,7 @@
             android:id="@+id/tvLastCost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ultima chiamata: $0.0000"
+            android:text="Ostatnie zapytanie: $0.0000"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
             android:layout_marginBottom="12dp"/>
@@ -168,7 +168,7 @@
             android:id="@+id/btnResetUsage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Azzera contatori"
+            android:text="Zeruj liczniki"
             android:textSize="12sp"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:textColor="@color/status_danger"/>
@@ -176,7 +176,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Il costo è una stima locale dai token di ogni risposta. Il conteggio ufficiale è nella Console Anthropic."
+            android:text="Koszt to lokalny szacunek na podstawie tokenów każdej odpowiedzi. Oficjalne rozliczenie jest w Konsoli Anthropic."
             android:textColor="@color/text_hint"
             android:textSize="11sp"
             android:layout_marginTop="16dp"/>

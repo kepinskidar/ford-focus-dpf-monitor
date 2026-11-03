@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Round adaptive icon variant — same layers, system clips to circle -->
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/dpf_blue_dark"/>
-    <foreground android:drawable="@drawable/ic_ford_focus"/>
+    <background android:drawable="@color/launcher_bg"/>
+    <foreground android:drawable="@drawable/ic_mk5_dpf_fg"/>
 </adaptive-icon>

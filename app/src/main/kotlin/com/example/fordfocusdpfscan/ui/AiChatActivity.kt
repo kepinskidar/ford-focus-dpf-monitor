@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -46,6 +47,7 @@ class AiChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ai_chat)
+        com.example.fordfocusdpfscan.i18n.I18n.apply(window.decorView)
         scroll    = findViewById(R.id.scrollChat)
         container = findViewById(R.id.messagesContainer)
         etPrompt  = findViewById(R.id.etPrompt)
@@ -56,19 +58,19 @@ class AiChatActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener { send() }
         setBusy(true)
-        addBubble("Preparo il contesto dell'auto…", isUser = false)
+        addBubble(tr("Przygotowuję dane o samochodzie…"), isUser = false)
 
         lifecycleScope.launch {
-            val ctx = withContext(Dispatchers.IO) { runCatching { buildContext() }.getOrDefault("(dati non disponibili)") }
-            systemPrompt = AiPrompts.assistantSystem(ctx)
+            val ctx = withContext(Dispatchers.IO) { runCatching { buildContext() }.getOrDefault(tr("(dane niedostępne)")) }
+            systemPrompt = AiPrompts.assistantSystem(com.example.fordfocusdpfscan.ble.EngineProfile.active(this@AiChatActivity), ctx)
             container.removeAllViews()
             addBubble(
-                "Ciao! Sono l'assistente della tua Focus 1.5 TDCi. Ho letto i dati attuali e lo storico. " +
-                "Chiedimi pure — es. \"come sta il DPF?\", \"perché tante regen interrotte?\", \"quando cambio l'olio?\".",
+                tr("Cześć! Jestem asystentem Twojego auta (%s). Przeczytałem aktualne dane i historię. ").format(com.example.fordfocusdpfscan.ble.EngineProfile.active(this@AiChatActivity).displayName) +
+                tr("Pytaj śmiało — np. \"jak się ma DPF?\", \"dlaczego tyle przerwanych regeneracji?\", \"kiedy wymienić olej?\"."),
                 isUser = false
             )
             if (!settings.hasKey) {
-                addBubble("⚠️ Nessuna chiave API impostata. Aprila da «Impostazioni AI» per farmi rispondere.", isUser = false)
+                addBubble(tr("⚠️ Nie ustawiono klucza API. Wpisz go w «Ustawienia AI», abym mógł odpowiadać."), isUser = false)
             }
             setBusy(false)
         }
@@ -94,35 +96,35 @@ class AiChatActivity : AppCompatActivity() {
                 .onFailure {
                     // Drop the un-answered user turn so the next send isn't malformed.
                     if (messages.isNotEmpty() && messages.last().role == "user") messages.removeAt(messages.size - 1)
-                    addBubble("Errore: ${it.message}", isUser = false)
+                    addBubble(tr("Błąd: %s").format(it.message), isUser = false)
                 }
         }
     }
 
     private suspend fun buildContext(): String {
         val d = DpfRepository.dpfData.value
-        fun f(v: Float, u: String) = if (v >= 0f) "${v.toInt()}$u" else "n/d"
+        fun f(v: Float, u: String) = if (v >= 0f) "${v.toInt()}$u" else "b/d"
 
         val sb = StringBuilder()
-        sb.append("DPF: soot ${f(d.sootPercentage, "%")}, load ${f(d.loadPercentage, "%")}, deltaP ")
-        sb.append(if (d.dpfDeltaPressureKpa >= 0f) "%.1f kPa".format(d.dpfDeltaPressureKpa) else "n/d")
-        sb.append(", EGT ingresso ${f(d.egtCelsius, "°C")}, EGT uscita ${f(d.egtPostDpfC, "°C")}.\n")
-        sb.append("Motore: refrigerante ${f(d.coolantTempC, "°C")}, RPM ${f(d.rpmValue, "")}, ")
-        sb.append("velocità ${f(d.speedKmh, " km/h")}, batteria ")
-        sb.append(if (d.batteryVoltage >= 0f) "%.1f V".format(d.batteryVoltage) else "n/d").append(".\n")
-        sb.append("Distanze: odometro ${d.odometerKm} km, km da ultima regen ${d.kmSinceLastRegen}, ")
-        sb.append("km da cambio olio ${d.kmSinceOilChange}.\n")
-        sb.append("Stato regen attuale: ${d.regenStatus}.\n\n")
+        sb.append(tr("DPF: soot %s, load %s, deltaP ").format(f(d.sootPercentage, "%"), f(d.loadPercentage, "%")))
+        sb.append(if (d.dpfDeltaPressureKpa >= 0f) "%.1f kPa".format(d.dpfDeltaPressureKpa) else "b/d")
+        sb.append(tr(", EGT wlot %s, EGT wylot %s.\n").format(f(d.egtCelsius, "°C"), f(d.egtPostDpfC, "°C")))
+        sb.append(tr("Silnik: płyn chłodzący %s, RPM %s, ").format(f(d.coolantTempC, "°C"), f(d.rpmValue, "")))
+        sb.append(tr("prędkość %s, akumulator ").format(f(d.speedKmh, " km/h")))
+        sb.append(if (d.batteryVoltage >= 0f) "%.1f V".format(d.batteryVoltage) else "b/d").append(".\n")
+        sb.append(tr("Dystanse: licznik %s km, km od ostatniej regen. %s, ").format(d.odometerKm, d.kmSinceLastRegen))
+        sb.append("km od wymiany oleju ${d.kmSinceOilChange}.\n")
+        sb.append(tr("Aktualny stan regen.: %s.\n\n").format(d.regenStatus))
 
-        sb.append("STORICO REGEN:\n")
+        sb.append(tr("HISTORIA REGENERACJI:\n"))
         sb.append(RegenHistoryRepository(this).aiHistorySummary()).append("\n\n")
 
         val reminders = MaintenanceRepository(this).getAll()
         if (reminders.isNotEmpty()) {
-            sb.append("MANUTENZIONE:\n")
+            sb.append(tr("SERWIS:\n"))
             reminders.forEach { r ->
-                sb.append("- ${r.title}: intervallo ${r.intervalKm} km, fatto a ${r.lastDoneKm} km")
-                if (d.odometerKm > 0L) sb.append(", mancano ${r.kmRemaining(d.odometerKm)} km")
+                sb.append(tr("- %s: interwał %s km, wykonano przy %s km").format(r.title, r.intervalKm, r.lastDoneKm))
+                if (d.odometerKm > 0L) sb.append(tr(", pozostało %s km").format(r.kmRemaining(d.odometerKm)))
                 sb.append("\n")
             }
         }
@@ -134,7 +136,7 @@ class AiChatActivity : AppCompatActivity() {
     private fun setBusy(b: Boolean) {
         busy = b
         btnSend.isEnabled = !b
-        btnSend.text = if (b) "…" else "Invia"
+        btnSend.text = if (b) "…" else tr("Wyślij")
     }
 
     private fun addBubble(text: String, isUser: Boolean) {

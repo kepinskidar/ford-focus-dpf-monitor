@@ -24,6 +24,9 @@ class FocusApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // Language must be ready before anything builds a user-visible string.
+        com.example.fordfocusdpfscan.i18n.I18n.init(this)
+
         // Force dark mode regardless of system setting — the app uses a custom
         // dark-blue theme that must not be inverted by the DayNight mechanism.
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -36,7 +39,7 @@ class FocusApp : Application() {
         NotificationHelper.createChannels(this)
 
         // Pre-warm the Ford Focus icon bitmap on a background thread.
-        // ic_ford_focus.png is 5 MB — decoding it on the main thread when the first
+        // ic_mk5_dpf.png is large — decoding it on the main thread when the first
         // regen notification fires caused a ServiceANR. Doing it here at startup
         // (background thread) ensures it is ready before any notification fires.
         NotificationHelper.warmIconCache(this)

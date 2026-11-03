@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.service
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
@@ -280,7 +281,7 @@ class DpfForegroundService : LifecycleService() {
                         }
                     }
                     ConnectionState.CONNECTED -> {
-                        val deviceName = bleManager.connectedDeviceName ?: "OBD Dongle"
+                        val deviceName = bleManager.connectedDeviceName ?: tr("Adapter OBD")
                         NotificationHelper.notifyBleConnected(this@DpfForegroundService, deviceName)
                     }
                     else -> { /* SCANNING / CONNECTING — no notification */ }
@@ -337,12 +338,12 @@ class DpfForegroundService : LifecycleService() {
                 NotificationHelper.notifyActive(this)
                 if (!capturedActiveThisRegen) {
                     capturedActiveThisRegen = true
-                    captureRegenState("REGEN ATTIVA")
+                    captureRegenState(tr("REGEN AKTYWNA"))
                 }
             }
             RegenStatus.COMPLETED -> {
                 NotificationHelper.notifyCompleted(this)
-                captureRegenState("REGEN COMPLETATA")
+                captureRegenState(tr("REGEN ZAKOŃCZONA"))
                 lifecycleScope.launch {
                     kotlinx.coroutines.delay(8_000)
                     DpfRepository.acknowledgeCompleted()

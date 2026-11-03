@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.car
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.content.Intent
 import android.text.SpannableString
 import android.text.Spanned
@@ -95,7 +96,7 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
     override fun onGetTemplate(): Template {
         val data = currentData
         return ListTemplate.Builder()
-            .setTitle(carContext.getString(R.string.car_screen_title))
+            .setTitle(tr(carContext.getString(R.string.car_screen_title)))
             .setHeaderAction(Action.APP_ICON)
             .setActionStrip(buildActionStrip())
             .setSingleList(
@@ -129,8 +130,8 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
         }
 
         return Row.Builder()
-            .setTitle("Filtro DPF")
-            .addText(coloredSpan("Soot $soot  ·  Load $load  ·  ΔP $deltaP", color))
+            .setTitle(tr("Filtr DPF"))
+            .addText(coloredSpan(tr("Sadza %s  ·  Obciążenie %s  ·  ΔP %s").format(soot, load, deltaP), color))
             .build()
     }
 
@@ -140,21 +141,21 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
 
     private fun buildRegenRow(data: DpfData): Row {
         val (statusStr, statusColor) = when (data.regenStatus) {
-            RegenStatus.INACTIVE  -> "Inattiva — puoi spegnere"  to CarColor.GREEN
-            RegenStatus.WARNING   -> "Attenzione — non spegnere" to CarColor.YELLOW
-            RegenStatus.ACTIVE    -> "ATTIVA — non spegnere!"    to CarColor.RED
-            RegenStatus.COMPLETED -> "Completata"                to CarColor.GREEN
+            RegenStatus.INACTIVE  -> tr("Nieaktywna — można zgasić silnik")  to CarColor.GREEN
+            RegenStatus.WARNING   -> tr("Uwaga — nie gasić silnika") to CarColor.YELLOW
+            RegenStatus.ACTIVE    -> tr("AKTYWNA — nie gasić silnika!")    to CarColor.RED
+            RegenStatus.COMPLETED -> tr("Zakończona")                to CarColor.GREEN
         }
 
         val source = when (data.regenStrategy) {
-            RegenStrategy.EGT_TEMP  -> "  ·  Temp EGT"
-            RegenStrategy.SOOT_DROP -> "  ·  Soot ↓"
-            RegenStrategy.EXOTHERM  -> "  ·  ΔT filtro"
+            RegenStrategy.EGT_TEMP  -> tr("  ·  Temp. EGT")
+            RegenStrategy.SOOT_DROP -> tr("  ·  Sadza ↓")
+            RegenStrategy.EXOTHERM  -> tr("  ·  ΔT filtra")
             RegenStrategy.NONE      -> ""
         }
 
         return Row.Builder()
-            .setTitle("Rigenerazione")
+            .setTitle(tr("Regeneracja"))
             .addText(coloredSpan("$statusStr$source", statusColor))
             .build()
     }
@@ -180,9 +181,9 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
         }
 
         return Row.Builder()
-            .setTitle("Info Motore")
+            .setTitle(tr("Silnik"))
             .addText(coloredSpan(
-                "EGT in $egtInStr  ·  EGT out $egtOutStr  ·  Motore $coolantStr",
+                tr("EGT wlot %s  ·  EGT wylot %s  ·  Silnik %s").format(egtInStr, egtOutStr, coolantStr),
                 egtColor
             ))
             .build()
@@ -194,7 +195,7 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
 
     private fun buildActionStrip(): ActionStrip {
         val reconnectAction = Action.Builder()
-            .setTitle(carContext.getString(R.string.car_action_reconnect))
+            .setTitle(tr(carContext.getString(R.string.car_action_reconnect)))
             .setOnClickListener {
                 carContext.startForegroundService(
                     Intent(carContext, DpfForegroundService::class.java).apply {
@@ -203,7 +204,7 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
                 )
                 CarToast.makeText(
                     carContext,
-                    "Riconnessione a Android-Vlink…",
+                    tr("Ponowne łączenie z Android-Vlink…"),
                     CarToast.LENGTH_SHORT
                 ).show()
             }
@@ -220,9 +221,9 @@ class DpfScreen(carContext: CarContext) : Screen(carContext) {
 
     private fun showCarToast(newStatus: RegenStatus) {
         val message = when (newStatus) {
-            RegenStatus.WARNING   -> carContext.getString(R.string.car_toast_warning)
-            RegenStatus.ACTIVE    -> carContext.getString(R.string.car_toast_active)
-            RegenStatus.COMPLETED -> carContext.getString(R.string.car_toast_complete)
+            RegenStatus.WARNING   -> tr(carContext.getString(R.string.car_toast_warning))
+            RegenStatus.ACTIVE    -> tr(carContext.getString(R.string.car_toast_active))
+            RegenStatus.COMPLETED -> tr(carContext.getString(R.string.car_toast_complete))
             RegenStatus.INACTIVE  -> return
         }
         CarToast.makeText(carContext, message, CarToast.LENGTH_LONG).show()

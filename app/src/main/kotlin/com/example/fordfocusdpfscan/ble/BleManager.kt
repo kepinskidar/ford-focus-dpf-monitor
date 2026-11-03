@@ -36,7 +36,8 @@ import java.util.UUID
 //   responses accumulated until the '>' prompt character.
 //
 // Init sequence (once per connection):
-//   ATZ → ATE0 → ATL0 → ATH0 → ATAT1 → ATSP0 → ATSH7E0
+//   ATZ → ATE0 → ATL0 → ATH0 → ATAT1 → ATSP0 → ATSH<header> [→ 1003]
+//   (header / extended session / polled PIDs come from EngineProfile)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 @SuppressLint("MissingPermission")
@@ -69,19 +70,6 @@ class BleManager(private val context: Context) {
                 UUID.fromString("6E400002-B5A3-F393-E0A9-E50E24DCCA9E"),
                 "Nordic UART (NUS)"
             )
-        )
-
-        // ── ELM327 init sequence ───────────────────────────────────────────────
-        val ELM_INIT = listOf(
-            "ATZ",      // soft reset
-            "ATE0",     // echo off
-            "ATL0",     // linefeeds off
-            "ATH0",     // headers off
-            "ATAT1",    // adaptive timing
-            "ATSP0",    // auto-detect OBD protocol
-            "ATSH7E0",  // set CAN header to Ford PCM (7E0 → responses on 7E8)
-            "1003"      // UDS DiagnosticSessionControl — request extended session
-                        // (unlocks DPF/EGT PIDs on Bosch EDC17C70)
         )
 
         // ── ELM327 commands ────────────────────────────────────────────────────
@@ -139,15 +127,6 @@ class BleManager(private val context: Context) {
         // 010F: Intake air temperature. Formula: A-40 °C.
         const val CMD_INTAKE_AIR_TEMP   = "010F"
 
-        val ALL_PIDS = listOf(
-            CMD_COOLANT_TEMP, CMD_EGT, CMD_DPF_PRESSURE,
-            CMD_DPF_LOAD, CMD_DPF_SOOT, CMD_ODOMETER,
-            CMD_LAST_REGEN_DIST, CMD_OIL_CHANGE,
-            CMD_RPM, CMD_SPEED, CMD_ENGINE_LOAD,
-            CMD_INTAKE_MAP, CMD_BARO_PRESSURE, CMD_OIL_TEMP,
-            CMD_BATTERY_VOLTAGE, CMD_FUEL_RAIL_PRESS_FORD,
-            CMD_INTAKE_AIR_TEMP
-        )
 
         // ── Timing ────────────────────────────────────────────────────────────
         private const val COMMAND_TIMEOUT_MS      = 3000L
@@ -652,7 +631,9 @@ class BleManager(private val context: Context) {
         Log.d(TAG, "ELM327 init sequence started")
         responseBuffer.clear()
 
-        for ((i, cmd) in ELM_INIT.withIndex()) {
+        val profile = EngineProfile.active(context)
+        Log.d(TAG, "Engine profile: ${profile.id}")
+        for ((i, cmd) in profile.elmInit.withIndex()) {
             val timeout = if (i == 0) ELM_INIT_TIMEOUT_MS else ELM_CMD_TIMEOUT_MS
             sendElmCommand(cmd)
             val resp = withTimeoutOrNull(timeout) { responseChannel.receive() }
@@ -670,7 +651,7 @@ class BleManager(private val context: Context) {
         pollingJob = scope.launch {
             Log.d(TAG, "Polling loop started")
             while (isActive) {
-                for (cmd in ALL_PIDS) {
+                for (cmd in EngineProfile.active(context).pids) {
                     if (!isActive || pollingPaused) break
                     sendAndReceive(cmd)
                     delay(INTER_COMMAND_DELAY_MS)

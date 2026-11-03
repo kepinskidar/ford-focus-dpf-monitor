@@ -1,96 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App identity -->
-    <string name="app_name">FOCUS</string>
-    <string name="app_full_name">FordFocusDPFScan</string>
+    <string name="app_name">MK5 DPF</string>
+    <string name="app_full_name">MK5 DPF — Ford Mondeo Mk5 2.0 EcoBlue</string>
 
     <!-- Phone UI — connection card -->
-    <string name="btn_scan">Cerca dispositivo OBD2</string>
-    <string name="btn_connect">Connect</string>
-    <string name="btn_disconnect">Disconnect</string>
-    <string name="label_status">Connection status</string>
-    <string name="status_disconnected">● Disconnected</string>
-    <string name="status_scanning">◌ Scanning…</string>
-    <string name="status_connecting">◌ Connecting…</string>
-    <string name="status_connected">● Connesso</string>
+    <string name="btn_scan">Szukaj urządzenia OBD2</string>
+    <string name="btn_connect">Połącz</string>
+    <string name="btn_disconnect">Rozłącz</string>
+    <string name="label_status">Stan połączenia</string>
+    <string name="status_disconnected">● Rozłączono</string>
+    <string name="status_scanning">◌ Szukanie…</string>
+    <string name="status_connecting">◌ Łączenie…</string>
+    <string name="status_connected">● Połączono</string>
 
     <!-- Phone UI — DPF data labels -->
-    <string name="label_dpf_load">DPF Load</string>
-    <string name="label_dpf_soot">DPF Soot</string>
-    <string name="label_regen_status">Regeneration Status</string>
-    <string name="label_egt">Exhaust Gas Temp (EGT)</string>
-    <string name="label_coolant">Engine Coolant Temp</string>
-    <string name="label_last_regen">Last Regeneration</string>
-    <string name="label_last_service">Last Service</string>
-    <string name="label_odometer">Odometer</string>
+    <string name="label_dpf_load">Obciążenie DPF</string>
+    <string name="label_dpf_soot">Sadza DPF</string>
+    <string name="label_regen_status">Stan regeneracji</string>
+    <string name="label_egt">Temperatura spalin (EGT)</string>
+    <string name="label_coolant">Temperatura płynu chłodzącego</string>
+    <string name="label_last_regen">Ostatnia regeneracja</string>
+    <string name="label_last_service">Ostatni serwis</string>
+    <string name="label_odometer">Licznik</string>
     <string name="value_no_data">– –</string>
 
     <!-- Phone UI — settings -->
-    <string name="label_last_service_input">Set last service (km)</string>
-    <string name="hint_km">e.g. 98230</string>
-    <string name="btn_save_service">Save</string>
+    <string name="label_last_service_input">Ustaw ostatni serwis (km)</string>
+    <string name="hint_km">np. 98230</string>
+    <string name="btn_save_service">Zapisz</string>
 
     <!-- Regen status strings -->
-    <string name="regen_inactive">Inactive — Safe to stop</string>
-    <string name="regen_warning">⚠ High temp — Do not stop</string>
-    <string name="regen_active">🔴 ACTIVE — Do not turn off!</string>
-    <string name="regen_completed">✅ Complete — Safe to stop</string>
+    <string name="regen_inactive">Nieaktywna — można zgasić silnik</string>
+    <string name="regen_warning">⚠ Wysoka temperatura — nie gaś silnika</string>
+    <string name="regen_active">🔴 AKTYWNA — nie gaś silnika!</string>
+    <string name="regen_completed">✅ Zakończona — można zgasić silnik</string>
 
     <!-- Notification channel -->
-    <string name="notif_channel_name">DPF Alerts</string>
-    <string name="notif_channel_desc">Alerts for DPF regeneration events and BLE connection status</string>
+    <string name="notif_channel_name">Alerty DPF</string>
+    <string name="notif_channel_desc">Powiadomienia o regeneracji DPF i stanie połączenia Bluetooth</string>
 
-    <!-- Notification titles / texts (Italian) -->
-    <string name="notif_persistent_title">FOCUS — DPF Monitor</string>
-    <string name="notif_warning_title">Temperatura EGT alta</string>
-    <string name="notif_warning_text">EGT sopra 450°C. Non spegnere il motore.</string>
-    <string name="notif_active_title">Rigenerazione DPF attiva!</string>
-    <string name="notif_active_text">NON spegnere il motore!</string>
-    <string name="notif_complete_title">Rigenerazione completata</string>
-    <string name="notif_complete_text">DPF pulito. Puoi spegnere il motore.</string>
-    <string name="notif_ble_lost_title">OBD disconnesso</string>
-    <string name="notif_ble_lost_text">Monitoraggio DPF sospeso. Tocca per ricollegare.</string>
+    <!-- Notification titles / texts -->
+    <string name="notif_persistent_title">MK5 DPF — monitor DPF</string>
+    <string name="notif_warning_title">Wysoka temperatura EGT</string>
+    <string name="notif_warning_text">EGT powyżej 450°C. Nie gaś silnika.</string>
+    <string name="notif_active_title">Regeneracja DPF aktywna!</string>
+    <string name="notif_active_text">NIE gaś silnika!</string>
+    <string name="notif_complete_title">Regeneracja zakończona</string>
+    <string name="notif_complete_text">DPF oczyszczony. Możesz zgasić silnik.</string>
+    <string name="notif_ble_lost_title">Rozłączono OBD</string>
+    <string name="notif_ble_lost_text">Monitorowanie DPF wstrzymane. Dotknij, aby połączyć ponownie.</string>
 
     <!-- CarToast messages (phone UI, not used in Auto) -->
-    <string name="toast_warning">EGT alta — evita di spegnere il motore</string>
-    <string name="toast_active">Regen attiva! NON spegnere il motore!</string>
-    <string name="toast_complete">Regen completata. Puoi spegnere il motore.</string>
-    <string name="toast_ble_lost">OBD dongle disconnesso</string>
+    <string name="toast_warning">Wysoki EGT — unikaj gaszenia silnika</string>
+    <string name="toast_active">Regeneracja aktywna! NIE gaś silnika!</string>
+    <string name="toast_complete">Regeneracja zakończona. Możesz zgasić silnik.</string>
+    <string name="toast_ble_lost">Rozłączono adapter OBD</string>
 
     <!-- Android Auto screen — row titles -->
-    <string name="car_screen_title">FOCUS — DPF Monitor</string>
-    <string name="car_action_reconnect">Ricollega</string>
-    <string name="car_row_dpf">Filtro DPF</string>
-    <string name="car_row_regen">Rigenerazione</string>
-    <string name="car_row_temps">Temperature</string>
-    <string name="car_row_distances">Distanze</string>
+    <string name="car_screen_title">MK5 DPF — monitor DPF</string>
+    <string name="car_action_reconnect">Połącz ponownie</string>
+    <string name="car_row_dpf">Filtr DPF</string>
+    <string name="car_row_regen">Regeneracja</string>
+    <string name="car_row_temps">Temperatury</string>
+    <string name="car_row_distances">Dystanse</string>
 
     <!-- Android Auto screen — inline labels -->
-    <string name="car_label_soot">Soot</string>
-    <string name="car_label_load">Load</string>
+    <string name="car_label_soot">Sadza</string>
+    <string name="car_label_load">Obciążenie</string>
     <string name="car_label_delta_p">Delta P</string>
     <string name="car_label_egt">EGT</string>
-    <string name="car_label_coolant">Refrig.</string>
-    <string name="car_label_km_regen">Da regen</string>
-    <string name="car_label_km_oil">Da tagliando</string>
-    <string name="car_label_source_ecu">Fonte: flag ECU</string>
-    <string name="car_label_source_egt">Fonte: temp EGT</string>
+    <string name="car_label_coolant">Chłodz.</string>
+    <string name="car_label_km_regen">Od regen.</string>
+    <string name="car_label_km_oil">Od serwisu</string>
+    <string name="car_label_source_ecu">Źródło: flaga ECU</string>
+    <string name="car_label_source_egt">Źródło: temp. EGT</string>
     <string name="car_no_data">– –</string>
 
-    <!-- Android Auto — regen status labels (Italian) -->
-    <string name="car_regen_inactive">Inattiva — Puoi spegnere il motore</string>
-    <string name="car_regen_warning">⚠ Alta temp — Non spegnere</string>
-    <string name="car_regen_active">🔴 ATTIVA — Non spegnere!</string>
-    <string name="car_regen_completed">✅ Completata — Puoi spegnere il motore</string>
+    <!-- Android Auto — regen status labels -->
+    <string name="car_regen_inactive">Nieaktywna — można zgasić silnik</string>
+    <string name="car_regen_warning">⚠ Wysoka temp. — nie gaś</string>
+    <string name="car_regen_active">🔴 AKTYWNA — nie gaś!</string>
+    <string name="car_regen_completed">✅ Zakończona — można zgasić silnik</string>
 
-    <!-- Android Auto — CarToast messages (Italian) -->
-    <string name="car_toast_warning">⚠ EGT alta — evita di spegnere il motore</string>
-    <string name="car_toast_active">🔴 Regen attiva! NON spegnere il motore!</string>
-    <string name="car_toast_complete">✅ Regen completata. Puoi spegnere il motore.</string>
+    <!-- Android Auto — CarToast messages -->
+    <string name="car_toast_warning">⚠ Wysoki EGT — unikaj gaszenia silnika</string>
+    <string name="car_toast_active">🔴 Regeneracja aktywna! NIE gaś silnika!</string>
+    <string name="car_toast_complete">✅ Regeneracja zakończona. Możesz zgasić silnik.</string>
 
-    <!-- Turbo cooldown notifications (Italian) -->
-    <string name="notif_cooldown_started_title">Raffreddamento turbo in corso</string>
-    <string name="notif_cooldown_started_text">Non spegnere il motore ancora — attendi 45 secondi.</string>
-    <string name="notif_cooldown_complete_title">Raffreddamento completato</string>
-    <string name="notif_cooldown_complete_text">Puoi spegnere il motore in sicurezza.</string>
+    <!-- Turbo cooldown notifications -->
+    <string name="notif_cooldown_started_title">Trwa schładzanie turbosprężarki</string>
+    <string name="notif_cooldown_started_text">Jeszcze nie gaś silnika — odczekaj 45 sekund.</string>
+    <string name="notif_cooldown_complete_title">Schładzanie zakończone</string>
+    <string name="notif_cooldown_complete_text">Możesz bezpiecznie zgasić silnik.</string>
 </resources>

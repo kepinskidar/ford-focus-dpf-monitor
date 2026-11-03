@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -137,25 +138,25 @@ class DiagnosticaActivity : BaseTabActivity() {
     }
 
     private fun setupLabels() {
-        cSoot    .setup("SOOT",          "%",    "normale < 50% · critico > 80%")
-        cLoad    .setup("LOAD DPF",      "%",    "normale < 50% · critico > 80%")
-        cDeltaP  .setup("DELTA P",       "kPa",  "idle ~0 · marcia 5-15 kPa")
-        cEgtPre  .setup("EGT INGRESSO",  "°C",   "normale < 500°C · regen 600-700°C")
-        cEgtPost .setup("EGT USCITA",    "°C",   "secondo sensore EGT di scarico")
+        cSoot    .setup(tr("SADZA"),          "%",    tr("norma < 50% · krytyczne > 80%"))
+        cLoad    .setup(tr("OBCIĄŻENIE DPF"),      "%",    tr("norma < 50% · krytyczne > 80%"))
+        cDeltaP  .setup(tr("DELTA P"),       "kPa",  tr("bieg jałowy ~0 · jazda 5-15 kPa"))
+        cEgtPre  .setup(tr("EGT WLOT"),  "°C",   tr("norma < 500°C · regeneracja 600-700°C"))
+        cEgtPost .setup(tr("EGT WYLOT"),    "°C",   tr("drugi czujnik EGT w układzie wydechowym"))
 
-        cRpm    .setup("RPM",            "rpm",  "minimo ~800 · normale 1.000-3.000")
-        cSpeed  .setup("VELOCITÀ",       "km/h", "")
-        cEngLoad.setup("CARICO MOTORE",  "%",    "normale < 60% · alto > 85%")
-        cBoost  .setup("BOOST",          "bar",  "normale 0-1,5 bar")
-        cCoolant.setup("REFRIGERANTE",   "°C",   "ottimale 70-110°C")
+        cRpm    .setup("RPM",            "rpm",  tr("bieg jałowy ~800 · norma 1.000-3.000"))
+        cSpeed  .setup(tr("PRĘDKOŚĆ"),       "km/h", "")
+        cEngLoad.setup(tr("OBCIĄŻENIE SILNIKA"),  "%",    tr("norma < 60% · wysokie > 85%"))
+        cBoost  .setup(tr("BOOST"),          "bar",  tr("norma 0-1,5 bar"))
+        cCoolant.setup(tr("PŁYN CHŁODZĄCY"),   "°C",   "optymalnie 70-110°C")
 
-        cBattery  .setup("BATTERIA",       "V",   "acceso 13,8-14,4 V · debole < 12 V")
-        cRail     .setup("PRESSIONE RAIL", "bar", "minimo ~250 · pieno carico ~1.600")
-        cIntakeAir.setup("TEMP ARIA",      "°C",  "aria aspirata al collettore")
+        cBattery  .setup(tr("AKUMULATOR"),       "V",   tr("silnik pracuje 13,8-14,4 V · słaby < 12 V"))
+        cRail     .setup(tr("CIŚNIENIE RAILA"), "bar", tr("min. ~250 · pełne obciążenie ~1.600"))
+        cIntakeAir.setup(tr("TEMP. POWIETRZA"),      "°C",  "powietrze dolotowe w kolektorze")
 
-        cKmRegen .setup("KM ALLA REGEN", "km",   "stima ECU · scende guidando · ~0 = regen vicina")
-        cKmOil   .setup("KM TAGLIANDO",  "km",   "cambio olio ogni 10-12.000 km")
-        cOdometer.setup("ODOMETRO",      "km",   "chilometri totali dalla ECU")
+        cKmRegen .setup(tr("KM DO REGENERACJI"), "km",   tr("szacunek ECU · maleje w czasie jazdy · ~0 = regeneracja wkrótce"))
+        cKmOil   .setup(tr("KM OD WYMIANY OLEJU"),  "km",   "od ostatniej wymiany oleju")
+        cOdometer.setup(tr("LICZNIK"),      "km",   tr("przebieg całkowity ze sterownika"))
     }
 
     // ═════════════════════════════════════════════════════════════════════════

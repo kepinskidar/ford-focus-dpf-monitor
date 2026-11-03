@@ -18,14 +18,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🔧  Codici Errore"
+            android:text="🔧  Kody błędów"
             android:textColor="@color/text_primary"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Legge i codici della centralina motore (spia motore)"
+            android:text="Odczytuje kody ze sterownika silnika (kontrolka silnika)"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
             android:layout_marginTop="2dp"/>
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
-        android:text="Leggi codici"
+        android:text="Odczytaj kody"
         app:backgroundTint="@color/dpf_blue_light"/>
 
     <!-- Explain with AI — shown only when codes are present -->
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="🤖  Spiega con AI"
+        android:text="🤖  Wyjaśnij z AI"
         android:textSize="13sp"
         android:visibility="gone"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -59,7 +59,7 @@
         android:id="@+id/tvDtcStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Premi «Leggi codici» per interrogare la centralina."
+        android:text="Dotknij «Odczytaj kody», aby odpytać sterownik."
         android:textColor="@color/text_secondary"
         android:textSize="13sp"
         android:gravity="center"
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="12dp"
-        android:text="🗑  Cancella codici"
+        android:text="🗑  Kasuj kody"
         android:visibility="gone"
         app:backgroundTint="@color/status_danger"/>
 

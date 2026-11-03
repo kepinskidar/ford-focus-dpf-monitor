@@ -22,7 +22,7 @@ class MaintenanceRepository(context: Context) {
     companion object {
         /** Default oil change interval for the Ford Focus 1.5 TDCi. */
         const val OIL_CHANGE_INTERVAL_KM = 15_000L
-        const val AUTO_TITLE = "Tagliando olio"
+        const val AUTO_TITLE = "Przegląd olejowy"
     }
 
     /** Live list for the UI — auto-managed entry is always pinned first. */

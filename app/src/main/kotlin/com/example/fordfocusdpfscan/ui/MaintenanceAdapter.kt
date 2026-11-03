@@ -1,5 +1,6 @@
 package com.example.fordfocusdpfscan.ui
 
+import com.example.fordfocusdpfscan.i18n.tr
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ class MaintenanceAdapter(
         ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_maintenance_card, parent, false)
+                .also { com.example.fordfocusdpfscan.i18n.I18n.apply(it) }
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -74,9 +76,9 @@ class MaintenanceAdapter(
         // ── Status colors ─────────────────────────────────────────────────────
         val (barColor, badgeColor, badgeText) = when (status) {
             MaintenanceReminder.Status.OK      -> Triple(0xFF00C853.toInt(), 0xFF00C853.toInt(), "OK")
-            MaintenanceReminder.Status.WARNING -> Triple(0xFFFF9500.toInt(), 0xFFFF9500.toInt(), "IN SCADENZA")
-            MaintenanceReminder.Status.DANGER  -> Triple(0xFFFF3B30.toInt(), 0xFFFF3B30.toInt(), "URGENTE")
-            MaintenanceReminder.Status.OVERDUE -> Triple(0xFFFF3B30.toInt(), 0xFFFF3B30.toInt(), "SCADUTO")
+            MaintenanceReminder.Status.WARNING -> Triple(0xFFFF9500.toInt(), 0xFFFF9500.toInt(), tr("WKRÓTCE TERMIN"))
+            MaintenanceReminder.Status.DANGER  -> Triple(0xFFFF3B30.toInt(), 0xFFFF3B30.toInt(), tr("PILNE"))
+            MaintenanceReminder.Status.OVERDUE -> Triple(0xFFFF3B30.toInt(), 0xFFFF3B30.toInt(), tr("PO TERMINIE"))
         }
 
         val progressDrawable = when (status) {
@@ -103,18 +105,18 @@ class MaintenanceAdapter(
         // km remaining text
         holder.tvRemaining.text = when (status) {
             MaintenanceReminder.Status.OVERDUE ->
-                "Scaduto da %,d km".format(-kmLeft)
+                tr("Po terminie o %,d km").format(-kmLeft)
             else ->
-                "Scade tra %,d km".format(kmLeft)
+                tr("Termin za %,d km").format(kmLeft)
         }
         holder.tvRemaining.setTextColor(barColor)
 
         // Detail line
         val dueAt = reminder.dueAtKm()
         holder.tvDetail.text = if (reminder.lastDoneKm > 0)
-            "Fatto a %,d km  ·  Prossimo a %,d km".format(reminder.lastDoneKm, dueAt)
+            tr("Wykonano przy %,d km  ·  Następny przy %,d km").format(reminder.lastDoneKm, dueAt)
         else
-            "Prossimo a %,d km".format(dueAt)
+            tr("Następny przy %,d km").format(dueAt)
 
         // ── Buttons ───────────────────────────────────────────────────────────
         if (reminder.isAutoManaged) {
@@ -123,12 +125,12 @@ class MaintenanceAdapter(
             holder.btnDone.visibility   = View.GONE
             holder.btnDelete.visibility = View.GONE
             holder.btnEdit.visibility   = View.VISIBLE
-            holder.btnEdit.text = "Intervallo"
+            holder.btnEdit.text = tr("Interwał")
             holder.btnEdit.setOnClickListener { onEditClick(reminder) }
         } else {
             holder.btnDone.visibility   = View.VISIBLE
             holder.btnEdit.visibility   = View.VISIBLE
-            holder.btnEdit.text = "Modifica"
+            holder.btnEdit.text = tr("Edytuj")
             holder.btnDelete.visibility = View.VISIBLE
             holder.btnDone.setOnClickListener   { onDoneClick(reminder) }
             holder.btnEdit.setOnClickListener   { onEditClick(reminder) }

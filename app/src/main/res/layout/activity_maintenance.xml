@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="PROMEMORIA MANUTENZIONE"
+                android:text="PRZYPOMNIENIA SERWISOWE"
                 android:textColor="@color/text_secondary"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -49,7 +49,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nessun promemoria"
+                    android:text="Brak przypomnień"
                     android:textColor="@color/text_primary"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -59,7 +59,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tocca + per aggiungere tagliando, inversione gomme o altre scadenze."
+                    android:text="Dotknij +, aby dodać przegląd, rotację opon lub inny termin."
                     android:textColor="@color/text_secondary"
                     android:textSize="13sp"
                     android:gravity="center"
@@ -87,7 +87,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="20dp"
             android:src="@android:drawable/ic_input_add"
-            android:contentDescription="Aggiungi promemoria"
+            android:contentDescription="Dodaj przypomnienie"
             app:backgroundTint="#003478"
             app:tint="#FFFFFF"
             xmlns:app="http://schemas.android.com/apk/res-auto"/>

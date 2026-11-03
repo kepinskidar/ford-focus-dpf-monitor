@@ -50,7 +50,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Tagliando olio"
+                    android:text="Przegląd olejowy"
                     android:textColor="@color/text_primary"
                     android:textSize="15sp"
                     android:textStyle="bold"/>
@@ -101,7 +101,7 @@
                 android:id="@+id/tvKmRemaining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Scade tra 12.500 km"
+                android:text="Termin za 12.500 km"
                 android:textColor="@color/text_primary"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -112,7 +112,7 @@
                 android:id="@+id/tvDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fatto a 95.230 km  ·  Prossimo a 110.230 km"
+                android:text="Wykonano przy 95.230 km  ·  Następny przy 110.230 km"
                 android:textColor="@color/text_secondary"
                 android:textSize="11sp"
                 android:layout_marginBottom="12dp"/>
@@ -129,7 +129,7 @@
                     android:id="@+id/btnDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="Elimina"
+                    android:text="Usuń"
                     android:textSize="12sp"
                     android:textColor="#FF3B30"
                     android:backgroundTint="@android:color/transparent"
@@ -140,19 +140,19 @@
                     android:id="@+id/btnEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="Modifica"
+                    android:text="Edytuj"
                     android:textSize="12sp"
                     android:textColor="#7A8FA6"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_marginStart="0dp"
                     style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-                <!-- "Fatto" button — hidden for auto-managed -->
+                <!-- "Wykonano" button — hidden for auto-managed -->
                 <Button
                     android:id="@+id/btnDone"
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
-                    android:text="Fatto"
+                    android:text="Wykonano"
                     android:textSize="12sp"
                     android:backgroundTint="#003478"
                     style="@style/Widget.MaterialComponents.Button"/>

@@ -47,7 +47,7 @@
                 android:id="@+id/tvCurrentPhase"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ready to scan"
+                android:text="Gotowy do skanowania"
                 android:textColor="@color/dpf_orange"
                 android:textSize="13sp"
                 android:textStyle="bold"
@@ -90,7 +90,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="✓ Replied"
+                        android:text="✓ Odpowiedzi"
                         android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -115,7 +115,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="✗ Negative"
+                        android:text="✗ Negatywne"
                         android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -140,7 +140,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="– Timeout"
+                        android:text="– Brak odp."
                         android:textColor="@color/text_secondary"
                         android:textSize="11sp" />
                 </LinearLayout>
@@ -168,7 +168,7 @@
             android:textSize="11sp"
             android:textColor="@color/text_primary"
             android:lineSpacingExtra="2dp"
-            android:text="Tap &#34;Start Scan&#34; to begin ECU PID discovery.\n\nMake sure the OBD dongle is connected first." />
+            android:text="Dotknij &#34;Start&#34;, aby rozpocząć wykrywanie PID-ów ECU.\n\nNajpierw upewnij się, że adapter OBD jest połączony." />
 
     </ScrollView>
 
@@ -179,7 +179,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="8dp"
-        android:text="🤖  Analizza scansione con AI"
+        android:text="🤖  Analizuj skanowanie z AI"
         android:textSize="13sp"
         android:enabled="false"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -192,7 +192,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
         android:layout_marginTop="8dp"
-        android:text="📸  Condividi cattura regen"
+        android:text="📸  Udostępnij zapis regen."
         android:textSize="13sp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:strokeColor="@color/status_ok" />
@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
-            android:text="Start Scan"
+            android:text="Start"
             android:textSize="13sp"
             app:backgroundTint="@color/dpf_blue_light" />
 
@@ -229,7 +229,7 @@
             android:id="@+id/btnShareLog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Share Log"
+            android:text="Udostępnij log"
             android:enabled="false"
             app:backgroundTint="@color/status_ok" />
 
