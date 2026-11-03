@@ -1,6 +1,7 @@
 Fork obsługuje silniki 2.0 EcoBlue, dodaje tłumaczenie na Polski, Angielski, Niemiecki. Zmienia układ aplikacji w Android Auto i sprawia, że postrzegana jest jako aplikacja multimedialna, dzięki czemu na pasku multimediów widoczne są dane dotyczące DPF.
 
-<img width="1920" height="1440" alt="IMG_20261031_115942_preview" src="https://github.com/user-attachments/assets/81a5a252-d573-4e4e-9d2e-187cbfbd8a72" />
+<img width="1920" height="1440" alt="IMG_20261031_115942_preview" src="https://github.com/user-attachments/assets/c08cfad2-7521-4cfc-a35b-1e795f8907b7" />
+
 <img width="1920" height="1440" alt="IMG20261031115356_preview" src="https://github.com/user-attachments/assets/8510f063-2fda-42ae-9a1e-f34c27a21ee2" />
 <img width="1920" height="1440" alt="IMG20261031115401_preview" src="https://github.com/user-attachments/assets/c0e911c7-9b55-4f76-aa70-361f23a5365e" />
 <img width="1920" height="1440" alt="IMG20261031115406_preview" src="https://github.com/user-attachments/assets/3b6f9a5d-4a8f-4326-999d-7dadd7481840" />
