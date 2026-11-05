@@ -32,7 +32,8 @@ data class RegenSession(
     val preCoolantC:     Float = -1f,
 
     // ── Peak values observed during regen ─────────────────────────────────────
-    val peakEgtC:      Float = 0f,
+    val peakEgtC:      Float = 0f,          // inlet (EGT before the DPF)
+    val peakEgtOutC:   Float = 0f,          // outlet (EGT after the DPF)
     val peakDeltaPKpa: Float = 0f,
 
     // ── Post-regen snapshot (captured at regen end) ───────────────────────────

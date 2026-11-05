@@ -7,4 +7,6 @@
 <paths>
     <files-path name="sounds" path="." />
     <cache-path name="scan_reports" path="scan_reports/" />
+    <!-- History tab exports DPF_Report_*.html straight into the cache root -->
+    <cache-path name="cache_root" path="." />
 </paths>
