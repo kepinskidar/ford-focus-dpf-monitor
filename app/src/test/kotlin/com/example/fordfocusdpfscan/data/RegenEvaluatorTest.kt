@@ -163,4 +163,21 @@ class RegenEvaluatorTest {
         val r = ev.evaluate(sample(600f, soot = 10f, coolant = 90f, t = 105_000L), RegenStatus.WARNING)
         assertEquals(RegenStatus.ACTIVE, r.status)
     }
+
+    @Test fun active_staysActive_whileOutletStillHot_evenIfInletDips() {
+        // Real capture: inlet 392 °C, outlet 587 °C, soot still falling.
+        val r = ev.evaluate(sample(egtPre = 392f, egtPost = 587f, soot = 75f, coolant = 75f), RegenStatus.ACTIVE)
+        assertEquals(RegenStatus.ACTIVE, r.status)
+    }
+
+    @Test fun active_completes_onceOutletCools() {
+        val r = ev.evaluate(sample(egtPre = 392f, egtPost = 300f, soot = 15f, coolant = 75f), RegenStatus.ACTIVE)
+        assertEquals(RegenStatus.COMPLETED, r.status)
+    }
+
+    @Test fun outletHold_doesNotStartARegen() {
+        // Hot outlet alone must never start a regen (only holds an ACTIVE one).
+        val r = ev.evaluate(sample(egtPre = 380f, egtPost = 590f, soot = 30f, coolant = 90f), RegenStatus.INACTIVE)
+        assertEquals(RegenStatus.INACTIVE, r.status)
+    }
 }

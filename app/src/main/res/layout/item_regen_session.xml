@@ -88,7 +88,7 @@
             android:padding="12dp"
             android:background="@drawable/bg_cell_left">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="SADZA" android:textSize="9sp" android:textColor="@color/text_secondary"
+                android:text="SADZA" android:minLines="2" android:textSize="9sp" android:textColor="@color/text_secondary"
                 android:layout_marginBottom="3dp"/>
             <TextView android:id="@+id/tvSootChange"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:layout_weight="1" android:orientation="vertical"
             android:padding="12dp">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="EGT SZCZYT" android:textSize="9sp" android:textColor="@color/text_secondary"
+                android:text="EGT SZCZYT WLOT / WYLOT" android:minLines="2" android:textSize="9sp" android:textColor="@color/text_secondary"
                 android:layout_marginBottom="3dp"/>
             <TextView android:id="@+id/tvPeakEgt"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
             android:layout_weight="1" android:orientation="vertical"
             android:padding="12dp">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="CHŁODZ." android:textSize="9sp" android:textColor="@color/text_secondary"
+                android:text="CHŁODZ." android:minLines="2" android:textSize="9sp" android:textColor="@color/text_secondary"
                 android:layout_marginBottom="3dp"/>
             <TextView android:id="@+id/tvCoolant"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"

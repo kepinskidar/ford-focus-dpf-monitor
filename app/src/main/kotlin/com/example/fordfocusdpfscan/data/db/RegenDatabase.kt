@@ -21,7 +21,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(
     entities  = [RegenSession::class, RegenDataPoint::class, MaintenanceReminder::class],
-    version   = 3,
+    version   = 4,
     exportSchema = false
 )
 abstract class RegenDatabase : RoomDatabase() {
@@ -57,6 +57,13 @@ abstract class RegenDatabase : RoomDatabase() {
             }
         }
 
+        /** Migration 3 -> 4: adds the peak outlet-EGT column to regen_sessions. */
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE regen_sessions ADD COLUMN peakEgtOutC REAL NOT NULL DEFAULT 0")
+            }
+        }
+
         fun getInstance(context: Context): RegenDatabase {
             return INSTANCE ?: synchronized(this) {
                 Room.databaseBuilder(
@@ -64,7 +71,7 @@ abstract class RegenDatabase : RoomDatabase() {
                     RegenDatabase::class.java,
                     "regen_history.db"
                 )
-                    .addMigrations(MIGRATION_2_3)        // preserves regen history
+                    .addMigrations(MIGRATION_2_3, MIGRATION_3_4)        // preserves regen history
                     .fallbackToDestructiveMigration()    // safety net for unexpected jumps
                     .build()
                     .also { INSTANCE = it }

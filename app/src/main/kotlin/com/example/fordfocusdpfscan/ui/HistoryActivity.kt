@@ -327,8 +327,10 @@ class HistoryActivity : BaseTabActivity() {
                 v.findViewById<TextView>(R.id.tvSootChange).text = "$sootPre → $sootPost"
 
                 // Peak EGT
-                v.findViewById<TextView>(R.id.tvPeakEgt).text =
-                    if (s.peakEgtC > 0) "${"%.0f".format(s.peakEgtC)} °C" else "—"
+                // "inlet / outlet" peak
+                val peakIn  = if (s.peakEgtC > 0) "%.0f".format(s.peakEgtC) else "–"
+                val peakOut = if (s.peakEgtOutC > 0) "%.0f".format(s.peakEgtOutC) else "–"
+                v.findViewById<TextView>(R.id.tvPeakEgt).text = "$peakIn / $peakOut °C"
 
                 // Coolant (indicates engine was warm enough)
                 v.findViewById<TextView>(R.id.tvCoolant).text =

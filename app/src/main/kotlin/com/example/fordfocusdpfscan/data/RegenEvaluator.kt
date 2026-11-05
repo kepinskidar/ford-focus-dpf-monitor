@@ -37,6 +37,14 @@ class RegenEvaluator {
         const val EGT_WARNING_EXIT: Float     = 420f
         /** At/above this (sustained) → ACTIVE via inlet temperature. */
         const val EGT_ACTIVE_THRESHOLD: Float = 550f
+        /**
+         * While ACTIVE, a regen is still burning as long as the DPF OUTLET is at least this
+         * hot, even if the inlet dips below [EGT_SAFE_THRESHOLD] (e.g. a pause in driving).
+         * Observed on the Mondeo: inlet 392 °C while outlet 587 °C and soot still falling
+         * 75 % -> 15 %; without this one regen was recorded as two sessions.
+         */
+        const val EGT_OUTLET_HOLD_THRESHOLD: Float = 540f
+
         /** Consecutive hot samples required before EGT_TEMP declares ACTIVE. */
         const val EGT_ACTIVE_CONFIRM_COUNT = 7
 
@@ -101,6 +109,10 @@ class RegenEvaluator {
         val egt = sample.egtPre
         val wasHot = current == RegenStatus.ACTIVE || current == RegenStatus.WARNING
         return when {
+            // Outlet still hot -> the regen is not over, the inlet may just have dipped.
+            current == RegenStatus.ACTIVE && sample.egtPost >= EGT_OUTLET_HOLD_THRESHOLD ->
+                RegenResult(RegenStatus.ACTIVE, RegenStrategy.EGT_TEMP)
+
             // Was hot, now cooled below the safe threshold → cycle completed.
             wasHot && egt >= 0f && egt < EGT_SAFE_THRESHOLD ->
                 RegenResult(RegenStatus.COMPLETED, RegenStrategy.NONE)

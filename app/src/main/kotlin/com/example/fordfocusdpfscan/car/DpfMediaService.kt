@@ -115,6 +115,20 @@ class DpfMediaService : MediaBrowserServiceCompat() {
         }
     }
 
+    /**
+     * Second line of the bottom bar: "<status> · ΔP <value> kPa". The bar fits roughly
+     * 34 characters, so when it would be longer the unit is dropped, and if it is still
+     * too long only the status is shown.
+     */
+    private fun barSubtitle(d: DpfData): String {
+        val status = regenShort(d)
+        val dp = kpa(d.dpfDeltaPressureKpa)
+        var line = "$status · ΔP $dp"
+        if (line.length > BAR_MAX_CHARS) line = "$status · ΔP ${dp.removeSuffix(" kPa")}"
+        if (line.length > BAR_MAX_CHARS) line = status
+        return line
+    }
+
     private fun updateMetadata(d: DpfData, tick: Long) {
         val nudge = if (showInBar && tick % 2L == 0L) "\u200B" else ""
         val mediaId = if (showInBar) "mk5dpf-$tick" else "mk5dpf"
@@ -122,9 +136,8 @@ class DpfMediaService : MediaBrowserServiceCompat() {
             MediaMetadataCompat.Builder()
                 .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, mediaId)
                 .putString(MediaMetadataCompat.METADATA_KEY_TITLE,
-                    tr("Sadza %s · Obc. %s%s").format(pct(d.sootPercentage), pct(d.loadPercentage), nudge))
-                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST,
-                    tr("%s · ΔP %s · EGT %s").format(regenShort(d), kpa(d.dpfDeltaPressureKpa), temp(d.egtCelsius)))
+                    tr("Sadza %s · Obc. %s · EGT %s%s").format(pct(d.sootPercentage), pct(d.loadPercentage), temp(d.egtPostDpfC), nudge))
+                .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, barSubtitle(d))
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, -1L)
                 .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, "MK5 DPF")
                 .build()
@@ -271,10 +284,10 @@ class DpfMediaService : MediaBrowserServiceCompat() {
     private fun num(v: Float, unit: String) = if (v >= 0f) "${v.toInt()} $unit" else NO_DATA
 
     private fun regenShort(d: DpfData) = when (d.regenStatus.name) {
-        "INACTIVE" -> tr("Regen: brak")
-        "WARNING" -> tr("⚠ Wysoka temp.")
-        "ACTIVE" -> tr("REGEN AKTYWNA")
-        "COMPLETED" -> tr("Regen zakończona")
+        "INACTIVE" -> tr("DPF: Kumulowanie sadzy")
+        "WARNING" -> tr("DPF: Wypalanie pasywne")
+        "ACTIVE" -> tr("DPF: !!Regeneracja!!")
+        "COMPLETED" -> tr("DPF: Zakończono wypalanie")
         else -> d.regenStatus.name
     }
 
@@ -313,6 +326,7 @@ class DpfMediaService : MediaBrowserServiceCompat() {
         private const val NO_DATA = "– –"
         private const val NOTIFY_INTERVAL_MS = 4000L
         private const val META_INTERVAL_MS = 2000L
+        private const val BAR_MAX_CHARS = 34
         /** Re-claim the bottom bar every REASSERT_EVERY_TICKS * META_INTERVAL_MS (= 12 s). */
         private const val REASSERT_EVERY_TICKS = 6L
     }

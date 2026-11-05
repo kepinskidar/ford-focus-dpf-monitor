@@ -33,7 +33,8 @@ class RegenHistoryRepository(context: Context) {
     // ── Active session state ──────────────────────────────────────────────────
     private var currentSessionId: Long? = null
     private var sessionStartTime: Long  = 0L
-    private var peakEgt:    Float = 0f
+    private var peakEgt:    Float = 0f      // inlet
+    private var peakEgtOut: Float = 0f      // outlet
     private var peakDeltaP: Float = 0f
 
     // ═════════════════════════════════════════════════════════════════════════
@@ -61,6 +62,7 @@ class RegenHistoryRepository(context: Context) {
         currentSessionId = dao.insertSession(session)
         sessionStartTime = session.startTimestamp
         peakEgt          = data.egtCelsius.coerceAtLeast(0f)
+        peakEgtOut       = data.egtPostDpfC.coerceAtLeast(0f)
         peakDeltaP       = data.dpfDeltaPressureKpa.coerceAtLeast(0f)
 
         Log.d(TAG, "Regen session #$currentSessionId started")
@@ -72,6 +74,7 @@ class RegenHistoryRepository(context: Context) {
 
         // Update running peaks
         if (data.egtCelsius > peakEgt)         peakEgt    = data.egtCelsius
+        if (data.egtPostDpfC > peakEgtOut)     peakEgtOut = data.egtPostDpfC
         if (data.dpfDeltaPressureKpa > peakDeltaP) peakDeltaP = data.dpfDeltaPressureKpa
 
         val elapsed = ((System.currentTimeMillis() - sessionStartTime) / 1000).toInt()
@@ -115,6 +118,7 @@ class RegenHistoryRepository(context: Context) {
                 postEgtC        = data.egtCelsius,
                 postCoolantC    = data.coolantTempC,
                 peakEgtC        = peakEgt,
+                peakEgtOutC     = peakEgtOut,
                 peakDeltaPKpa   = peakDeltaP,
                 durationMinutes = durationMinutes,
                 result          = result
@@ -163,7 +167,7 @@ class RegenHistoryRepository(context: Context) {
         all.take(5).forEach { s ->
             val pre  = if (s.preSootPct >= 0) "${s.preSootPct.toInt()}%" else "?"
             val post = s.postSootPct?.let { "${it.toInt()}%" } ?: "?"
-            sb.append("- ${s.result}: sadza $pre→$post, EGT szczyt ${s.peakEgtC.toInt()}°C, licznik ${s.preOdometerKm} km\n")
+            sb.append("- ${s.result}: sadza $pre→$post, EGT szczyt wlot ${s.peakEgtC.toInt()}°C / wylot ${s.peakEgtOutC.toInt()}°C, licznik ${s.preOdometerKm} km\n")
         }
         return sb.toString().trim()
     }
@@ -195,6 +199,7 @@ class RegenHistoryRepository(context: Context) {
             val sootPre = if (s.preSootPct >= 0) "${"%.0f".format(s.preSootPct)}%" else "—"
             val sootPost= s.postSootPct?.let { "${"%.0f".format(it)}%" } ?: "—"
             val peakEgt = if (s.peakEgtC > 0) "${"%.0f".format(s.peakEgtC)} °C" else "—"
+            val peakEgtOut = if (s.peakEgtOutC > 0) "${"%.0f".format(s.peakEgtOutC)} °C" else "—"
             val dur     = s.durationMinutes?.let { "$it min" } ?: "—"
             val odoPre  = if (s.preOdometerKm >= 0) "%,d km".format(s.preOdometerKm) else "—"
             val coolant = if (s.preCoolantC >= 0) "${"%.0f".format(s.preCoolantC)} °C" else "—"
@@ -215,7 +220,7 @@ class RegenHistoryRepository(context: Context) {
               <td>$odoPre</td>
               <td>$dur</td>
               <td>$sootPre → $sootPost</td>
-              <td>$peakEgt</td>
+              <td>$peakEgt / $peakEgtOut</td>
               <td>$deltaPre → $deltaPeak</td>
               <td>$coolant</td>
               <td>$resultBadge</td>
@@ -296,7 +301,7 @@ class RegenHistoryRepository(context: Context) {
       <th>Licznik</th>
       <th>Czas</th>
       <th>Sadza (przed → po)</th>
-      <th>EGT szczyt</th>
+      <th>EGT szczyt (wlot / wylot)</th>
       <th>Delta P (start → szczyt)</th>
       <th>Płyn chł.</th>
       <th>Wynik</th>

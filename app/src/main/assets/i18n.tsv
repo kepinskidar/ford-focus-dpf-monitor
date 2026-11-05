@@ -422,3 +422,9 @@ Czujnik położenia wału korbowego 'A' — obwód	Crankshaft position sensor 'A
 Czujnik położenia wałka rozrządu 'A' — obwód	Camshaft position sensor 'A' — circuit	Nockenwellensensor 'A' — Stromkreis	Sensore posizione albero a camme 'A' — circuito
 Monitory OBD nieukończone (testy gotowości w toku)	OBD monitors incomplete (readiness tests pending)	OBD-Monitore unvollständig (Bereitschaftstests laufen)	Monitor OBD incompleti (test di prontezza in corso)
 Utracono komunikację ze sterownikiem silnika (ECM/PCM)	Lost communication with engine control module (ECM/PCM)	Kommunikation mit Motorsteuergerät (ECM/PCM) verloren	Persa la comunicazione con la centralina motore (ECM/PCM)
+Sadza %s · Obc. %s · EGT %s%s	Soot %s · Load %s · EGT %s%s	Ruß %s · Bel. %s · EGT %s%s	Fuliggine %s · Car. %s · EGT %s%s
+DPF: Kumulowanie sadzy	DPF: Soot accumulating	DPF: Rußaufbau	DPF: Accumulo fuliggine
+DPF: Wypalanie pasywne	DPF: Passive burn-off	DPF: Passives Abbrennen	DPF: Rigenerazione passiva
+DPF: !!Regeneracja!!	DPF: !!Regeneration!!	DPF: !!Regeneration!!	DPF: !!Rigenerazione!!
+DPF: Zakończono wypalanie	DPF: Burn-off complete	DPF: Abbrennen beendet	DPF: Rigenerazione conclusa
+EGT SZCZYT WLOT / WYLOT	EGT PEAK IN / OUT	EGT-SPITZE EIN / AUS	EGT PICCO ING. / USC.
