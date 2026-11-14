@@ -169,7 +169,8 @@ class EcuPidScanner(private val bleManager: BleManager) {
     // Public API
     // ═════════════════════════════════════════════════════════════════════════
 
-    fun startScan(scope: CoroutineScope) {
+    /** [extended] = scan the DID ranges not covered by the normal scan (hunting for new PIDs). */
+    fun startScan(scope: CoroutineScope, extended: Boolean = false) {
         if (scanJob?.isActive == true) return
         isCancelled = false
         EcuScanRepository.reset()
@@ -178,7 +179,7 @@ class EcuPidScanner(private val bleManager: BleManager) {
             bleManager.pausePolling()
             delay(300)
             try {
-                runScan()
+                if (extended) runExtendedScan() else runScan()
             } finally {
                 bleManager.resumePolling()
                 EcuScanRepository.setCompleted()
@@ -195,6 +196,30 @@ class EcuPidScanner(private val bleManager: BleManager) {
     // ═════════════════════════════════════════════════════════════════════════
     // Scan phases
     // ═════════════════════════════════════════════════════════════════════════
+
+    /**
+     * Extended scan: DID ranges the normal scan skips. Reference values (odometer, soot,
+     * load, ECU km estimate, oil km) are read first and again at the end so a value that
+     * changed during the scan can be told apart from a constant one.
+     */
+    private suspend fun runExtendedScan() {
+        val reference = listOf("22DD01", "22057B", "220579", "22050B", "220542")
+        runPhase(ScanPhase.PRIORITY, reference, TIMEOUT_PRIORITY_MS)
+        if (isCancelled) return
+        val phases = listOf(
+            ScanPhase.EXT_00_04 to buildUdsRange(0x00, 0x00, 0x04, 0xFF),
+            ScanPhase.EXT_06_08 to buildUdsRange(0x06, 0x00, 0x08, 0xFF),
+            ScanPhase.EXT_09    to buildUdsRange(0x09, 0x00, 0x09, 0xCF),
+            ScanPhase.EXT_0A_0F to buildUdsRange(0x0A, 0x00, 0x0F, 0xFF),
+            ScanPhase.EXT_14_1F to buildUdsRange(0x14, 0x00, 0x1F, 0xFF),
+            ScanPhase.EXT_F2_FC to buildUdsRange(0xF2, 0x00, 0xFC, 0xFF)
+        )
+        for ((phase, pids) in phases) {
+            runPhase(phase, pids, TIMEOUT_SWEEP_MS)
+            if (isCancelled) return
+        }
+        runPhase(ScanPhase.PRIORITY, reference, TIMEOUT_PRIORITY_MS)
+    }
 
     private suspend fun runScan() {
         // ── Phase 1 — Priority PIDs (600 ms timeout) ──────────────────────────

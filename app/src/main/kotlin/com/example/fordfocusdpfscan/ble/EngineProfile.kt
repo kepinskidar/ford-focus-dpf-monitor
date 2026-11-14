@@ -50,8 +50,8 @@ data class EngineProfile(
 
         val FOCUS_15_TDCI = EngineProfile(
             id = "focus_15_tdci",
-            displayName = "Ford Focus 1.5 TDCi (EDC17C70)",
-            subtitle = "Ford Focus 1.5 TDCi · EDC17C70",
+            displayName = "1.5 TDCi (EDC17C70)",
+            subtitle = "1.5 TDCi (EDC17C70)",
             ecuHeader = "7E0",
             requestExtendedSession = true,
             pids = listOf(
@@ -67,17 +67,18 @@ data class EngineProfile(
 
         val MONDEO_ECOBLUE_20 = EngineProfile(
             id = "mondeo_mk5_20_ecoblue",
-            displayName = "Ford Mondeo Mk5 2.0 EcoBlue 190 KM",
-            subtitle = "Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM",
+            displayName = "2.0 EcoBlue",
+            subtitle = "2.0 EcoBlue",
             ecuHeader = "7E0",
             requestExtendedSession = false,
             pids = listOf(
                 BleManager.CMD_COOLANT_TEMP, BleManager.CMD_EGT, BleManager.CMD_DPF_PRESSURE,
                 BleManager.CMD_ODOMETER,
-                // EXPERIMENTAL — these Mode 22 DIDs answer on the Mondeo ECU (scan 2026-10-30)
-                // with plausible values, but their meaning is NOT yet verified on EcoBlue.
+                // Mode 22 DIDs confirmed on the Mondeo (soot/load track regens, values match
+                // ForScan / Fdpf / DPF Info): 057B soot %, 0579 load %, 0542 oil km, 0614 km
+                // since last regen. 050B is the ECU estimate of km to the NEXT regen.
                 BleManager.CMD_DPF_LOAD, BleManager.CMD_DPF_SOOT,
-                BleManager.CMD_LAST_REGEN_DIST, BleManager.CMD_OIL_CHANGE,
+                BleManager.CMD_LAST_REGEN_DIST, BleManager.CMD_DIST_LAST_REGEN, BleManager.CMD_OIL_CHANGE,
                 BleManager.CMD_RPM, BleManager.CMD_SPEED, BleManager.CMD_ENGINE_LOAD,
                 BleManager.CMD_INTAKE_MAP, BleManager.CMD_BARO_PRESSURE, BleManager.CMD_OIL_TEMP,
                 BleManager.CMD_BATTERY_VOLTAGE,
@@ -87,9 +88,38 @@ data class EngineProfile(
             )
         )
 
-        val ALL = listOf(MONDEO_ECOBLUE_20, FOCUS_15_TDCI)
+        /**
+         * 2.0 TDCi, DW10 family (Focus Mk2, Mondeo Mk4, C-Max, S-Max, Galaxy, Kuga ...) —
+         * EXPERIMENTAL, never tested on a real car.
+         *
+         * Only Mode 22 DIDs that mean the SAME thing on both Ford ECUs verified so far
+         * (1.5 TDCi EDC17C70 and 2.0 EcoBlue) are polled: 057B soot %, 0579 load %,
+         * 0542 km since oil change, DD01 odometer. The distance DIDs are left out on
+         * purpose: 050B means "km since last regen" on the 1.5 TDCi but "km to the NEXT
+         * regen" on EcoBlue, and 0614 is EcoBlue-only — the DW10 value must be found with
+         * the wide ECU scan. Unsupported requests simply return no data.
+         */
+        val FORD_20_TDCI_DW10 = EngineProfile(
+            id = "ford_20_tdci_dw10",
+            displayName = "2.0 TDCi (DW10)",
+            subtitle = "2.0 TDCi (DW10) · eksperymentalny",
+            ecuHeader = "7E0",
+            requestExtendedSession = false,
+            pids = listOf(
+                BleManager.CMD_COOLANT_TEMP, BleManager.CMD_EGT, BleManager.CMD_DPF_PRESSURE,
+                BleManager.CMD_ODOMETER,
+                BleManager.CMD_DPF_LOAD, BleManager.CMD_DPF_SOOT, BleManager.CMD_OIL_CHANGE,
+                BleManager.CMD_RPM, BleManager.CMD_SPEED, BleManager.CMD_ENGINE_LOAD,
+                BleManager.CMD_INTAKE_MAP, BleManager.CMD_BARO_PRESSURE, BleManager.CMD_OIL_TEMP,
+                BleManager.CMD_BATTERY_VOLTAGE,
+                BleManager.CMD_FUEL_RAIL_PRESS, BleManager.CMD_FUEL_RAIL_PRESS_A,
+                BleManager.CMD_INTAKE_AIR_TEMP
+            )
+        )
 
-        /** Active profile (default: Mondeo Mk5 2.0 EcoBlue). */
+        val ALL = listOf(MONDEO_ECOBLUE_20, FORD_20_TDCI_DW10, FOCUS_15_TDCI)
+
+        /** Active profile (default: 2.0 EcoBlue). */
         fun active(context: Context): EngineProfile {
             val id = context.applicationContext
                 .getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

@@ -41,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
         val title    = findViewById<View>(R.id.splashTitle)
         val subtitle = findViewById<View>(R.id.splashSubtitle)
         (subtitle as? android.widget.TextView)?.text =
-            com.example.fordfocusdpfscan.ble.EngineProfile.active(this).subtitle
+            I18n.tr(com.example.fordfocusdpfscan.ble.EngineProfile.active(this).subtitle)
         val divider  = findViewById<View>(R.id.splashDivider)
         val credits  = findViewById<View>(R.id.splashCredits)
         val root     = findViewById<View>(R.id.splashRoot)

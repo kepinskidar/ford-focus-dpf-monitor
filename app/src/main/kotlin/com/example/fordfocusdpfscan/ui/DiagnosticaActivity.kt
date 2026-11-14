@@ -85,6 +85,7 @@ class DiagnosticaActivity : BaseTabActivity() {
     private lateinit var cIntakeAir: Cell
     // Distanze
     private lateinit var cKmRegen:  Cell
+    private lateinit var cKmSinceRegen: Cell
     private lateinit var cKmOil:    Cell
     private lateinit var cOdometer: Cell
 
@@ -133,6 +134,7 @@ class DiagnosticaActivity : BaseTabActivity() {
         cIntakeAir = Cell(findViewById(R.id.cellIntakeAir))
 
         cKmRegen  = Cell(findViewById(R.id.cellKmRegen))
+        cKmSinceRegen = Cell(findViewById(R.id.cellKmSinceRegen))
         cKmOil    = Cell(findViewById(R.id.cellKmOil))
         cOdometer = Cell(findViewById(R.id.cellOdometer))
     }
@@ -155,6 +157,7 @@ class DiagnosticaActivity : BaseTabActivity() {
         cIntakeAir.setup(tr("TEMP. POWIETRZA"),      "°C",  "powietrze dolotowe w kolektorze")
 
         cKmRegen .setup(tr("KM DO REGENERACJI"), "km",   tr("szacunek ECU · maleje w czasie jazdy · ~0 = regeneracja wkrótce"))
+        cKmSinceRegen.setup(tr("KM OD OSTATNIEJ REGENERACJI"), "km", tr("od końca ostatniej regeneracji (z licznika)"))
         cKmOil   .setup(tr("KM OD WYMIANY OLEJU"),  "km",   "od ostatniej wymiany oleju")
         cOdometer.setup(tr("LICZNIK"),      "km",   tr("przebieg całkowity ze sterownika"))
     }
@@ -303,6 +306,9 @@ class DiagnosticaActivity : BaseTabActivity() {
             d.kmSinceLastRegen < 50L  -> colorWarn   // regen imminente
             else                      -> colorOk
         })
+
+        cKmSinceRegen.setLong(d.kmSinceRegenKm)
+        cKmSinceRegen.setColor(if (d.kmSinceRegenKm < 0L) colorMuted else colorOk)
 
         cKmOil.setLong(d.kmSinceOilChange)
         cKmOil.setColor(when {

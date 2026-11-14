@@ -56,5 +56,14 @@ class FocusApp : Application() {
                 } catch (_: Exception) { /* retry on next launch */ }
             }
         }
+
+        // Seed "km since last regen" from the history database (source of truth).
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                RegenHistoryRepository(this@FocusApp).lastRegenEndOdometerKm()?.let {
+                    com.example.fordfocusdpfscan.data.DpfRepository.setLastRegenEnd(it)
+                }
+            } catch (_: Exception) { /* keep the persisted value */ }
+        }
     }
 }

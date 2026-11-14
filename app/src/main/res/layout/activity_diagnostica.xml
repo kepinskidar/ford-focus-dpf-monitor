@@ -409,6 +409,15 @@
                     <View android:layout_width="match_parent" android:layout_height="1dp"
                         android:background="@color/card_border"/>
 
+                    <!-- Row 1b: km since the last regen (odometer minus odometer at its end) -->
+                    <include layout="@layout/item_diag_cell"
+                        android:id="@+id/cellKmSinceRegen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="@color/card_border"/>
+
                     <!-- Row 2: Odometer (full width — baro PID 01 33 not available on this ECU) -->
                     <include layout="@layout/item_diag_cell"
                         android:id="@+id/cellOdometer"

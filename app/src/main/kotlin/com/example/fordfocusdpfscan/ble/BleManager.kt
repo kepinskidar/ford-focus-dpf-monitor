@@ -94,6 +94,9 @@ class BleManager(private val context: Context) {
         // 22050B CONFIRMED — km since last DPF regeneration (LST REG)
         // Exact match: raw=0x019A=410 km vs competitor 411.5 km (~1.5 km scan offset)
         const val CMD_LAST_REGEN_DIST = "22050B"
+        // 220614 CONFIRMED on the Mondeo Mk5 2.0 EcoBlue (found by the wide scan, matches ForScan
+        // DIST_LAST_DPF, Fdpf and DPF Info): first 2 data bytes = km * 10 since the last DPF regen.
+        const val CMD_DIST_LAST_REGEN = "220614"
         // 220542 CONFIRMED — km since last oil change (OILCHG)
         // Exact match: raw=0x2313=8979 km vs competitor 8979 km ✓ (perfect match)
         const val CMD_OIL_CHANGE      = "220542"
@@ -763,6 +766,11 @@ class BleManager(private val context: Context) {
                 // 62 05 0B <hi> <lo> — km since last regen
                 val km = ((bytes[3].toLong() and 0xFF) shl 8) or (bytes[4].toLong() and 0xFF)
                 DpfRepository.updateKmSinceLastRegen(km)
+            }
+            CMD_DIST_LAST_REGEN -> if (checkMode22(0x06, 0x14) && bytes.size >= 5) {
+                // 62 06 14 <hi> <lo> 9C 40 75 3E ... : (hi*256+lo) / 10 = km since last DPF regen
+                val raw = (b(3) shl 8) or b(4)
+                if (raw != 0xFFFF) DpfRepository.updateKmSinceRegenEcu(Math.round(raw / 10f).toLong())
             }
             CMD_OIL_CHANGE -> if (checkMode22(0x05, 0x42) && bytes.size >= 5) {
                 // 62 05 42 <hi> <lo> — km since last oil change

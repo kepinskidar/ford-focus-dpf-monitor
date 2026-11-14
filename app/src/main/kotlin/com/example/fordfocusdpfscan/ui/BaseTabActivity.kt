@@ -73,7 +73,7 @@ abstract class BaseTabActivity : AppCompatActivity() {
 
         // Vehicle subtitle = active engine profile; tap for profile / language.
         findViewById<TextView>(R.id.tvVehicleSubtitle)?.let { tv ->
-            tv.text = "${EngineProfile.active(this).subtitle} ▾"
+            tv.text = "${tr(EngineProfile.active(this).subtitle)} ▾"
             tv.setOnClickListener { showSettingsMenu(tv) }
         }
     }
@@ -103,7 +103,7 @@ abstract class BaseTabActivity : AppCompatActivity() {
                 profiles.indexOfFirst { it.id == current.id }
             ) { dialog, which ->
                 EngineProfile.setActive(this, profiles[which])
-                subtitleView.text = "${profiles[which].subtitle} ▾"
+                subtitleView.text = "${tr(profiles[which].subtitle)} ▾"
                 Toast.makeText(
                     this,
                     tr("Profil zmieniony. Rozłącz i połącz ponownie adapter OBD2."),

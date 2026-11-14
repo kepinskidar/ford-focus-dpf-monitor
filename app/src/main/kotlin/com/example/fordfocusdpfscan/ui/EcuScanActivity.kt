@@ -87,30 +87,8 @@ class EcuScanActivity : AppCompatActivity() {
     private fun setupButtons() {
 
         // ── Start scan ────────────────────────────────────────────────────────
-        binding.btnStartScan.setOnClickListener {
-            val bleManager = BleManagerHolder.instance
-            if (bleManager == null) {
-                Toast.makeText(this,
-                    tr("Adapter OBD nie jest połączony. Najpierw połącz się na ekranie głównym."),
-                    Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-            // Reset log state
-            lastLogPhase = null
-            renderedResultCount = 0
-            binding.tvLog.text = ""
-
-            // Create scanner and start
-            scanner = EcuPidScanner(bleManager)
-            scanner!!.startScan(lifecycleScope)
-
-            // Update button visibility
-            binding.btnStartScan.visibility = View.GONE
-            binding.btnStopScan.visibility  = View.VISIBLE
-            binding.btnShareLog.isEnabled   = false
-            binding.btnAnalyzeAi.isEnabled  = false
-        }
+        binding.btnStartScan.setOnClickListener { beginScan(false) }
+        binding.btnStartExtended.setOnClickListener { beginScan(true) }
 
         // ── Analyze with AI ─────────────────────────────────────────────────────
         binding.btnAnalyzeAi.setOnClickListener { analyzeWithAi() }
@@ -120,6 +98,7 @@ class EcuScanActivity : AppCompatActivity() {
             scanner?.cancelScan()
             binding.btnStopScan.visibility  = View.GONE
             binding.btnStartScan.visibility = View.VISIBLE
+            binding.btnStartExtended.visibility = View.VISIBLE
             binding.tvCurrentPhase.text = tr("Skanowanie anulowane")
         }
 
@@ -131,7 +110,7 @@ class EcuScanActivity : AppCompatActivity() {
             try {
                 val dateTag = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
                 val dir = File(cacheDir, "scan_reports").also { it.mkdirs() }
-                val file = File(dir, "MK5DPF_scan_$dateTag.txt")
+                val file = File(dir, "FordDPF_scan_$dateTag.txt")
                 file.writeText(logText, Charsets.UTF_8)
 
                 val uri = FileProvider.getUriForFile(
@@ -141,7 +120,7 @@ class EcuScanActivity : AppCompatActivity() {
                 )
                 val intent = Intent(Intent.ACTION_SEND).apply {
                     type = "text/plain"
-                    putExtra(Intent.EXTRA_SUBJECT, "MK5 DPF — raport skanowania PID ECU")
+                    putExtra(Intent.EXTRA_SUBJECT, "FORD DPF MONITOR — raport skanowania PID ECU")
                     putExtra(Intent.EXTRA_STREAM, uri)
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 }
@@ -170,7 +149,7 @@ class EcuScanActivity : AppCompatActivity() {
             val uri = FileProvider.getUriForFile(this, "${packageName}.provider", file)
             val intent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
-                putExtra(Intent.EXTRA_SUBJECT, "MK5 DPF — zapis stanu regeneracji")
+                putExtra(Intent.EXTRA_SUBJECT, "FORD DPF MONITOR — zapis stanu regeneracji")
                 putExtra(Intent.EXTRA_STREAM, uri)
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             }
@@ -268,9 +247,36 @@ class EcuScanActivity : AppCompatActivity() {
         return "[${result.status.symbol}] $pid  $resp$decoded$label"
     }
 
+    private fun beginScan(extended: Boolean) {
+        val bleManager = BleManagerHolder.instance
+        if (bleManager == null) {
+            Toast.makeText(this,
+                tr("Adapter OBD nie jest połączony. Najpierw połącz się na ekranie głównym."),
+                Toast.LENGTH_LONG).show()
+            return
+        }
+
+        // Reset log state
+        lastLogPhase = null
+        renderedResultCount = 0
+        binding.tvLog.text = ""
+
+        // Create scanner and start
+        scanner = EcuPidScanner(bleManager)
+        scanner!!.startScan(lifecycleScope, extended)
+
+        // Update button visibility
+        binding.btnStartScan.visibility = View.GONE
+        binding.btnStartExtended.visibility = View.GONE
+        binding.btnStopScan.visibility  = View.VISIBLE
+        binding.btnShareLog.isEnabled   = false
+        binding.btnAnalyzeAi.isEnabled  = false
+    }
+
     private fun onScanCompleted(state: ScanState) {
         binding.btnStopScan.visibility  = View.GONE
         binding.btnStartScan.visibility = View.VISIBLE
+        binding.btnStartExtended.visibility = View.VISIBLE
         binding.btnShareLog.isEnabled   = true
         binding.btnAnalyzeAi.isEnabled  = true
         binding.progressPhase.progress  = 100

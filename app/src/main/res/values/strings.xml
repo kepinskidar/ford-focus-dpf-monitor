@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App identity -->
-    <string name="app_name">MK5 DPF</string>
-    <string name="app_full_name">MK5 DPF — Ford Mondeo Mk5 2.0 EcoBlue</string>
+    <string name="app_name">FORD DPF MONITOR</string>
+    <string name="app_full_name">FORD DPF MONITOR</string>
 
     <!-- Phone UI — connection card -->
     <string name="btn_scan">Szukaj urządzenia OBD2</string>
@@ -41,7 +41,7 @@
     <string name="notif_channel_desc">Powiadomienia o regeneracji DPF i stanie połączenia Bluetooth</string>
 
     <!-- Notification titles / texts -->
-    <string name="notif_persistent_title">MK5 DPF — monitor DPF</string>
+    <string name="notif_persistent_title">FORD DPF MONITOR</string>
     <string name="notif_warning_title">Wysoka temperatura EGT</string>
     <string name="notif_warning_text">EGT powyżej 450°C. Nie gaś silnika.</string>
     <string name="notif_active_title">Regeneracja DPF aktywna!</string>
@@ -58,7 +58,7 @@
     <string name="toast_ble_lost">Rozłączono adapter OBD</string>
 
     <!-- Android Auto screen — row titles -->
-    <string name="car_screen_title">MK5 DPF — monitor DPF</string>
+    <string name="car_screen_title">FORD DPF MONITOR</string>
     <string name="car_action_reconnect">Połącz ponownie</string>
     <string name="car_row_dpf">Filtr DPF</string>
     <string name="car_row_regen">Regeneracja</string>

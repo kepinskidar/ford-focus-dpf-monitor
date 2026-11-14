@@ -40,7 +40,13 @@ enum class ScanPhase(val displayName: String) {
     UDS_40xx      ("UDS 22 40xx–41xx (TPMS / BCM)"),
     UDS_DDxx      ("UDS 22 DDxx (licznik + liczniki — pełny zakres)"),
     UDS_F1xx      ("UDS 22 F1xx (standardowe ID UDS)"),
-    UDS_FDxx      ("UDS 22 FDxx — liczniki regeneracji (km od ostatniej, nieudane…)")
+    UDS_FDxx      ("UDS 22 FDxx — liczniki regeneracji (km od ostatniej, nieudane…)"),
+    EXT_00_04     ("UDS 22 00xx–04xx (zakres dodatkowy)"),
+    EXT_06_08     ("UDS 22 06xx–08xx (zakres dodatkowy)"),
+    EXT_09        ("UDS 22 0900–09CF (zakres dodatkowy)"),
+    EXT_0A_0F     ("UDS 22 0Axx–0Fxx (zakres dodatkowy)"),
+    EXT_14_1F     ("UDS 22 14xx–1Fxx (zakres dodatkowy)"),
+    EXT_F2_FC     ("UDS 22 F2xx–FCxx (zakres dodatkowy)")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -144,7 +150,7 @@ object EcuScanRepository {
 
         return buildString {
             appendLine("═══════════════════════════════════════════════════════")
-            appendLine("  MK5 DPF — RAPORT SKANOWANIA PID ECU")
+            appendLine("  FORD DPF MONITOR — RAPORT SKANOWANIA PID ECU")
             appendLine("  Wygenerowano: $dateStr")
             appendLine("═══════════════════════════════════════════════════════")
             appendLine()

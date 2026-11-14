@@ -58,6 +58,11 @@ data class DpfData(
      *  the soot model, so it drifts. Field name kept for compatibility. -1L = no data. */
     val kmSinceLastRegen: Long = -1L,
 
+    /** Km driven since the last COMPLETED regen ended: current odometer minus the odometer
+     *  recorded when that regen finished (the ECU has no readable "km since regen" value on
+     *  this engine). -1L = unknown (no finished regen recorded yet). */
+    val kmSinceRegenKm: Long = -1L,
+
     /** Km travelled since the last engine oil change.
      *  Derived from PID 22 0542. Confirmed exact match (8979 km).
      *  Reset by the mechanic via Ford IDS at every service. -1L = no data yet. */

@@ -189,7 +189,7 @@ class DtcActivity : AppCompatActivity() {
         sb.append(tr("EGT %s, ").format(n(d.egtCelsius, "°C")))
         sb.append(tr("Delta P "))
         sb.append(if (d.dpfDeltaPressureKpa >= 0f) "%.1f kPa".format(d.dpfDeltaPressureKpa) else "b/d")
-        sb.append(", km od ostatniej regen. ${d.kmSinceLastRegen}")
+        sb.append(", km od ostatniej regen. ${d.kmSinceRegenKm}, szac. km do regeneracji ${d.kmSinceLastRegen}")
         sb.append(", km od wymiany oleju ${d.kmSinceOilChange}, licznik ${d.odometerKm}")
 
         AiAssist.run(this, tr("Wyjaśnienie kodów"), AiPrompts.dtcSystem(com.example.fordfocusdpfscan.ble.EngineProfile.active(this)), sb.toString())

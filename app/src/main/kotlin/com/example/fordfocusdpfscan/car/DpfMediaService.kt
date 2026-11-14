@@ -139,7 +139,7 @@ class DpfMediaService : MediaBrowserServiceCompat() {
                     tr("Sadza %s · Obc. %s · EGT %s%s").format(pct(d.sootPercentage), pct(d.loadPercentage), temp(d.egtPostDpfC), nudge))
                 .putString(MediaMetadataCompat.METADATA_KEY_ARTIST, barSubtitle(d))
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, -1L)
-                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, "MK5 DPF")
+                .putString(MediaMetadataCompat.METADATA_KEY_ALBUM, "FORD DPF MONITOR")
                 .build()
         )
     }
@@ -230,7 +230,7 @@ class DpfMediaService : MediaBrowserServiceCompat() {
             )
             ID_REGEN -> listOf(
                 leaf("regen", tr("Stan regeneracji"), regenText(d)),
-                leaf("kmregen", tr("Od ostatniej regeneracji"), km(d.kmSinceLastRegen)),
+                leaf("kmregen", tr("Od ostatniej regeneracji"), km(d.kmSinceRegenKm)),
                 leaf("egt", tr("EGT (temp. spalin)"), temp(d.egtCelsius))
             )
             ID_ENGINE -> listOf(
@@ -252,7 +252,7 @@ class DpfMediaService : MediaBrowserServiceCompat() {
             )
             ID_DIST -> listOf(
                 leaf("odo", tr("Licznik"), km(d.odometerKm)),
-                leaf("kmregen2", tr("Od ostatniej regeneracji"), km(d.kmSinceLastRegen)),
+                leaf("kmregen2", tr("Do regeneracji (szac.)"), km(d.kmSinceLastRegen)),
                 leaf("kmoil", tr("Od wymiany oleju"), km(d.kmSinceOilChange))
             )
             else -> emptyList()
@@ -269,7 +269,7 @@ class DpfMediaService : MediaBrowserServiceCompat() {
         folder(ID_POWER, tr("Zasilanie"),
             tr("Akumulator %s").format(if (d.batteryVoltage >= 0f) "%.1f V".format(d.batteryVoltage) else NO_DATA)),
         folder(ID_DIST, tr("Dystanse"),
-            tr("Licznik %s · od regen. %s").format(km(d.odometerKm), km(d.kmSinceLastRegen))),
+            tr("Licznik %s · od regen. %s").format(km(d.odometerKm), km(d.kmSinceRegenKm))),
         leaf("conn", tr("Połączenie OBD"), if (d.bleConnected) tr("Połączono") else tr("Rozłączono"))
     )
 
@@ -284,10 +284,10 @@ class DpfMediaService : MediaBrowserServiceCompat() {
     private fun num(v: Float, unit: String) = if (v >= 0f) "${v.toInt()} $unit" else NO_DATA
 
     private fun regenShort(d: DpfData) = when (d.regenStatus.name) {
-        "INACTIVE" -> tr("DPF: Kumulowanie sadzy")
-        "WARNING" -> tr("DPF: Wypalanie pasywne")
-        "ACTIVE" -> tr("DPF: !!Regeneracja!!")
-        "COMPLETED" -> tr("DPF: Zakończono wypalanie")
+        "INACTIVE" -> tr("DPF: Gromadzenie")
+        "WARNING" -> tr("DPF: Wypalanie")
+        "ACTIVE" -> tr("DPF: Regeneracja!")
+        "COMPLETED" -> tr("DPF: Zakończono")
         else -> d.regenStatus.name
     }
 

@@ -112,7 +112,7 @@ class AiChatActivity : AppCompatActivity() {
         sb.append(tr("Silnik: płyn chłodzący %s, RPM %s, ").format(f(d.coolantTempC, "°C"), f(d.rpmValue, "")))
         sb.append(tr("prędkość %s, akumulator ").format(f(d.speedKmh, " km/h")))
         sb.append(if (d.batteryVoltage >= 0f) "%.1f V".format(d.batteryVoltage) else "b/d").append(".\n")
-        sb.append(tr("Dystanse: licznik %s km, km od ostatniej regen. %s, ").format(d.odometerKm, d.kmSinceLastRegen))
+        sb.append(tr("Dystanse: licznik %s km, km od ostatniej regen. %s, szac. km do regeneracji %s, ").format(d.odometerKm, d.kmSinceRegenKm, d.kmSinceLastRegen))
         sb.append("km od wymiany oleju ${d.kmSinceOilChange}.\n")
         sb.append(tr("Aktualny stan regen.: %s.\n\n").format(d.regenStatus))
 

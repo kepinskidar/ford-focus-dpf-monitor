@@ -25,7 +25,7 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_mk5_dpf"
             android:scaleType="fitCenter"
-            android:contentDescription="Ikona MK5 DPF"/>
+            android:contentDescription="Ikona FORD DPF MONITOR"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MK5 DPF"
+                android:text="FORD DPF MONITOR"
                 android:textColor="@color/text_primary"
                 android:textSize="17sp"
                 android:textStyle="bold"
@@ -45,7 +45,7 @@
                 android:id="@+id/tvVehicleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM"
+                android:text="2.0 EcoBlue"
                 android:textColor="@color/text_secondary"
                 android:textSize="11sp"/>
         </LinearLayout>

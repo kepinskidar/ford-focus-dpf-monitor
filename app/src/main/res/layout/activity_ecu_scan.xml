@@ -217,6 +217,16 @@
             app:backgroundTint="@color/dpf_blue_light" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartExtended"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="Szeroki skan"
+            android:textSize="13sp"
+            app:backgroundTint="@color/dpf_blue_mid" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnStopScan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

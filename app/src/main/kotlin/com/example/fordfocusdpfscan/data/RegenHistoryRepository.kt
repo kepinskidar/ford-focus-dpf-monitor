@@ -97,6 +97,9 @@ class RegenHistoryRepository(context: Context) {
      * Called when regen ends (COMPLETED or INTERRUPTED).
      * [result] = "COMPLETED" | "INTERRUPTED"
      */
+    /** Odometer at the end of the last finished regen, or null if there is none. */
+    suspend fun lastRegenEndOdometerKm(): Long? = dao.getLastRegenEndOdometer()
+
     suspend fun onRegenEnded(data: DpfData, result: String) {
         val sessionId = currentSessionId ?: return
 
@@ -124,6 +127,10 @@ class RegenHistoryRepository(context: Context) {
                 result          = result
             )
         )
+
+        // "km since last regen" restarts only after a regen that really burned soot
+        // (soot dropped by >= 10 points); a heat spike alone does not count.
+        dao.getLastRegenEndOdometer()?.let { DpfRepository.setLastRegenEnd(it) }
 
         Log.d(TAG, "Regen session #$sessionId ended → $result (${durationMinutes} min)")
         currentSessionId = null
@@ -180,7 +187,7 @@ class RegenHistoryRepository(context: Context) {
      * Generates a complete HTML report string suitable for sharing with a mechanic.
      * Includes: vehicle info, summary stats, session table, and per-session details.
      */
-    suspend fun generateHtmlReport(vehicleInfo: String = "Ford Mondeo Mk5 2.0 EcoBlue 190 KM"): String {
+    suspend fun generateHtmlReport(vehicleInfo: String = "2.0 EcoBlue"): String {
         val sessions   = dao.getAllSessionsOnce()
         val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pl", "PL"))
         val genDate    = dateFormat.format(Date())
@@ -264,7 +271,7 @@ class RegenHistoryRepository(context: Context) {
 </head>
 <body>
 
-<h1>📋 MK5 DPF — Raport regeneracji</h1>
+<h1>📋 FORD DPF MONITOR — Raport regeneracji</h1>
 
 <div class="header-block">
   <div class="vehicle-box">
@@ -272,7 +279,7 @@ class RegenHistoryRepository(context: Context) {
     <p><b>Sterownik:</b> ECU silnika (OBD2, nagłówek 7E0)</p>
     <p><b>Adapter OBD:</b> Android-Vlink (BLE/SPP)</p>
     <p><b>Raport wygenerowano:</b> $genDate</p>
-    <p><b>Aplikacja:</b> MK5 DPF v${BuildConfig.VERSION_NAME}</p>
+    <p><b>Aplikacja:</b> FORD DPF MONITOR v${BuildConfig.VERSION_NAME}</p>
   </div>
 </div>
 
@@ -313,7 +320,7 @@ class RegenHistoryRepository(context: Context) {
 </table>
 
 <div class="footer">
-  Raport wygenerowany automatycznie przez MK5 DPF v${BuildConfig.VERSION_NAME} · $vehicleInfo<br>
+  Raport wygenerowany automatycznie przez FORD DPF MONITOR v${BuildConfig.VERSION_NAME} · $vehicleInfo<br>
   Dane pochodzą ze sterownika silnika przez OBD2 (ISO 15765-4 CAN, ATSH7E0).
 </div>
 

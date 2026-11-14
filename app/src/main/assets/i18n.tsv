@@ -24,7 +24,6 @@ Nieaktywna — można zgasić silnik	Inactive — safe to switch off the engine	
 ✅ Zakończona — można zgasić silnik	✅ Completed — safe to switch off the engine	✅ Abgeschlossen — Motor darf abgestellt werden	✅ Completata — puoi spegnere il motore
 Alerty DPF	DPF alerts	DPF-Warnungen	Avvisi DPF
 Powiadomienia o regeneracji DPF i stanie połączenia Bluetooth	Notifications about DPF regeneration and Bluetooth connection status	Benachrichtigungen zur DPF-Regeneration und zum Bluetooth-Verbindungsstatus	Notifiche sulla rigenerazione del DPF e sullo stato della connessione Bluetooth
-MK5 DPF — monitor DPF	MK5 DPF — DPF monitor	MK5 DPF — DPF-Monitor	MK5 DPF — monitor DPF
 Wysoka temperatura EGT	High EGT	Hohe EGT	EGT elevata
 EGT powyżej 450°C. Nie gaś silnika.	EGT above 450°C. Do not switch off the engine.	EGT über 450 °C. Motor nicht abstellen.	EGT oltre 450°C. Non spegnere il motore.
 Regeneracja DPF aktywna!	DPF regeneration active!	DPF-Regeneration aktiv!	Rigenerazione DPF attiva!
@@ -122,8 +121,6 @@ Szacowany koszt łącznie: $0.0000	Estimated total cost: $0.0000	Geschätzte Ges
 Ostatnie zapytanie: $0.0000	Last request: $0.0000	Letzte Anfrage: $0.0000	Ultima richiesta: $0.0000
 Zeruj liczniki	Reset counters	Zähler zurücksetzen	Azzera contatori
 Koszt to lokalny szacunek na podstawie tokenów każdej odpowiedzi. Oficjalne rozliczenie jest w Konsoli Anthropic.	The cost is a local estimate from the tokens of each response. The official count is in the Anthropic Console.	Die Kosten sind eine lokale Schätzung anhand der Tokens jeder Antwort. Die offizielle Abrechnung finden Sie in der Anthropic Console.	Il costo è una stima locale calcolata dai token di ogni risposta. Il conteggio ufficiale è nella Console Anthropic.
-Ikona MK5 DPF	MK5 DPF icon	MK5-DPF-Symbol	Icona MK5 DPF
-Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM	Ford Mondeo Mk5 · 2.0 EcoBlue 190 hp	Ford Mondeo Mk5 · 2.0 EcoBlue 190 PS	Ford Mondeo Mk5 · 2.0 EcoBlue 190 CV
 Autor oryginału: Andrea Sesuru	Original author: Andrea Sesuru	Ursprünglicher Autor: Andrea Sesuru	Autore originale: Andrea Sesuru
 Nowe przypomnienie	New reminder	Neue Erinnerung	Nuovo promemoria
 Nazwa serwisu	Service name	Name der Wartung	Nome intervento
@@ -428,3 +425,13 @@ DPF: Wypalanie pasywne	DPF: Passive burn-off	DPF: Passives Abbrennen	DPF: Rigene
 DPF: !!Regeneracja!!	DPF: !!Regeneration!!	DPF: !!Regeneration!!	DPF: !!Rigenerazione!!
 DPF: Zakończono wypalanie	DPF: Burn-off complete	DPF: Abbrennen beendet	DPF: Rigenerazione conclusa
 EGT SZCZYT WLOT / WYLOT	EGT PEAK IN / OUT	EGT-SPITZE EIN / AUS	EGT PICCO ING. / USC.
+DPF: Gromadzenie	DPF: Accumulating	DPF: Beladung	DPF: Accumulo
+DPF: Wypalanie	DPF: Burn-off	DPF: Abbrennen	DPF: Combustione
+DPF: Regeneracja!	DPF: Regeneration!	DPF: Regeneration!	DPF: Rigenerazione!
+DPF: Zakończono	DPF: Done	DPF: Beendet	DPF: Completata
+Do regeneracji (szac.)	To regeneration (est.)	Bis Regeneration (gesch.)	Alla rigenerazione (stima)
+KM OD OSTATNIEJ REGENERACJI	KM SINCE LAST REGENERATION	KM SEIT LETZTER REGENERATION	KM DALL'ULTIMA RIGENERAZIONE
+od końca ostatniej regeneracji (z licznika)	since the last regeneration ended (from odometer)	seit Ende der letzten Regeneration (aus Kilometerstand)	dalla fine dell'ultima rigenerazione (dal contachilometri)
+Szeroki skan	Wide scan	Breiter Scan	Scansione estesa
+Ikona FORD DPF MONITOR	FORD DPF MONITOR icon	FORD-DPF-MONITOR-Symbol	Icona FORD DPF MONITOR
+2.0 TDCi (DW10) · eksperymentalny	2.0 TDCi (DW10) · experimental	2.0 TDCi (DW10) · experimentell	2.0 TDCi (DW10) · sperimentale

@@ -29,6 +29,10 @@ object DpfRepository {
     private const val PREFS_NAME = "focus_prefs"
     /** Persisted last valid odometer km (survives disconnect / app restart). */
     private const val KEY_LAST_ODO = "last_odometer_km"
+    private const val KEY_LAST_REGEN_END = "last_regen_end_odometer_km"
+
+    /** Odometer reading when the last completed regen ended (-1 = unknown). */
+    private var lastRegenEndKm: Long = -1L
 
     // ── Odometer glitch filter ──────────────────────────────────────────────────
     /** Max plausible forward step between two accepted odometer readings (km). */
@@ -131,8 +135,12 @@ object DpfRepository {
         // available immediately — before the first ECU read and while offline.
         // Distance counters (kmSinceLastRegen, kmSinceOilChange) stay live-only.
         lastGoodOdometerKm = prefs.getLong(KEY_LAST_ODO, 0L)
+        lastRegenEndKm = prefs.getLong(KEY_LAST_REGEN_END, -1L)
         if (lastGoodOdometerKm > 0L) {
-            _dpfData.value = _dpfData.value.copy(odometerKm = lastGoodOdometerKm)
+            _dpfData.value = _dpfData.value.copy(
+                odometerKm = lastGoodOdometerKm,
+                kmSinceRegenKm = sinceRegen(lastGoodOdometerKm)
+            )
         }
     }
 
@@ -194,12 +202,37 @@ object DpfRepository {
         }
     }
 
+    /** ECU's own "distance since last DPF regen" (22 0614); -1 until it has been read. */
+    private var ecuKmSinceRegen: Long = -1L
+
+    /** Prefer the ECU counter; otherwise odometer minus odometer at the last real regen. */
+    private fun sinceRegen(odometerKm: Long): Long = when {
+        ecuKmSinceRegen >= 0L -> ecuKmSinceRegen
+        lastRegenEndKm in 1..odometerKm -> odometerKm - lastRegenEndKm
+        else -> -1L
+    }
+
+    /** Updates km since the last DPF regen read directly from the ECU (PID 22 0614). */
+    fun updateKmSinceRegenEcu(km: Long) {
+        ecuKmSinceRegen = km
+        _dpfData.value = _dpfData.value.copy(kmSinceRegenKm = km)
+    }
+
+    /** Called when a regen finishes (odometer at that moment); resets "km since last regen". */
+    fun setLastRegenEnd(odometerKm: Long) {
+        if (odometerKm <= 0L) return
+        lastRegenEndKm = odometerKm
+        if (::prefs.isInitialized) prefs.edit().putLong(KEY_LAST_REGEN_END, odometerKm).apply()
+        val odo = _dpfData.value.odometerKm
+        _dpfData.value = _dpfData.value.copy(kmSinceRegenKm = sinceRegen(odo))
+    }
+
     private fun acceptOdometer(km: Long) {
         lastGoodOdometerKm = km
         pendingOdometerKm = 0L
         pendingOdometerCount = 0
         if (::prefs.isInitialized) prefs.edit().putLong(KEY_LAST_ODO, km).apply()
-        _dpfData.value = _dpfData.value.copy(odometerKm = km)
+        _dpfData.value = _dpfData.value.copy(odometerKm = km, kmSinceRegenKm = sinceRegen(km))
     }
 
     /** Updates km travelled since last DPF regeneration (PID 22 050B). */

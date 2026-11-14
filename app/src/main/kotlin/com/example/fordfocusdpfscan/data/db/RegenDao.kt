@@ -30,6 +30,10 @@ interface RegenDao {
     @Query("SELECT * FROM regen_sessions WHERE result = 'IN_PROGRESS' ORDER BY startTimestamp DESC LIMIT 1")
     suspend fun getActiveSession(): RegenSession?
 
+    /** Odometer at the end of the most recent regen that really burned soot (drop >= 10 points). */
+    @Query("SELECT postOdometerKm FROM regen_sessions WHERE result != 'INTERRUPTED' AND result != 'IN_PROGRESS' AND postOdometerKm IS NOT NULL AND postOdometerKm > 0 AND preSootPct >= 0 AND postSootPct IS NOT NULL AND (preSootPct - postSootPct) >= 10 ORDER BY endTimestamp DESC LIMIT 1")
+    suspend fun getLastRegenEndOdometer(): Long?
+
     @Query("SELECT COUNT(*) FROM regen_sessions")
     suspend fun getTotalCount(): Int
 

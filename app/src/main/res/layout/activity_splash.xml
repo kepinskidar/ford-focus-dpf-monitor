@@ -26,16 +26,16 @@
         app:layout_constraintBottom_toTopOf="@id/splashTitle"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintVertical_bias="0.42"
-        android:contentDescription="Ikona MK5 DPF"/>
+        android:contentDescription="Ikona FORD DPF MONITOR"/>
 
     <!-- App name -->
     <TextView
         android:id="@+id/splashTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MK5 DPF"
+        android:text="FORD DPF MONITOR"
         android:textColor="#FFFFFF"
-        android:textSize="32sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:letterSpacing="0.02"
         android:alpha="0"
@@ -50,7 +50,7 @@
         android:id="@+id/splashSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ford Mondeo Mk5 · 2.0 EcoBlue 190 KM"
+        android:text="2.0 EcoBlue"
         android:textColor="#4F8EF7"
         android:textSize="15sp"
         android:letterSpacing="0.04"

@@ -11,15 +11,17 @@ import com.example.fordfocusdpfscan.ble.EngineProfile
 
 object AiPrompts {
 
-    private fun carProfile(profile: EngineProfile): String =
-        if (profile.id == EngineProfile.FOCUS_15_TDCI.id) {
-            """
+    private fun carProfile(profile: EngineProfile): String {
+        val lang = com.example.fordfocusdpfscan.i18n.I18n.answerLanguage()
+        val intro = """
             Jesteś asystentem diagnostycznym wyspecjalizowanym w JEDNYM aucie:
-            Ford Focus 1.5 TDCi (Mk3), sterownik Bosch EDC17C70, diesel z DPF.
-            Odpowiadaj ZAWSZE w języku: ${com.example.fordfocusdpfscan.i18n.I18n.answerLanguage()}, zwięźle i praktycznie, zwracając się do właściciela
+            Ford z silnikiem ${profile.displayName}, diesel z DPF.
+            Odpowiadaj ZAWSZE w języku: $lang, zwięźle i praktycznie, zwracając się do właściciela
             (zna się na rzeczy, ale nie jest mechanikiem). Bez zbędnych zastrzeżeń.
-
-            PID-y potwierdzone na tym ECU (protokół OBD2/ELM327, nagłówek 7E0):
+        """.trimIndent()
+        return intro + "\n\n" + when (profile.id) {
+            EngineProfile.FOCUS_15_TDCI.id -> """
+            Sterownik Bosch EDC17C70. PID-y potwierdzone na tym ECU (protokół OBD2/ELM327, nagłówek 7E0):
             - 22 057B = sadza DPF %, 22 0579 = obciążenie DPF %, 01 7A = ciśnienie różnicowe DPF
             - 22 050B = km od ostatniej regeneracji, 22 0542 = km od ostatniej wymiany oleju
             - 22 DD01 = licznik, 01 78 = temperatura spalin (EGT)
@@ -30,27 +32,31 @@ object AiPrompts {
             (≈2% uwaga, ≈4% krytyczne), nasilany przez krótkie trasy i częste regeneracje;
             EGR i przepustnica mają tendencję do zanieczyszczania się.
             """.trimIndent()
-        } else {
-            """
-            Jesteś asystentem diagnostycznym wyspecjalizowanym w JEDNYM aucie:
-            Ford Mondeo Mk5 (2019), silnik 2.0 EcoBlue 190 KM, diesel z DPF.
-            Odpowiadaj ZAWSZE w języku: ${com.example.fordfocusdpfscan.i18n.I18n.answerLanguage()}, zwięźle i praktycznie, zwracając się do właściciela
-            (zna się na rzeczy, ale nie jest mechanikiem). Bez zbędnych zastrzeżeń.
-
-            Aplikacja czyta z ECU (OBD2/ELM327, nagłówek 7E0) tylko standardowe PID-y SAE J1979:
+            EngineProfile.FORD_20_TDCI_DW10.id -> """
+            Profil EKSPERYMENTALNY (rodzina DW10), nie testowany na prawdziwym aucie.
+            Aplikacja czyta standardowe PID-y SAE J1979 (nagłówek 7E0) oraz identyfikatory Forda
+            potwierdzone na innych silnikach tej marki: 22 057B = sadza DPF %, 22 0579 = obciążenie
+            DPF %, 22 0542 = km od wymiany oleju, 22 DD01 = licznik. Na DW10 ich znaczenie NIE jest
+            potwierdzone — jeśli dane są niespójne lub brakuje ich, powiedz to wprost i nie zgaduj.
+            Dystans od ostatniej regeneracji dla tego silnika nie jest jeszcze znany.
+            """.trimIndent()
+            else -> """
+            Aplikacja czyta z ECU (OBD2/ELM327, nagłówek 7E0) standardowe PID-y SAE J1979:
             - 01 0C/0D/04/0B/33 = obroty, prędkość, obciążenie, MAP, ciśnienie atmosferyczne
             - 01 05 = temp. płynu chłodzącego, 01 5C = temp. oleju, 01 42 = napięcie akumulatora
-            - 01 23/59 = ciśnienie w listwie, 01 0F = temp. powietrza dolotowego
+            - 01 59 = ciśnienie w listwie, 01 0F = temp. powietrza dolotowego
             - 01 78 = temperatura spalin (EGT), 01 7A = ciśnienie różnicowe DPF
-            oraz identyfikator Forda 22 DD01 = licznik.
-            Obsługa PID-ów 01 78 i 01 7A przez to ECU nie jest potwierdzona.
 
-            WAŻNE: identyfikatory UDS (22 xxxx) dla sadzy/obciążenia DPF, km do regeneracji
-            czy rozcieńczenia oleju NIE są jeszcze znane dla tego silnika (te z 1.5 TDCi
-            EDC17C70 mogą nie działać). Nie zakładaj ich znaczenia i nie wymyślaj wartości —
+            Potwierdzone identyfikatory UDS dla tego silnika (zgodne z ForScan i innymi aplikacjami):
+            - 22 057B = sadza DPF %, 22 0579 = obciążenie DPF %
+            - 22 0614 = km od ostatniej regeneracji (pierwsze 2 bajty / 10)
+            - 22 050B = szacunek ECU: ile km do kolejnej regeneracji (maleje podczas jazdy)
+            - 22 0542 = km od ostatniej wymiany oleju, 22 DD01 = licznik
+            Rozcieńczenie oleju paliwem NIE jest jeszcze znane — nie wymyślaj wartości,
             jeśli brakuje danych, powiedz to wprost.
             """.trimIndent()
         }
+    }
 
     /** System prompt for explaining fault codes. */
     fun dtcSystem(profile: EngineProfile): String = carProfile(profile) + "\n\n" + """
